@@ -1,0 +1,294 @@
+html
+  head
+    meta(charset='UTF-8')
+    title SkootJobs
+    link(rel='stylesheet', type='text/css', href='owl-carousel/assets/owl.carousel.min.css')
+    link(rel='stylesheet', type='text/css', href='styles/styles.min.css')
+  body.home
+    header#header
+      .container-fluid
+        nav.primary-nav
+          .navbar-brand
+            a(href='')
+              img(src='images/logo.png')
+          ul.main-menu
+            li
+              a(href='')
+                i.icon-search(aria-hidden='true')
+                |  Job Search
+            li
+              a(href='')
+                i.icon-login(aria-hidden='true')
+                |  Login 
+                span.caret
+              ul
+                li
+                  a(href='') Candidate Login
+                li
+                  a(href='') Employer Login
+            li
+              a(href='')
+                i.icon-user-plus(aria-hidden='true')
+                |  Create an account 
+                span.caret
+              ul
+                li
+                  a(href='') Candidate Signup
+                li
+                  a(href='') Employer Signup
+    #home-section1
+      .section-inner
+        .container
+          .switcher
+            a.active(href='') Candidate
+            a(href='') Employer
+          .clearfix
+          h1.text-center.main-title Search From Thousands of Jobs in Malaysia
+          h3.text-center.sub-title Join Over 250,000 Candidates Today
+          .text-center
+            a.btn.btn-danger.join-now(href='') Join Now
+      a.goto-btn(onclick="scrollToContent('#home-section2')")
+        i.icon-down-open
+      .search
+        .container
+          .row
+            .col-xs-12.col-sm-12.col-md-12.col-lg-10.col-md-push-0.col-lg-push-1
+              .row
+                .col-xs-12.col-sm-4.col-md-5.col
+                  input.form-control(name='keywords', type='text', placeholder='Enter job title or keywords')
+                  i.icon-search(aria-hidden='true')
+                .col-xs-12.col-sm-4.col-md-5.col
+                  input.form-control(type='text', placeholder='Location', autocomplete='off')
+                  i.icon-location(aria-hidden='true')
+                .col-xs-12.col-sm-4.col-md-2
+                  button.btn.btn-danger.btn-block Job Search
+    #home-section2
+      .container
+        h2.section-title.text-center Employers hiring right now
+        h5.text-center.description Among some of Malaysia’s top employers posting vacancies on our platform
+        .owl-carousel.home-logo
+          img(src='images/companies/1-min.png', alt='')
+          img(src='images/companies/2-min.png', alt='')
+          img(src='images/companies/3-min.png', alt='')
+          img(src='images/companies/4-min.png', alt='')
+          img(src='images/companies/5-min.png', alt='')
+          img(src='images/companies/6-min.png', alt='')
+          img(src='images/companies/7-min.png', alt='')
+    #home-section3
+      .container.text-center
+        h2.section-title.text-center Connecting you to the right job
+        h5.text-center.description Discover jobs in Malaysia with 3 simple steps
+        .row
+          .col-xs-12.col-md-4
+            .block
+              .icon.first
+              h4.title(translate='') 1. Create your candidate account
+              p.content.text-justify(translate='')
+                | Create your Candidate account to get matched to the best opportunities for you. Keep your education and experience as up to-date as possible.
+          .col-xs-12.col-md-4
+            .block
+              .icon.second
+              h4.title(translate='') 2. Get matched to jobs
+              p.content.text-justify(translate='')
+                | Based on your profile and info given, SkootJobs will match you to the best jobs for you. Then you can start messaging and applying for these jobs immediately.
+          .col-xs-12.col-md-4
+            .block
+              .icon.third
+              h4.title(translate='') 3. Apply quickly and easily
+              p.content.text-justify(translate='')
+                | When you see jobs you like, apply quickly and easily. Once you’ve applied, SkootJobs saves your contact details and resume, making future applications easy.
+    #home-section4
+      .container
+        h2.section-title.text-center Browse our most popular categories
+        .row
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            a.cat-item(href='')
+              img(src='images/jobcats/01-min.jpg')
+              span.title(translate='')
+                .icon.cat01
+                | Accounting & Finance
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            a.cat-item(href='')
+              img(src='images/jobcats/02-min.jpg')
+              span.title(translate='')
+                .icon.cat02
+                | Admin, HR & Management
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            a.cat-item(href='')
+              img(src='images/jobcats/03-min.jpg')
+              span.title(translate='')
+                .icon.cat03
+                | Computer & IT
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            a.cat-item(href='')
+              img(src='images/jobcats/04-min.jpg')
+              span.title(translate='')
+                .icon.cat04
+                | Customer Service, Sales & Retail
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            a.cat-item(href='')
+              img(src='images/jobcats/05-min.jpg')
+              span.title(translate='')
+                .icon.cat05
+                | Engineering
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            a.cat-item(href='')
+              img(src='images/jobcats/06-min.jpg')
+              span.title(translate='')
+                .icon.cat06
+                | Food & Beverage
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            a.cat-item(href='')
+              img(src='images/jobcats/07-min.jpg')
+              span.title(translate='')
+                .icon.cat07
+                | Education & Training
+          .col-xs-12.col-sm-6.col-md-3.text-center
+            a.cat-item(href='')
+              img(src='images/jobcats/08-min.jpg')
+              span.title(translate='')
+                .icon.cat08
+                | Marketing
+    #home-section5
+      .container
+        h2.section-title.text-center What People Are Saying
+        .row
+          .col-xs-12.col-md-4.block
+            .inner
+              p.content
+                | "When I think of SkootJobs, I think of two things: Easy to use and great support when I need it"
+            .block-bottom
+              .left
+                img(width='70', height='70', src='images/users/cand-test-1-min.jpg')
+              .right
+                span.name Tengku Muzani
+              .clearfix
+            .clearfix
+          .col-xs-12.col-md-4.block
+            .inner
+              p.content
+                | "Within days of using SkootJobs, I managed to secure a job with a good company that I really enjoy working with. I couldn’t believe it was that fast!"
+            .block-bottom
+              .left
+                img(width='70', height='70', src='images/users/cand-test-2-min.jpg')
+              .right
+                span.name Dulanjalee
+              .clearfix
+            .clearfix
+          .col-xs-12.col-md-4.block
+            .inner
+              p.content
+                | "SkootJobs has made my job search easier and more efficient. It’s easy to browse through jobs and the job matches save me a lot of time in finding what I’m after."
+            .block-bottom
+              .left
+                img(width='70', height='70', src='images/users/cand-test-3-min.jpg')
+              .right
+                span.name Maya Zaharudin
+              .clearfix
+            .clearfix
+    #home-section6
+      .container
+        h2.section-title.text-center As Featured In
+        .owl-carousel.home-logo2
+          img(src='images/companies/featured/1-min.png', alt='')
+          img(src='images/companies/featured/2-min.png', alt='')
+          img(src='images/companies/featured/3-min.png', alt='')
+          img(src='images/companies/featured/4-min.png', alt='')
+          img(src='images/companies/featured/5-min.png', alt='')
+          img(src='images/companies/featured/6-min.png', alt='')
+          img(src='images/companies/featured/7-min.png', alt='')
+    footer#footer
+      div(footer='')
+        .footer
+          .container
+            .footer-top
+              .row
+                .col-xs-12.col-sm-12.col-md-3.left-main
+                  .logo
+                    a(ui-sref='mainCandidate', href='/')
+                      img(src='images/logo.png')
+                  p.description
+                    | SkootJobs is an online
+                    br
+                    | job platform that matches
+                    br
+                    |  employers and job seekers in Malaysia.
+                  .social-menu
+                    ul
+                      li
+                        a(href='https://www.linkedin.com/company/skoot-jobs', target='_blank')
+                          i.icon-linkedin(aria-hidden='true')
+                      li
+                        a(href='https://www.facebook.com/skootjobs/', target='_blank')
+                          i.icon-facebook(aria-hidden='true')
+                      li
+                        a(href='https://twitter.com/SkootJobs', target='_blank')
+                          i.icon-twitter(aria-hidden='true')
+                      li
+                        a(href='https://www.instagram.com/skootjobs/', target='_blank')
+                          i.icon-instagram(aria-hidden='true')
+                      li
+                        a(href='https://plus.google.com/116394090112892290475/about', target='_blank')
+                          i.icon-gplus(aria-hidden='true')
+                .col-xs-12.col-md-9
+                  .col-xs-12.col-sm-6.col-md-3.menu-block.main
+                    ul
+                      li
+                        a(href='/signup/candidate') Find A Job
+                      li
+                        a(href='/signup/candidate') Find A Talent
+                      li
+                        a(href='/signup/candidate') About Us
+                      li
+                        a(href='/signup/candidate') Blog
+                      li
+                        a(href='/signup/candidate') Contact Us
+                  .col-xs-12.col-sm-6.col-md-3.menu-block
+                    ul
+                      li
+                        a(href='/view-jobs/in/johor') Jobs in Johor
+                      li
+                        a(href='/view-jobs/in/kedah') Jobs in Kedah
+                      li
+                        a(href='/view-jobs/in/kelantan') Jobs in Kelantan 
+                      li
+                        a(href='/view-jobs/in/wilayah-persekutuan-kuala-lumpur') Jobs in Kuala Lumpur 
+                      li
+                        a(href='/view-jobs/in/malacca') Jobs in Malacca
+                  div
+                    .col-xs-12.col-sm-6.col-md-3.menu-block
+                      ul
+                        li
+                          a(href='/view-jobs/in/negeri-sembilan') Jobs in Negeri Sembilan
+                        li
+                          a(href='/view-jobs/in/Pahang') Jobs in Pahang
+                        li
+                          a(href='/view-jobs/in/Penang') Jobs in Penang 
+                        li
+                          a(href='/view-jobs/in/perak') Jobs in Perak 
+                        li
+                          a(href='/view-jobs/in/perlis') Jobs in Perlis 
+                    .col-xs-12.col-sm-6.col-md-3.menu-block
+                      ul
+                        li
+                          a(href='/view-jobs/in/sabah') Jobs in Sabah
+                        li
+                          a(href='/view-jobs/in/sarawak') Jobs in Sarawak
+                        li
+                          a(href='/view-jobs/in/selangor') Jobs in Selangor
+                        li
+                          a(href='/view-jobs/in/terengganu') Jobs in Terengganu
+                        li
+                          a.white(ui-sref='view-jobs', href='/view-jobs') Browse All Jobs
+                  .clearfix
+                .clearfix
+            .footer-bottom
+              p.pull-left 2018 © SkootJobs.com. All Rights Reserved.
+              ul.pull-right
+                li
+                  a(ui-sref='terms-of-use', href='/terms-of-use') Terms Of Use
+                li
+                  a(ui-sref='privacy-policy', href='/privacy-policy') Privacy Policy
+    script(type='text/javascript', src='js/jquery.min.js')
+    script(type='text/javascript', src='owl-carousel/owl.carousel.min.js')
+    script(type='text/javascript', src='js/main.js')
