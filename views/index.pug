@@ -2,66 +2,81 @@ html
   head
     meta(charset='UTF-8')
     title SkootJobs
+    link(rel='stylesheet', type='text/css', href='styles/bootstrap.min.css')
     link(rel='stylesheet', type='text/css', href='owl-carousel/assets/owl.carousel.min.css')
     link(rel='stylesheet', type='text/css', href='styles/styles.min.css')
   body.home
     header#header
-      .container-fluid
-        nav.primary-nav
-          .navbar-brand
-            a(href='')
-              img(src='images/logo.png')
-          ul.main-menu
-            li
-              a(href='')
-                i.icon-search(aria-hidden='true')
-                |  Job Search
-            li
-              a(href='')
-                i.icon-login(aria-hidden='true')
-                |  Login 
-                span.caret
-              ul
-                li
-                  a(href='') Candidate Login
-                li
-                  a(href='') Employer Login
-            li
-              a(href='')
-                i.icon-user-plus(aria-hidden='true')
-                |  Create an account 
-                span.caret
-              ul
-                li
-                  a(href='') Candidate Signup
-                li
-                  a(href='') Employer Signup
+      div(navigation='')
+        nav.navbar.trans
+          .nav-primary-wrapper
+            .container-fluid
+              .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#')
+                  #nav-icon
+                    span
+                    span
+                    span
+                    span
+                a.navbar-brand(href='')
+                  img(src='images/logo.png')
+              .nav-primary
+                ul.nav.navbar-nav.navbar-right.login-dropdown
+                  li.job-search
+                    a(href='')
+                      i.fa.fa-search(aria-hidden='true')
+                      |  Job Search
+                  li.dropdown
+                    a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                      i.fa.fa-sign-in(aria-hidden='true')
+                      |  Login
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby='login')
+                      li
+                        a(href='') Candidate Login
+                      li
+                        a(href='') Employer Login
+                  li.dropdown
+                    a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                      i.fa.fa-user-plus(aria-hidden='true')
+                      |  Create an account
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby='login')
+                      li
+                        a(href='') Candidate Signup
+                      li
+                        a(href='') Employer Signup
     #home-section1
-      .section-inner
-        .container
+      .arrow-bounce.hidden-xs.hidden-sm(onclick="scrollToContent('#home-section2')")
+        i.fa.fa-chevron-down(aria-hidden='true')
+      .darktransparent
+      .container
+        .col-xs-12.text-center.login-content
           .switcher
-            a.active(href='') Candidate
-            a(href='') Employer
-          .clearfix
-          h1.text-center.main-title Search From Thousands of Jobs in Malaysia
-          h3.text-center.sub-title Join Over 250,000 Candidates Today
-          .text-center
-            a.btn.btn-danger.join-now(href='') Join Now
-      a.goto-btn(onclick="scrollToContent('#home-section2')")
-        i.icon-down-open
-      .search
+            a.jobseeker.active(ui-sref='mainCandidate', href='') Candidate
+            a.employer(ui-sref='mainCompany', href='') Employer
+            .clearfix
+          h1.text-center.main-title(translate='') Search From Thousands of Jobs in Malaysia
+          h2.text-center.sub-title(translate='') Join Over 250,000 Candidates Today
+          .top-button.mobile-button.hidden-xs
+            a.btn.btn-red-new.btn-lg.animate.wow.tada(href='') Join Now
+        .clearfix
+      .container-fluid.np.top-search
         .container
-          .row
-            .col-xs-12.col-sm-12.col-md-12.col-lg-10.col-md-push-0.col-lg-push-1
-              .row
-                .col-xs-12.col-sm-4.col-md-5.col
-                  input.form-control(name='keywords', type='text', placeholder='Enter job title or keywords')
-                  i.icon-search(aria-hidden='true')
-                .col-xs-12.col-sm-4.col-md-5.col
-                  input.form-control(type='text', placeholder='Location', autocomplete='off')
-                  i.icon-location(aria-hidden='true')
-                .col-xs-12.col-sm-4.col-md-2
-                  button.btn.btn-danger.btn-block Job Search
+          .col-xs-12.col-sm-12.col-md-12.col-lg-10.col-md-push-0.col-lg-push-1
+            .row
+              form#search-job
+                .row
+                  .col-xs-12.col-sm-4.col-md-5.col
+                    input.form-control(name='keywords', type='text', placeholder='Enter job title or keywords')
+                    i.fa.fa-search(aria-hidden='true')
+                  .col-xs-12.col-sm-4.col-md-5.col
+                    input.form-control.input-block-level(type='text', placeholder='Location', autocomplete='off')
+                    i.fa.fa-map-marker(aria-hidden='true')
+                    .clearfix
+                  .col-xs-12.col-sm-4.col-md-2
+                    button.btn-md.btn.btn-red-new.btn-block Job Search
+                  .clearfix
     #home-section2
       .container
         h2.section-title.text-center Employers hiring right now
@@ -217,19 +232,19 @@ html
                     ul
                       li
                         a(href='https://www.linkedin.com/company/skoot-jobs', target='_blank')
-                          i.icon-linkedin(aria-hidden='true')
+                          i.fa.fa-linkedin(aria-hidden='true')
                       li
                         a(href='https://www.facebook.com/skootjobs/', target='_blank')
-                          i.icon-facebook(aria-hidden='true')
+                          i.fa.fa-facebook(aria-hidden='true')
                       li
                         a(href='https://twitter.com/SkootJobs', target='_blank')
-                          i.icon-twitter(aria-hidden='true')
+                          i.fa.fa-twitter(aria-hidden='true')
                       li
                         a(href='https://www.instagram.com/skootjobs/', target='_blank')
-                          i.icon-instagram(aria-hidden='true')
+                          i.fa.fa-instagram(aria-hidden='true')
                       li
                         a(href='https://plus.google.com/116394090112892290475/about', target='_blank')
-                          i.icon-gplus(aria-hidden='true')
+                          i.fa.fa-google-plus(aria-hidden='true')
                 .col-xs-12.col-md-9
                   .col-xs-12.col-sm-6.col-md-3.menu-block.main
                     ul
@@ -290,5 +305,6 @@ html
                 li
                   a(ui-sref='privacy-policy', href='/privacy-policy') Privacy Policy
     script(type='text/javascript', src='js/jquery.min.js')
+    script(type='text/javascript', src='js/bootstrap.min.js')
     script(type='text/javascript', src='owl-carousel/owl.carousel.min.js')
     script(type='text/javascript', src='js/main.js')

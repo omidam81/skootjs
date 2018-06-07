@@ -5,6 +5,28 @@ function scrollToContent($selector) {
 }
 
 
+$("button.navbar-toggle").click(function(e) {
+    $("#nav-icon").toggleClass("open"), $(".nav-primary").toggleClass("open").toggle( 200)
+});
+
+
+$(".bootstrap-select").each(function(index, el) {
+    $(this).selectpicker("refresh");
+});
+
+
+$(window).scroll(function (event) {
+    var scroll = $(window).scrollTop();
+    
+    if( scroll > $("#header").height() ){
+        $(".demo-sidebar").css("top",  15 + "px");
+    }else{
+        $(".demo-sidebar").css("top", $("#header").height() + 15 + "px");
+    }
+});
+//$("#header").height() > 0 && $(".demo-sidebar").css("top", $("#header").height() + 15 + "px")
+
+
 $('.home-logo').owlCarousel({
     loop:true,
     nav:false,
