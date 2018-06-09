@@ -4,7 +4,7 @@ block content
   include _paginate
   h1= title
   h1 jobs
-  a(href=paginate.href({ sort: 'name' })
+  a(href=paginate.href({ sort: 'name' }))
   ul
    each job in jobs
     li
