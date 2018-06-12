@@ -1,0 +1,255 @@
+header#header
+  .ng-isolate-scope(navigation='')
+    nav.navbar.ng-scope.trans(ng-class='{trans:isTrans(),reverse:isReverse(),gray:isGray()}', ng-controller='NavigationCtrl')
+      .nav-primary-wrapper
+        .container-fluid
+          .navbar-header
+            // ngIf: !isCompanyRegistration()
+            button.navbar-toggle.ng-scope(type='button', data-toggle='collapse', data-target='#', ng-if='!isCompanyRegistration()')
+              #nav-icon
+                span
+                span
+                span
+                span
+            // end ngIf: !isCompanyRegistration()
+            // ngIf: isCompany()
+            // ngIf: isCandidate()
+            a.navbar-brand(ui-sref='mainCandidate', href='/')
+              // ngIf: !isReverse() && !isGray()
+              img.ng-scope(ng-if='!isReverse() && !isGray()', ng-src='https://www.skootjobs.com/images/logo.png', src='https://www.skootjobs.com/images/logo.png')
+              // end ngIf: !isReverse() && !isGray()
+              // ngIf: isReverse() || isGray()
+            // ngIf: isLandingComp() || isLandingCand()
+          .nav-primary
+            ul.nav.navbar-nav.navbar-right.login-dropdown
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate() && isHomePageCandidate()
+              // ngIf: isCandidate()
+              // ngIf: isCompany() && isHomeMain()
+              // ngIf: isCompany()
+              // ngIf: isCompany()
+              li(ui-sref-active='active')
+                a(ng-click="openState('search')")
+                  i.fa.fa-search(aria-hidden='true')
+                  |  Job Search
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-sign-in(aria-hidden='true')
+                  |  Login
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(href="user/login", translate='') Candidate Login
+                  li(ui-sref-active='active')
+                    a(href="company/login", translate='') Employer Login
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-user-plus(aria-hidden='true')
+                  |  Create an account
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(ui-sref='candidate-signup', translate='', href='/signup/candidate') Candidate Signup
+                  li(ui-sref-active='active')
+                    a(ui-sref='company-signup', translate='', href='/signup/company') Employer Signup
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate()
+              // ngIf: isCandidate()
+              // ngIf: businesses.length > 1 && isCompany()
+              // ngIf: businesses.length > 1  && theCurrentBusiness
+              // ngIf: businesses.length == 1  && isCompany()
+              // ngIf: theCurrentBusiness && isCompany()
+              // ngIf: theCurrentBusiness
+              // ngIf: isCompany()
+      // ngIf: !isHomePageCandidate() && !isTrans()
+h1.hiddentitle SkootJobs | Find a Job in Malaysia
+#toast-container.ng-scope.toast-top-right(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 3000}")
+  // ngRepeat: toaster in toasters
+#toast-container.ng-scope.toast-center(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 0, 'position-class': 'toast-center', 'toaster-id': 2}")
+  // ngRepeat: toaster in toasters
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg.ng-hide(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .about-us.ng-scope
+      .cover
+        // ngIf: !isMobileRes()
+        img.ng-scope(ng-if='!isMobileRes()', src='https://www.skootjobs.com/images/covers/skoot-about-cover.jpg')
+        // end ngIf: !isMobileRes()
+        .cover-overlay
+        .container.cover-bottom
+          .row
+            .col-xs-12.col-sm-12.col-md-2.hidden-xs.hidden-sm
+            .col-xs-12.col-sm-12.col-md-3
+              p.sitename SkootJobs.com
+              p.desc
+                i.fa.fa-bookmark(aria-hidden='true')
+                |  Online job platform
+            .col-xs-12.col-sm-12.col-md-3
+              p.desc.single
+                i.fa.fa-map-marker(aria-hidden='true')
+                |  Selangor, Malaysia
+            .col-xs-12.col-sm-12.col-md-4
+              ul.social-icons
+                li#social-icons-more
+                  a(href='#') +2 More
+                  .tooltip-icons
+                    ul
+                      // ngRepeat: item in socialMenu | limitTo:-2
+                      li.ng-scope(ng-repeat='item in socialMenu | limitTo:-2')
+                        a.icon(href='https://www.instagram.com/skootjobs/')
+                          i.fa.fa-instagram(aria-hidden='true')
+                      // end ngRepeat: item in socialMenu | limitTo:-2
+                      li.ng-scope(ng-repeat='item in socialMenu | limitTo:-2')
+                        a.icon(href='https://plus.google.com/116394090112892290475/about')
+                          i.fa.fa-google-plus(aria-hidden='true')
+                      // end ngRepeat: item in socialMenu | limitTo:-2
+                // ngRepeat: item in socialMenu | limitTo:3
+                li.ng-scope(ng-repeat='item in socialMenu | limitTo:3')
+                  a.icon(href='https://www.linkedin.com/company/skoot-jobs')
+                    i.fa.fa-linkedin(aria-hidden='true')
+                // end ngRepeat: item in socialMenu | limitTo:3
+                li.ng-scope(ng-repeat='item in socialMenu | limitTo:3')
+                  a.icon(href='https://www.facebook.com/skootjobs/')
+                    i.fa.fa-facebook(aria-hidden='true')
+                // end ngRepeat: item in socialMenu | limitTo:3
+                li.ng-scope(ng-repeat='item in socialMenu | limitTo:3')
+                  a.icon(href='https://twitter.com/SkootJobs')
+                    i.fa.fa-twitter(aria-hidden='true')
+                // end ngRepeat: item in socialMenu | limitTo:3
+      .topbar
+        .container
+          .row
+            .col-xs-12.col-md-3.col-lg-2
+              .logo-border
+                .logo
+            .col-xs-12.col-md-9.col-lg-10
+              .statstics
+                ul
+                  // ngRepeat: item in stats
+                  li.ng-scope(ng-repeat='item in stats')
+                    h4.ng-binding 4,500+
+                    span.ng-binding Live Jobs
+                  // end ngRepeat: item in stats
+                  li.ng-scope(ng-repeat='item in stats')
+                    h4.ng-binding 250,000+
+                    span.ng-binding Candidates
+                  // end ngRepeat: item in stats
+                  li.ng-scope(ng-repeat='item in stats')
+                    h4.ng-binding 8,000+
+                    span.ng-binding Businesses
+                  // end ngRepeat: item in stats
+                  li.ng-scope(ng-repeat='item in stats')
+                    h4.ng-binding 22
+                    span.ng-binding Employees 
+                  // end ngRepeat: item in stats
+            .clearfix
+      .content
+        .container
+          .row
+            .col-xs-12.col-sm-6.col-md-8.col-lg-7.pull-left.main-block
+              h2.title Who we are
+              hr
+              span.subtitle
+                | SkootJobs.com is a job platform for entry level to mid level careers in Malaysia, founded in April 2015 by an ex investment banker & budding pilot, with a distinct focus on matching job seekers and employers to each other.
+              .wp-content
+                p
+                  | We started with just 3 guys in a pantry, fast forward to present day, and we’re a team of 22 people from 7 countries, with more than half of us working remotely from around the world.
+                p.ng-binding
+                  | The platform has grown to more than 4,500+ job listings a month and 250,000+ users, with 1,000+ new sign ups every day. We’re in our growth stage and we’re looking for talented people to support our growth as we continue to learn and innovate in the recruitment industry while striving to hit our goal of being the biggest job platform in Malaysia by 2020.
+                p
+                  | If you’re looking to work with a bunch of people who will push you to your limits and challenge you to grow, then SkootJobs is the place you’re looking for.
+            .col-xs-12.col-sm-6.col-md-4.col-lg-4.pull-right
+              .col-xs-12.address
+                h3.title Our Address
+                hr
+                .wp-address
+                  p Skoot Jobs Malaysia Sdn. Bhd.
+                  p LaunchPad 2, D2-05-01
+                  p Bukit Utama 1
+                  p Changkat Bukit Utama PJU 6
+                  p Bandar Utama
+                  p 47800 Petaling Jaya
+                  p Selangor Malaysia
+              .row
+                .col-xs-12.map
+                  iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d995.9566281404899!2d101.60394782916617!3d3.14046799985708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwMDgnMjUuNyJOIDEwMcKwMzYnMTYuMiJF!5e0!3m2!1sen!2sir!4v1466586857065', width='400', height='300', frameborder='0', style='border:0', allowfullscreen='')
+            .clearfix
+            .gallery
+              // ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4769.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4769.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4810.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4810.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4816.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4816.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4827.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4827.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF5726.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF5726.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4607.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4607.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF5732.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF5732.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4609.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4609.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4629.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4629.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4677.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4677.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4687.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4687.jpg')
+              // end ngRepeat: item in gallery
+              .col-xs-6.col-sm-4.col-md-4.col-lg-3.ng-scope(ng-repeat='item in gallery')
+                a(rel='skoot_gallery', href='https://www.skootjobs.com/images/gallery/DSCF4823.jpg', title='', fancyboxable='')
+                  .g-overlay
+                  img.img-responsive(src='https://www.skootjobs.com/images/gallery/DSCF4823.jpg')
+              // end ngRepeat: item in gallery
+// ngIf: showFooter!='hidden'

@@ -1,0 +1,718 @@
+header#header
+  .ng-isolate-scope(navigation='')
+    nav.navbar.ng-scope(ng-class='{trans:isTrans(),reverse:isReverse(),gray:isGray()}', ng-controller='NavigationCtrl')
+      .nav-primary-wrapper
+        .container-fluid
+          .navbar-header
+            // ngIf: !isCompanyRegistration()
+            button.navbar-toggle.ng-scope(type='button', data-toggle='collapse', data-target='#', ng-if='!isCompanyRegistration()')
+              #nav-icon
+                span
+                span
+                span
+                span
+            // end ngIf: !isCompanyRegistration()
+            // ngIf: isCompany()
+            // ngIf: isCandidate()
+            a.navbar-brand(ui-sref='mainCandidate', href='/')
+              // ngIf: !isReverse() && !isGray()
+              img.ng-scope(ng-if='!isReverse() && !isGray()', ng-src='https://www.skootjobs.com/images/logo.png', src='https://www.skootjobs.com/images/logo.png')
+              // end ngIf: !isReverse() && !isGray()
+              // ngIf: isReverse() || isGray()
+            // ngIf: isLandingComp() || isLandingCand()
+          .nav-primary
+            ul.nav.navbar-nav.navbar-right.login-dropdown
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate() && isHomePageCandidate()
+              // ngIf: isCandidate()
+              // ngIf: isCompany() && isHomeMain()
+              // ngIf: isCompany()
+              // ngIf: isCompany()
+              li(ui-sref-active='active')
+                a(ng-click="openState('search')")
+                  i.fa.fa-search(aria-hidden='true')
+                  |  Job Search
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-sign-in(aria-hidden='true')
+                  |  Login
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(href="user/login", translate='') Candidate Login
+                  li(ui-sref-active='active')
+                    a(href="company/login", translate='') Employer Login
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-user-plus(aria-hidden='true')
+                  |  Create an account
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(ui-sref='candidate-signup', translate='', href='/signup/candidate') Candidate Signup
+                  li(ui-sref-active='active')
+                    a(ui-sref='company-signup', translate='', href='/signup/company') Employer Signup
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate()
+              // ngIf: isCandidate()
+              // ngIf: businesses.length > 1 && isCompany()
+              // ngIf: businesses.length > 1  && theCurrentBusiness
+              // ngIf: businesses.length == 1  && isCompany()
+              // ngIf: theCurrentBusiness && isCompany()
+              // ngIf: theCurrentBusiness
+              // ngIf: isCompany()
+      // ngIf: !isHomePageCandidate() && !isTrans()
+h1.hiddentitle SkootJobs | Find a Job in Malaysia
+#toast-container.ng-scope.toast-top-right(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 3000}")
+  // ngRepeat: toaster in toasters
+#toast-container.ng-scope.toast-center(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 0, 'position-class': 'toast-center', 'toaster-id': 2}")
+  // ngRepeat: toaster in toasters
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg.ng-hide(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .container.ng-scope
+      .page
+        .title
+          h1
+            | Terms of Use
+          hr
+          .content
+            .row
+              .col-sm-4.toc-sidebar
+                // required for floating
+                // Nav tabs
+                ul.nav.nav-tabs.tabs-left
+                  li.active
+                    a(href='https://test9.skootjobs.com/terms-of-use#home', data-toggle='tab') Home
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o1', data-toggle='tab') 1. General
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o2', data-toggle='tab')
+                      | 2. Binding Agreement
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o3', data-toggle='tab') 3. Definitions
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o4', data-toggle='tab') 4. Registration
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o5', data-toggle='tab') 5. Intellectual Property
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o6', data-toggle='tab') 6. Availability of the Skootjobs.com Website
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o7', data-toggle='tab') 7. Your use of the Skootjobs.com Website
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o8', data-toggle='tab') 8. Your use of the Skootjobs.com Services
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o9', data-toggle='tab') 9. Additional Terms applicable to Employers
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o10', data-toggle='tab') 10. Additional Terms applicable to Employer Account Holder
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o11', data-toggle='tab') 11. Additional Terms applicable to Candidates
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o12', data-toggle='tab') 12. User Content and submissions
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o13', data-toggle='tab') 13. Payment of fees
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o14', data-toggle='tab') 14. Skootjobs.com’s right to suspend or cancel your registration
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o15', data-toggle='tab') 15. Term and Termination
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o16', data-toggle='tab') 16. Skootjobs.com’s liability
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o17', data-toggle='tab') 17. Disclaimers
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o18', data-toggle='tab') 18. Third Party Website
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o19', data-toggle='tab') 19. Advertising and Sponsorship Policy
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o20', data-toggle='tab') 20. Indemnity
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o21', data-toggle='tab') 21. Refund
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o22', data-toggle='tab') 22. Applicable Law
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o23', data-toggle='tab') 23. International Use
+                  li
+                    a(href='https://test9.skootjobs.com/terms-of-use#o24', data-toggle='tab') 24. Miscellaneous
+              .col-sm-8
+                // Tab panes
+                .tab-content
+                  #home.tab-pane.active
+                    p
+                      b
+                        | This page states the terms of use (“Terms”) under which you (“You”) may use the Skootjobs.com Website, and Your relationship with Skoot Jobs Malaysia Sdn Bhd (“Skootjobs.com”, “we” or “us”). Please read them carefully as they affect Your rights and liabilities under the law. If You do not agree to these Terms, please do not register for or use the Skootjobs.com Website. These Terms are effective as of 11-April-2016. If You have any questions on the Terms, please contact us 
+                        a(href='https://www.skootjobs.com/contact/') here
+                  #o1.tab-pane
+                    h3 General
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') The SkootJobs.com Website is owned and operated by Skoot Jobs Malaysia Sdn Bhd.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Notices to SkootJobs.com should be sent to the address listed on SkootJobs.com Website.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | We will send notice to you at the address submitted by you or to such other address as SkootJobs.com reasonably determines is an appropriate address for you.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') If you have any questions, feel free to contact us. 
+                  #o2.tab-pane
+                    h3 Binding Agreement
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | This SkootJobs.com Website is provided to you for your use subject to these Terms. These Terms form a binding agreement between you and SkootJobs.com. By accessing or using the SkootJobs.com Website you agree to accept and/or to be bound by these Terms. You agree to use the SkootJobs.com Website at your own risk.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | In the case of any conflict between these Terms and any contract you have with SkootJobs.com, these Terms will take precedence.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | We may update these Terms from time to time for legal or regulatory reasons or to allow the proper operation of the SkootJobs.com Website. Any changes will be notified to you via the e-mail address provided by you on registration or via a suitable announcement on the SkootJobs.com Website. The changes will apply to the use of the SkootJobs.com Website after we have given you notice. If you do not wish to accept the new Terms you should not continue to use the SkootJobs.com Website. If you continue to use the SkootJobs.com Website after the date on which the change comes into effect, your use of the SkootJobs.com Website indicates your agreement to be bound by the new Terms.
+                  #o3.tab-pane
+                    h3 Definitions
+                    p
+                      span(style='font-weight: 400;')
+                        | “Advertiser” means a person or entity that is contracting to post advertisements on any of the SkootJobs.com Website.
+                    p
+                      span(style='font-weight: 400;')
+                        | “Design” includes the colour combinations and the page layout of the SkootJobs.com Website.
+                    p
+                      span(style='font-weight: 400;')
+                        | “Employer” or “Employers” means a person or entity that is accessing a SkootJobs.com Website to post a job or utilizing the SkootJobs.com Services for any reason related to the purpose of seeking candidates for employment.
+                    p
+                      span(style='font-weight: 400;')
+                        | “Employer Materials” includes any brochures, emails, job postings, web site content, career fair material, audio, videos, photographs, logos, trademarks, service marks, domain names, documents or other materials provided by Employer, if any, for use in connection with the SkootJobs.com Services.
+                    p
+                      span(style='font-weight: 400;')
+                        | “Graphics” includes all logos, button icons, and other graphical elements on the SkootJobs.com Website, with the exception of paid advertising banners.
+                    p
+                      span(style='font-weight: 400;')
+                        | “Candidate” or “Candidates” means a User who is accessing a SkootJobs.com Website to search for a job or in any other capacity except as an Employer.
+                    p
+                      span(style='font-weight: 400;')
+                        | “SkootJobs.com” means Skoot Jobs Malaysia Sdn Bhd or the company operating the SkootJobs.com Website for the country in which business is headquartered.
+                    p
+                      span(style='font-weight: 400;')
+                        | “SkootJobs.com Content” includes all Text, Graphics, Design, Programming, information, images, video, audio files, software and other contents used on the SkootJobs.com Website.
+                    p
+                      span(style='font-weight: 400;')
+                        | “SkootJobs.com Database” or “SkootJobs.com Databases” includes all job advertisement posted on SkootJobs.com Websites and/or all candidates and/or employers’ information registered with SkootJobs.com.
+                    p
+                      span(style='font-weight: 400;')
+                        | “SkootJobs.com Resume Database” or “Resume Database” means the candidates resume created and/or uploaded into SkootJobs.com databases.
+                    p
+                      span(style='font-weight: 400;')
+                        | “SkootJobs.com Services” means any services provided by SkootJobs.com or its agents including:-
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | the provision of the online job site, including posting and searching for employment opportunities, and creating Profiles which may include personal information;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') the provision of talent sourcing services;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') the provision of online resume search access;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | matching of job specifications with potential candidate profiles and advising Users and/or Candidates of the positions available;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | providing Employers with access to recruitment management system by registering an Employer Account with SkootJobs.com;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | providing Advertisers and/or Employers with other ancillary talent sourcing and advertising services including banners, electronic direct mail system, design and posting support services; and
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | providing Advertisers and/or Employers services to advertise on SkootJobs.com Website.
+                    p
+                      span(style='font-weight: 400;')
+                        | “SkootJobs.com Website” means any website under SkootJobs.com’s control, including:
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') http://www.SkootJobs.com,
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | “Profiles” means individual profiles created by Users and/or Candidates or company profiles created by Employers.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | “Programming” includes both client-side code(HTML, JavaScript, etc.) and server-side code (Active Server Pages, VBScript, databases, etc.) used on the SkootJobs.com Website.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | “Employer Account” means the account authenticated by username and password, to access the Employer recruitment management system.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | “Employer Account Holder” refers to any User who has paid and/or registered for an Employer Account with SkootJobs.com and/or has access to SkootJobs.com Resume Database for the sole purpose of seeking candidates for employment.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | “Text” includes all text on every page of the SkootJobs.com Website, whether editorial, navigational, or instructional.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | “User” refers to any individual or entity that uses any aspect of the SkootJobs.com Website and/or SkootJobs.com Services.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | “User Content” means all information, data, text, software, music, sound, photographs, graphics, video, advertisements, messages or other materials submitted, posted or displayed by Users on or through SkootJobs.com Website.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | “You” or “you” means the person who (or the entity on behalf of whom you are acting) that is agreeing to these Terms.
+                  #o4.tab-pane
+                    h3 Registration
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To register on the SkootJobs.com Website you must be 15 years of age or above.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You must ensure that the details provided by you on registration or at any time are correct and complete
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You must inform us immediately of any changes to the information that you provided when registering by updating your personal details in order that we can communicate with you effectively.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Password and security
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | When you register to use the SkootJobs.com Website you will be asked to create a password. In order to prevent fraud, you must keep this password confidential and must not disclose it or share it with anyone. If you know or suspect that someone else knows your password you should notify us by contacting us here immediately.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | If SkootJobs.com has reason to believe that there is likely to be a breach of security or misuse of the SkootJobs.com Website, we may require you to change your password or we may suspend your account.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | As a result of your loss of your Password or the misuse of the SkootJobs.com Website:
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') all losses or damage incurred thereby shall be borne by you; and
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | you shall fully indemnify SkootJobs.com should SkootJobs.com suffer any loss or damage.
+                  #o5.tab-pane
+                    h3
+                      | Intellectual Property
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com Website, SkootJobs.com Content, and all right, title and interest in and to SkootJobs.com Website and SkootJobs.com Content are the exclusive property of SkootJobs.com or its licensors.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com Website and SkootJobs.com Content are protected by copyright, trademark, database right and other intellectual property rights.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You may retrieve and display SkootJobs.com Content of the SkootJobs.com Website on a computer screen, store such content in electronic form on disk (but not any server or other storage device connected to a network) or print one copy of such content for your own personal, non-commercial use, provided you keep intact all and any copyright and proprietary notices. You may not otherwise reproduce, modify, copy or distribute or use for commercial purposes any of the materials or SkootJobs.com Content on the SkootJobs.com Website without written permission from SkootJobs.com.
+                  #o6.tab-pane
+                    h3
+                      | Availability of the SkootJobs.com Website
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Although we aim to offer you the best service possible, we make no promise that the services at the SkootJobs.com Website will meet your requirements.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | We cannot guarantee that the SkootJobs.com Website will be fault-free, error-free, or that SkootJobs.com Website and servers are free of viruses or other harmful mechanisms. If a fault occurs with the SkootJobs.com Website you should report it bas and we will attempt to correct the fault as soon as we can.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Your access to the SkootJobs.com Website may be occasionally restricted to allow for repairs, maintenance or the introduction of new content, facilities or services. We will attempt to restore access and/or service as soon as we reasonably can.
+                  #o7.tab-pane
+                    h3
+                      | Your use of the SkootJobs.com Website
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com hereby grants you a limited, terminable, non-exclusive right to access and use SkootJobs.com Website only for your personal use and/or employment purposes.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') You may not use the SkootJobs.com Website for any of the following purposes:-
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | disseminating any unlawful, harassing, libellous, abusive, threatening, harmful, vulgar, obscene, or otherwise objectionable material or otherwise breaching any laws;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | aggregating, copying or duplicating in any manner any of the SkootJobs.com Content or information available from any SkootJobs.com Website, including expired job postings;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') reproducing any of the SkootJobs.com Content for general use;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | link to any SkootJobs.com Content or information available from any SkootJobs.com Website;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | transmitting material that encourages conduct that constitutes a criminal offence, or otherwise breaches any applicable laws, regulations or code of practice;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | interfering with any other person’s use or enjoyment of the SkootJobs.com Website; or
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | making, transmitting or storing electronic copies of materials protected by copyright without the permission of the owner.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You agree not to resell or assign your rights or obligations under these Terms. You also agree not to make any unauthorized commercial use of any SkootJobs.com Website.
+                  #o8.tab-pane
+                    h3
+                      | Your use of the SkootJobs.com Services
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') The SkootJobs.com Services may be used only by:
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | individuals seeking employment, and career and career-related information, such as education and voluntary services;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Employers or their agents seeking candidates for employment purposes; and
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Advertisers.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Your use of the SkootJobs.com Services is also subject to any other contracts you may have with SkootJobs.com. In the case of any conflict between these Terms and any contract you have with SkootJobs.com, these Terms will prevail.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') All Users agree to not:-
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | transmit, post, distribute, store or destroy material, including without limitation SkootJobs.com Content, in violation of any applicable law or regulation, including but not limited to laws or regulations governing the collection, processing, or transfer of personal information, or in breach of SkootJobs.com’s  Privacy Policy;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') violate or attempt to violate the security of any SkootJobs.com Website;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') reverse engineer or decompile any parts of any SkootJobs.com Website;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | aggregate, copy or duplicate in any matter any of the SkootJobs.com Content or information available from any SkootJobs.com Website, including expired job postings, other than as permitted by these Terms;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | post any content or material that facilitates, promotes or endorses scams, false or misleading information or illegal activities, OR endorses or provides instructional information about illegal activities or other activities prohibited by these Terms, such as making or buying illegal weapons, violating someone’s privacy, providing or creating computer viruses or pirating media, OR promotes or endorses any political views;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') post any resume or apply for any job on behalf of another party;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') share with a third party any login credentials to any SkootJobs.com Website;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | access data not intended for you or logging into a server or account which you are not authorized to access;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | post or submit to any SkootJobs.com Website any inaccurate, incomplete, misleading, false, not up to date biographical information or information which is not your own;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | post content that contains restricted or password-only access pages, or hidden pages or images;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') solicit passwords or personally identifiable information from other Users;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') delete or alter any material posted by any other person or entity;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | harass, incite harassment or advocate harassment of any group, company or individual;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | send unsolicited mail or email, make unsolicited phone calls or send unsolicited faxes promoting and/or advertising products or services to any User, or contact any users that have specifically requested not to be contacted by you;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | attempt to interfere with service to any User, host or network, including, without limitation, via means of submitting a virus to any SkootJobs.com Website, overloading, “flooding”, “spamming”, “mailbombing”, or “crashing”.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | use the SkootJobs.com Services for any unlawful purpose or illegal activity, or post or submit any content, resume, or job posting that is defamatory, libellous, implicitly or explicitly offensive, vulgar, obscene, threatening, harassing, abusive, hateful, racist, discriminatory, of a menacing character or likely to cause annoyance, inconvenience, embarrassment, anxiety or could cause harassment to any person or include any links to pornographic, indecent or sexually explicit material of any kind, as determined by SkootJobs.com’s discretion; or
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | post any resume which is not a genuine resume and which attempts to advertise or promote products or services.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Violations of network security may result in civil and/or criminal liability. SkootJobs.com will investigate occurrences which may involve such violations and may involve, and cooperate with, law enforcement authorities in prosecuting Users who are involved in such violations.
+                  #o9.tab-pane
+                    h3
+                      | Additional Terms applicable to Employers
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com hereby grants you a limited, terminable, non-exclusive right to access and use SkootJobs.com Website for your internal business use seeking candidates for employment. This authorizes you to view and download a single copy of SkootJobs.com Content or materials on SkootJobs.com Website solely for your use directly related to searching for and recruiting Candidates.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com also grants you a limited, terminable, non-exclusive right to use SkootJobs.com Services for your internal use only.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You are responsible for maintaining the confidentiality of your Employer account, Profile, and passwords, as applicable.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You may not share your password or other account access information with any other party, temporarily or permanently, and you shall be strictly liable and/or responsible for all uses of your SkootJobs.com Website registrations and passwords, whether or not authorized by you.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You agree to immediately notify SkootJobs.com of any unauthorized use of your employer account, Profile or passwords.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Employer represents, warrants and covenants that any Employer Materials provided by Employer for use in connection with SkootJobs.com Services will not violate any laws or regulations or third-party proprietary rights, including, without limitation, copyright, trademark, obscenity, rights of publicity or privacy, and defamation laws.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Employers acknowledge and agree that it shall disregard any personal data received from the Candidate which are irrelevant to obtaining and assessing the suitability of candidates.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Employers are solely responsible for the Employer Materials on SkootJobs.com Website. SkootJobs.com is not to be considered to be an employer with respect to your use of any SkootJobs.com Website and SkootJobs.com shall not be responsible for any employment decisions, for whatever reasons, made by any entity posting jobs on any SkootJobs.com Website.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Employer Materials may not contain:-
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | misleading, unreadable, or “hidden” keywords, repeated keywords or keywords that are irrelevant to the job opportunity being presented;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') names, logos or trademarks of unaffiliated companies;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') inaccurate, false, or misleading information; and
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | material or links to material that is discriminatory, sexually explicit, obscene, libellous, defamatory, threatening, harassing, abusive, or hateful, or solicits personal information from anyone under 18.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') You may not use your Employer Materials to:-
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | post jobs in a manner that does not comply with applicable local, national laws, including but not limited to laws relating to labour and employment, equal employment opportunity and employment eligibility requirements, data privacy, data access and use, and intellectual property;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') sell, promote or advertise products or services;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | post any franchise, pyramid scheme, distributorship, or multi-level marketing opportunity;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') promote any opportunity that does not represent bona fide employment; and
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') advertise sexual services or seek employees for jobs of a sexual nature.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com does not encourage any Employer Materials on SkootJobs.com Website that request Candidates to pay deposits, placement fees, processing fees or any other similar fees, directly or indirectly, and/or require Candidates to make purchases.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com does not allow job advertisements that advertise more than 1 job position in each job posting.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com is under no obligation to monitor the Employer Materials on SkootJobs.com Website, but SkootJobs.com may monitor the Employer Materials at random.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com reserves the right to remove any Employer Materials or content from any SkootJobs.com Website, which in the reasonable exercise of SkootJobs.com’s discretion, does not comply with this Section, or if any content is posted that SkootJobs.com believes is not in the best interest of SkootJobs.com.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | If any time during your use of the SkootJobs.com Services, you made a misrepresentation of fact to SkootJobs.com or otherwise misled SkootJobs.com in regards to the nature of your business activities or breach of the Terms herein, SkootJobs.com may terminate your use of the SkootJobs.com Services and in such event, any payment made by you shall be forfeited.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You understand and acknowledge that if you cancel your Employer account or your Employer account is terminated, all your account information from SkootJobs.com, including saved resumes, network contacts, and email mailing lists, will be marked as deleted in and may be deleted from SkootJobs.com Databases. Information may continue to be available for some period of time because of delays in propagating such deletion through SkootJobs.com’s web servers.
+                      li(style='font-weight: 400;')
+                  #o10.tab-pane
+                    h3
+                      | Additional Terms applicable to Employer Account Holder
+                    p
+                      span(style='font-weight: 400;')
+                        | If you are registering for and/or paying for an Employer Account to, inter alia, access the SkootJobs.com Resume Database, this Section applies to you.
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') You must be 18 years of age or above.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') All job information provided by you must follow our 
+                        a(href='http://blog.skootjobs.com/index.php/2017/07/12/job-descriptions/')
+                          span(style='font-weight: 400;') guideline
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You shall use the SkootJobs.com Resume Database as provided in these Terms, in any contract you have with SkootJobs.com, and in compliance with all laws including laws governing personal data.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com grants you a limited, personal, terminable, non-transferable, non-exclusive right to access SkootJobs.com Resume Database via SkootJobs.com Website for the purpose of viewing and/or downloading a single copy of available resumes solely for your use subject to the provisions of this Section.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com Resume Database is to be accessed and used solely by you. You will be provided with a unique password that will permit you to access the Resume Database.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') You shall not share your Employer Account with any other party.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You agree that you shall not disclose any of the data from SkootJobs.com Resume Database to any third party unless you are an authorized recruitment agency, or staffing agency or using the resume explicitly for employment purposes.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You shall take appropriate physical, technical, and administrative measures to protect the data you have obtained from SkootJobs.com Resume Database from loss, misuse, unauthorized access, disclosure alteration or destruction.
+                    p
+                      span(style='font-weight: 400;') The SkootJobs.com Resume Database shall not be used:-
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | for any purpose other than as an employer and/or on behalf of an employer seeking employees; or
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | to make unsolicited phone calls or faxes or send unsolicited mail, email, or newsletter to resume holders or to contact any individual unless they have agreed to be contacted.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | The data obtained from the SkootJobs.com Resume Database shall not be kept longer than is necessary for the fulfilment of the purposes set out in this Section. In this respect, you agree and undertake to delete, destroy and/or purge such data from your records.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You may not use SkootJobs.com Resume Database in any way which, in SkootJobs.com’s sole judgment, adversely affects SkootJobs.com’s business, business prospects, the performance or function of any of SkootJobs.com Website or SkootJobs.com Resume Database, or interferes with the ability, of other subscribers to access the Resume Database.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | In order to ensure a safe and effective experience for all of our customers, SkootJobs.com reserves the right to limit the amount of data (including resume views)that may be accessed by or provided to you in any given time period. These limits may be amended in SkootJobs.com’s sole discretion from time to time.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You may use your subscription to SkootJobs.com Resume Database only for seeking candidates for employment. You are specifically prohibited from using information contained in SkootJobs.com Resume Database to sell or promote any products or services or to take any other action that is, in SkootJobs.com’s sole judgment, inconsistent with these Terms, misleading or incomplete, or in violation of any laws or regulations.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com may terminate, suspend, update, alter or supplement, at its sole discretion, all or any part of SkootJobs.com Resume Database at any time. By permitting access to SkootJobs.com Resume Database, SkootJobs.com does not convey any interest in or to the Resume Database or any other SkootJobs.com property or Services. All right, interest in and to the Resume Database is and shall remain in SkootJobs.com.
+                  #o11.tab-pane
+                    h3
+                      | Additional Terms applicable to Candidates
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com hereby grants you a limited, terminable, non-exclusive right to access and use SkootJobs.com Website only for your personal use seeking employment opportunities for yourself. This authorizes you to view and download a single copy of the SkootJobs.com Content or material on SkootJobs.com Website solely for your personal, non-commercial use.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | When you register with any SkootJobs.com Website, you will be asked to create an account and provide SkootJobs.com with certain information including a valid email address.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Any Profile you submit must be accurate, complete, up to date and not misleading. The Profile requires standard fields to be completed by you. You may not impersonate another person, living or dead.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You acknowledge and agree that you are solely responsible for the form, content, and accuracy of any resume or material contained therein placed by you on the SkootJobs.com Website.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You acknowledge and agree that you are solely responsible for any consequences arising from such posting.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com reserves the right to offer third party services and products to you based on the preferences that you identify in your registration and at any time thereafter or you have agreed to receive, such offers may be made by SkootJobs.com or by third parties.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Please see SkootJobs.com’s Privacy Policy, for further details regarding your information. Please note, as set forth in the SkootJobs.com’s Privacy Policy, that SkootJobs.com may collect certain User information and may contact Users periodically in accordance with the terms of the Privacy Policy. In addition, SkootJobs.com reserves the right to comply, in its sole discretion, with legal requirements, requests from law enforcement agencies or requests from government entities, even to the extent that such compliance may require disclosure of certain User information. In addition, third parties may retain cached copies of User information.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You understand and acknowledge that all information provided by you, your Profile, resume, and/or account information shall be disclosed to prospective Employers.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You understand and acknowledge that you have no ownership rights to your account and that if you cancel your SkootJobs.com account or your SkootJobs.com Account is terminated, all your account information from SkootJobs.com, including resumes, Profiles, cover letters, saved jobs, will be marked as deleted in and may be deleted from SkootJobs.com Databases and will be removed from any public area of the SkootJobs.com Website. Information may continue to be available for some period of time because of delays in propagating such deletion through SkootJobs.com’s web servers. In addition, third parties may retain saved copies of your information.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com reserves the right to delete your account and all of your information after a significant duration of inactivity.
+                  #o12.tab-pane
+                    h3
+                      | User Content and submissions
+                    ol
+                      li(style='font-weight: 400;')
+                        | You understand that all User Content is the sole responsibility of the person from which such User Content originated.
+                        br
+                        | You understand and acknowledge that all information provided by you, your Profile, resume, and/or account information shall be stored in SkootJobs.com Databases and/or SkootJobs.com Resume Databases.
+                        br
+                        | You understand, acknowledge and consent that all information provided by you, your Profile, resume, and/or account information may be transferred to countries outside of your location for the purposes of storing and/or processing. Please see SkootJobs.com’s Privacy Policy, for further details.
+                        br
+                        | By submitting, posting or displaying User Content on or through SkootJobs.com Website, you grant SkootJobs.com, subject to your privacy setting, a worldwide, non-exclusive, royalty-free license to reproduce, adapt, distribute and publish such User Content through SkootJobs.com Website. SkootJobs.com will discontinue this licensed use within a commercially reasonable period after such User Content is removed from SkootJobs.com Website. SkootJobs.com reserves the right to refuse to accept, post, display or transmit any User Content in its sole discretion.
+                        br
+                        | If you post User Content in any public area of any SkootJobs.com Website, you also permit any User to access, view, store and reproduce such User Content for personal use.
+                        br
+                        | SkootJobs.com may review and remove any User Content that, in its sole judgment, violates these Terms, violates applicable laws, rules or regulations, is abusive, disruptive, offensive or illegal, or violates the rights of, or harms or threatens the safety of, Users of any SkootJobs.com Website. SkootJobs.com reserves the right to expel Users and prevent their further access to the SkootJobs.com Website and/or use of SkootJobs.com Services for violating the Terms or applicable laws, rules or regulations. SkootJobs.com may take any action with respect to User Content that it deems necessary or appropriate in its sole discretion if it believes that such User Content could create liability for SkootJobs.com, damage SkootJobs.com’s brand or public image, or cause SkootJobs.com to lose Users.
+                        br
+                        | SkootJobs.com does not represent or guarantee the truthfulness, accuracy, or reliability of User Content, derivative works from User Content, or any other communications posted by Users nor does SkootJobs.com endorse any opinions expressed by Users. You acknowledge that any reliance on material posted by other Users will be at your own risk.
+                        br
+                        | Data posted on SkootJobs belongs to us and is protected according to PDPA rules.
+                  #o13.tab-pane
+                    h3
+                      | Payment of fees
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | All amounts owed to SkootJobs.com must be paid within the specified payment terms from the date of the invoice.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') SkootJobs.com may charge interest at 6% per annum on any late payment.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Advertisers shall be liable for full payment of fees from the commencement of the contracts and/or sales orders. Payment must be made notwithstanding any errors or omissions in the advertisements.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | All prices quoted are exclusive of any applicable taxes unless specifically noted otherwise.
+                  #o14.tab-pane
+                    h3 SkootJobs.com’s right to suspend or cancel your registration
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | We may suspend or cancel your registration immediately at our reasonable discretion or if you breach any of your obligations under these Terms.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You can cancel your registration at any time by informing us in writing here. If you do so, you must stop using the SkootJobs.com Website.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | The suspension or cancellation of your registration and your right to use the SkootJobs.com Website shall not affect either party’s statutory rights or liabilities.
+                  #o15.tab-pane
+                    h3 Term and Termination
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | These Terms will remain in full force and effect while you are a user of any SkootJobs.com Website.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com reserves the right, at its sole discretion, to pursue all of its legal remedies, including but not limited to removal of your User Content from the SkootJobs.com Website and immediate termination of your registration with or ability to access the SkootJobs.com Website and/or any other services provided to you by SkootJobs.com, upon any breach by you of these Terms or if SkootJobs.com is unable to verify or authenticate any information you submit to a SkootJobs.com Website registration.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Even after you are no longer a User of the SkootJobs.com Website, certain provisions of these Terms will remain in effect, including Sections 5, 13, 15, 16, 17 and 20, inclusive.
+                  #o16.tab-pane
+                    h3 SkootJobs.com’s liability
+                    p
+                      span(style='font-weight: 400;')
+                        | SkootJobs.com Website and SkootJobs.com Services act as, among other things, venues for:
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Employers or their agents to post job opportunities and search for and evaluate job candidates;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | candidates to post resumes and Profiles and search for and evaluate job opportunities; and
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Advertisers to post their advertisements.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com does not screen or censor the listings, including Profiles offered. SkootJobs.com is not involved in the actual transaction between employers and candidates. As a result, SkootJobs.com is not responsible for User Content, the quality, safety or legality of the jobs or resumes posted, the truth or accuracy of the listings, the ability of employers to offer job opportunities to candidates or the ability of candidates to fill job openings and SkootJobs.com makes no representations about any jobs, Profiles, resumes or User Content on the SkootJobs.com Website.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com reserves the right in its sole discretion to remove any User Content including but not limited to Profiles, Employer Materials, or other material from the SkootJobs.com Website from time to time. When SkootJobs.com exercises this discretion and there is a breach of these Terms by the User, any payment made by the User will be forfeited.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | The SkootJobs.com Website also provides content from other internet sites or resources and while SkootJobs.com tries to ensure that material included on the SkootJobs.com Website is correct, reputable and of high quality, it does not make any warranties or guarantees in relation to that content. If SkootJobs.com is informed of any inaccuracies in the material on the SkootJobs.com Website we will attempt to correct the inaccuracies as soon as we reasonably can.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Note that there are risks, including but not limited to the risk of physical harm, of dealing with strangers, underage persons or people acting under false pretences. You assume all risks associated with dealing with other users with whom you come in contact through the SkootJobs.com Website. By its very nature other people’s information may be offensive, harmful or inaccurate, and in some cases will be mislabelled or deceptively labelled. We expect that you will use caution and common sense when using the SkootJobs.com Website.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com Website and SkootJobs.com Content may contain inaccuracies or typographical errors. SkootJobs.com makes no representations about the accuracy, reliability, completeness, or timeliness of any SkootJobs.com Website or the SkootJobs.com Content. The use of all SkootJobs.com Website and the SkootJobs.com Content is at your own risk.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Nothing on SkootJobs.com Website shall be considered an endorsement, representation or warranty with respect to any User or third party, whether in regards to its websites, products, services, hiring, experience, employment or recruiting practices, or otherwise.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | If we are in breach of these Terms, we will only be responsible for any losses that you suffer as a direct result and to the extent that they are a foreseeable consequence to both of us at the time you use the SkootJobs.com Website. Our liability shall not, in any event, include business losses such as lost data, lost profits or business interruption.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | The aggregate liability by SkootJobs.com to you for all claims arising from your use of SkootJobs.com Website and/or SkootJobs.com Services shall be limited to the amount of the existing package fee subscribed to and paid by you and operative at that time, or in the event, you are a Candidate, shall be limited to RM100.
+                  #o17.tab-pane
+                    h3 Disclaimers
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com shall not be liable for any loss of information howsoever caused as a result of any interruption, suspension or termination of SkootJobs.com Services or for SkootJobs.com Content, accuracy or quality of information available or transmitted through SkootJobs.com Services.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You acknowledge and agree that it is not SkootJobs.com’s policy to exercise editorial control over and to edit or amend any data or contents of any emails or posting or any information that may be inserted or made available or transmitted to or from a third party in or through SkootJobs.com Website and/or SkootJobs.com Services.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') The terms & conditions are subject to change without prior notice
+                  #o18.tab-pane
+                    h3 Third Party Website
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | As a convenience to customers, the SkootJobs.com Website includes links to other websites or material which are beyond its control. SkootJobs.com is not responsible for content on any site outside the SkootJobs.com Website.
+                  #o19.tab-pane
+                    h3 Indemnity
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You agree to defend, indemnify, and hold harmless SkootJobs.com, and its affiliates, and their respective officers, directors, employees, and agents, from and against any claims, actions or demands, including without limitation reasonable legal and accounting fees, alleging or resulting from:-
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') any User Content or other material you provide to any SkootJobs.com Website;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Your use of any SkootJobs.com Content; or
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Your breach of these Terms.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com shall provide notice to you promptly of any such claim, suit or proceeding.
+                  #o21.tab-pane
+                    h3 Refund
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Any refund of payment made to SkootJobs.com shall be at the sole discretion of SkootJobs.com.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Refunds are on a case-to-case basis
