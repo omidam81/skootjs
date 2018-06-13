@@ -1,0 +1,146 @@
+header#header
+  .ng-isolate-scope(navigation='')
+    nav.navbar.ng-scope(ng-class='{trans:isTrans(),reverse:isReverse(),gray:isGray()}', ng-controller='NavigationCtrl')
+      .nav-primary-wrapper
+        .container-fluid
+          .navbar-header
+            // ngIf: !isCompanyRegistration()
+            button.navbar-toggle.ng-scope(type='button', data-toggle='collapse', data-target='#', ng-if='!isCompanyRegistration()')
+              #nav-icon
+                span
+                span
+                span
+                span
+            // end ngIf: !isCompanyRegistration()
+            // ngIf: isCompany()
+            // ngIf: isCandidate()
+            a.navbar-brand(ui-sref='mainCandidate', href='/')
+              // ngIf: !isReverse() && !isGray()
+              img.ng-scope(ng-if='!isReverse() && !isGray()', ng-src='https://www.skootjobs.com/images/logo.png', src='https://www.skootjobs.com/images/logo.png')
+              // end ngIf: !isReverse() && !isGray()
+              // ngIf: isReverse() || isGray()
+            // ngIf: isLandingComp() || isLandingCand()
+          .nav-primary
+            ul.nav.navbar-nav.navbar-right.login-dropdown
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate() && isHomePageCandidate()
+              // ngIf: isCandidate()
+              // ngIf: isCompany() && isHomeMain()
+              // ngIf: isCompany()
+              // ngIf: isCompany()
+              li(ui-sref-active='active')
+                a(ng-click="openState('search')")
+                  i.fa.fa-search(aria-hidden='true')
+                  |  Job Search
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-sign-in(aria-hidden='true')
+                  |  Login
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(href="user/login", translate='') Candidate Login
+                  li(ui-sref-active='active')
+                    a(href="company/login", translate='') Employer Login
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-user-plus(aria-hidden='true')
+                  |  Create an account
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(ui-sref='candidate-signup', translate='', href='/signup/candidate') Candidate Signup
+                  li(ui-sref-active='active')
+                    a(ui-sref='company-signup', translate='', href='/signup/company') Employer Signup
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate()
+              // ngIf: isCandidate()
+              // ngIf: businesses.length > 1 && isCompany()
+              // ngIf: businesses.length > 1  && theCurrentBusiness
+              // ngIf: businesses.length == 1  && isCompany()
+              // ngIf: theCurrentBusiness && isCompany()
+              // ngIf: theCurrentBusiness
+              // ngIf: isCompany()
+      // ngIf: !isHomePageCandidate() && !isTrans()
+h1.hiddentitle SkootJobs | Find a Job in Malaysia
+#toast-container.ng-scope.toast-top-right(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 3000}")
+  // ngRepeat: toaster in toasters
+#toast-container.ng-scope.toast-center(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 0, 'position-class': 'toast-center', 'toaster-id': 2}")
+  // ngRepeat: toaster in toasters
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2.ng-hide(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .contact-us.ng-scope
+      .container-fluid.np.title
+        img.hidden-xs(src='https://www.skootjobs.com/images/covers/team-min.jpg')
+        h1 How can we help you?
+        .clearfix
+      .container-fluid.np
+        .row-md-height.row-lg-height
+          .col-xs-12.col-sm-12.col-md-6.np
+            .col-xs-12.col-sm-12.col-md-11.col-lg-10.pull-right.content-bottom
+              .col-xs-12.col-sm-6
+                h4.block-label
+                  i.fa.fa-map-marker(aria-hidden='true')
+                  |  Address
+                .block-content
+                  p Skoot Jobs Malaysia Sdn. Bhd.
+                  p LaunchPad 2, D2-05-01
+                  p Bukit Utama 1
+                  p Changkat Bukit Utama PJU 6
+                  p Bandar Utama
+                  p 47800 Petaling Jaya
+                  p Selangor Malaysia
+              .col-xs-12.col-sm-6
+                h4.block-label
+                  i.fa.fa-envelope(aria-hidden='true')
+                  |  Email
+                p helpdesk@skootjobs.com
+              .col-xs-12
+                h4.block-label Get in touch
+                .contact-form
+                  form.ng-pristine.ng-invalid.ng-invalid-required.ng-valid-email(ng-submit='submit()', name='contactus', novalidate='')
+                    // ngIf: msgSent
+                    .row(ng-hide='msgSent')
+                      .form-group.col-xs-12
+                        input.form-control.ng-pristine.ng-untouched.ng-empty.ng-invalid.ng-invalid-required(type='text', placeholder='Name *', ng-model='contactName', name='contactName', ng-required='true', required='required')
+                      .form-group.col-xs-12
+                        input.form-control.ng-pristine.ng-untouched.ng-empty.ng-valid-email.ng-invalid.ng-invalid-required(type='email', placeholder='Email *', ng-model='contactEmail', name='contactEmail', ng-required='true', required='required')
+                      .clearfix
+                      .form-group.col-xs-12
+                        textarea.form-control.ng-pristine.ng-untouched.ng-empty.ng-invalid.ng-invalid-required(placeholder='Message', ng-model='contactMessage', name='contactMessage', ng-required='true', required='required')
+                      .clearfix
+                      .col-xs-12
+                        button.btn.btn-md.btn-red-new.pull-left.btn-submit-contact(ng-disabled='sending')
+                          // ngIf: !sending
+                          span.ng-scope(ng-if='!sending') Contact Us
+                          // end ngIf: !sending
+                          // ngIf: sending
+                      .clearfix
+                      .form-group.col-xs-12
+                        ul.errors-tooltip.error-messages.ng-hide(ng-show='((contactus.contactName.$touched || contactus.$submitted) && contactus.contactName.$invalid)')
+                          li(ng-show='contactus.contactName.$error.required', translate='') You need to fill your name.
+                        ul.errors-tooltip.error-messages.ng-hide(ng-show='((contactus.contactEmail.$touched || contactus.$submitted) && contactus.contactEmail.$invalid)')
+                          li(ng-show='contactus.contactEmail.$error.required', translate='') You need to fill your Email address.
+                          li.ng-hide(ng-show='contactus.contactEmail.$error.email', translate='') Should be a valid email address.
+                        ul.errors-tooltip.error-messages.ng-hide(ng-show='((contactus.contactMessage.$touched || contactus.$submitted) && contactus.contactMessage.$invalid)')
+                          li(ng-show='contactus.contactMessage.$error.required', translate='') You need to include a message
+                      .clearfix
+          .col-xs-12.col-sm-12.col-md-6.map.np
+            iframe(src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7967.64326188512!2d101.59980063171587!3d3.1417473540757155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4ec55932a1f3%3A0x853817fc165ec198!2sSkoot+Jobs!5e0!3m2!1sen!2sru!4v1461225336400', width='600', height='400', frameborder='0', style='border:0', allowfullscreen='')

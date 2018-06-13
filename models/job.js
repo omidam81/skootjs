@@ -94,7 +94,7 @@ var JobSchema = new Schema({
     lastUpdatedBy: {
         type: String
     }, 
-    businessId: { type: Schema.Types.ObjectId, ref: 'Business' }
+    businessId: { type: ObjectIdSchema, ref: 'Business' }
 
 
 

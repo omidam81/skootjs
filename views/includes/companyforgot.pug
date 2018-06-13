@@ -1,0 +1,100 @@
+header#header
+  .ng-isolate-scope(navigation='')
+    nav.navbar.ng-scope.trans(ng-class='{trans:isTrans(),reverse:isReverse(),gray:isGray()}', ng-controller='NavigationCtrl')
+      .nav-primary-wrapper
+        .container-fluid
+          .navbar-header
+            // ngIf: !isCompanyRegistration()
+            button.navbar-toggle.ng-scope(type='button', data-toggle='collapse', data-target='#', ng-if='!isCompanyRegistration()')
+              #nav-icon
+                span
+                span
+                span
+                span
+            // end ngIf: !isCompanyRegistration()
+            // ngIf: isCompany()
+            // ngIf: isCandidate()
+            a.navbar-brand(ui-sref='mainCandidate', href='/')
+              // ngIf: !isReverse() && !isGray()
+              img.ng-scope(ng-if='!isReverse() && !isGray()', ng-src='https://www.skootjobs.com/images/logo.png', src='https://www.skootjobs.com/images/logo.png')
+              // end ngIf: !isReverse() && !isGray()
+              // ngIf: isReverse() || isGray()
+            // ngIf: isLandingComp() || isLandingCand()
+          .nav-primary
+            ul.nav.navbar-nav.navbar-right.login-dropdown
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate() && isHomePageCandidate()
+              // ngIf: isCandidate()
+              // ngIf: isCompany() && isHomeMain()
+              // ngIf: isCompany()
+              // ngIf: isCompany()
+              li(ui-sref-active='active')
+                a(ng-click="openState('search')")
+                  i.fa.fa-search(aria-hidden='true')
+                  |  Job Search
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-sign-in(aria-hidden='true')
+                  |  Login
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(href="user/login", translate='') Candidate Login
+                  li(ui-sref-active='active')
+                    a(href="company/login", translate='') Employer Login
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-user-plus(aria-hidden='true')
+                  |  Create an account
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(ui-sref='candidate-signup', translate='', href='/signup/candidate') Candidate Signup
+                  li(ui-sref-active='active')
+                    a(ui-sref='company-signup', translate='', href='/signup/company') Employer Signup
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate()
+              // ngIf: isCandidate()
+              // ngIf: businesses.length > 1 && isCompany()
+              // ngIf: businesses.length > 1  && theCurrentBusiness
+              // ngIf: businesses.length == 1  && isCompany()
+              // ngIf: theCurrentBusiness && isCompany()
+              // ngIf: theCurrentBusiness
+              // ngIf: isCompany()
+      // ngIf: !isHomePageCandidate() && !isTrans()
+h1.hiddentitle SkootJobs | Find a Job in Malaysia
+#toast-container.ng-scope.toast-top-right(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 3000}")
+  // ngRepeat: toaster in toasters
+#toast-container.ng-scope.toast-center(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 0, 'position-class': 'toast-center', 'toaster-id': 2}")
+  // ngRepeat: toaster in toasters
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg.ng-hide(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .page-has-form.skoot-cover.ng-scope
+      .form-container-wrapper
+        form.ng-pristine.ng-valid-email.ng-invalid.ng-invalid-required(ng-submit='candForgot.submit()')
+          h1.heading(translate='') #{mainSEO}
+          .form-top-text.text-inverse
+            p(ng-hide='candForgot.succeed', translate='') Enter your email address and we'll send you a link to reset your password.
+            br
+            // ngIf: candForgot.succeed
+          .inputs-container
+            input#email.form-input.ng-pristine.ng-untouched.ng-empty.ng-valid-email.ng-invalid.ng-invalid-required(placeholder='Email Address', ng-model='candForgot.email', name='email', type='email', required='')
+          // ngIf: compLogin.loading
+          button.form-btn-submit(type='submit', translate='') Reset Password

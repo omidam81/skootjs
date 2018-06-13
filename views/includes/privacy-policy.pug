@@ -1,0 +1,444 @@
+header#header
+  .ng-isolate-scope(navigation='')
+    nav.navbar.ng-scope(ng-class='{trans:isTrans(),reverse:isReverse(),gray:isGray()}', ng-controller='NavigationCtrl')
+      .nav-primary-wrapper
+        .container-fluid
+          .navbar-header
+            // ngIf: !isCompanyRegistration()
+            button.navbar-toggle.ng-scope(type='button', data-toggle='collapse', data-target='#', ng-if='!isCompanyRegistration()')
+              #nav-icon
+                span
+                span
+                span
+                span
+            // end ngIf: !isCompanyRegistration()
+            // ngIf: isCompany()
+            // ngIf: isCandidate()
+            a.navbar-brand(ui-sref='mainCandidate', href='/')
+              // ngIf: !isReverse() && !isGray()
+              img.ng-scope(ng-if='!isReverse() && !isGray()', ng-src='https://www.skootjobs.com/images/logo.png', src='https://www.skootjobs.com/images/logo.png')
+              // end ngIf: !isReverse() && !isGray()
+              // ngIf: isReverse() || isGray()
+            // ngIf: isLandingComp() || isLandingCand()
+          .nav-primary
+            ul.nav.navbar-nav.navbar-right.login-dropdown
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate() && isHomePageCandidate()
+              // ngIf: isCandidate()
+              // ngIf: isCompany() && isHomeMain()
+              // ngIf: isCompany()
+              // ngIf: isCompany()
+              li(ui-sref-active='active')
+                a(ng-click="openState('search')")
+                  i.fa.fa-search(aria-hidden='true')
+                  |  Job Search
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-sign-in(aria-hidden='true')
+                  |  Login
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(href="user/login", translate='') Candidate Login
+                  li(ui-sref-active='active')
+                    a(href="company/login", translate='') Employer Login
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-user-plus(aria-hidden='true')
+                  |  Create an account
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(ui-sref='candidate-signup', translate='', href='/signup/candidate') Candidate Signup
+                  li(ui-sref-active='active')
+                    a(ui-sref='company-signup', translate='', href='/signup/company') Employer Signup
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate()
+              // ngIf: isCandidate()
+              // ngIf: businesses.length > 1 && isCompany()
+              // ngIf: businesses.length > 1  && theCurrentBusiness
+              // ngIf: businesses.length == 1  && isCompany()
+              // ngIf: theCurrentBusiness && isCompany()
+              // ngIf: theCurrentBusiness
+              // ngIf: isCompany()
+      // ngIf: !isHomePageCandidate() && !isTrans()
+h1.hiddentitle SkootJobs | Find a Job in Malaysia
+#toast-container.ng-scope.toast-top-right(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 3000}")
+  // ngRepeat: toaster in toasters
+#toast-container.ng-scope.toast-center(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 0, 'position-class': 'toast-center', 'toaster-id': 2}")
+  // ngRepeat: toaster in toasters
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg.ng-hide(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .container.ng-scope
+      .page
+        .title
+          h1
+            | Privacy Policy
+          hr
+          .content
+            .row
+              .col-sm-4.toc-sidebar
+                // required for floating
+                // Nav tabs
+                ul.nav.nav-tabs.tabs-left
+                  li.active
+                    a(href='https://test9.skootjobs.com/privacy-policy#introduction', data-toggle='tab') Introduction
+                  li
+                    a(href='https://test9.skootjobs.com/privacy-policy#o1', data-toggle='tab') Information We Collect
+                  li
+                    a(href='https://test9.skootjobs.com/privacy-policy#o2', data-toggle='tab')
+                      | How We Use Your Data
+                  li
+                    a(href='https://test9.skootjobs.com/privacy-policy#o3', data-toggle='tab') Choice And Access Of Personal Information
+                  li
+                    a(href='https://test9.skootjobs.com/privacy-policy#o4', data-toggle='tab') Contact Information 
+              .col-sm-8
+                // Tab panes
+                .tab-content
+                  #introduction.tab-pane.active
+                    h3 Introduction
+                    p
+                      span(style='font-weight: 400;')
+                        | “SkootJobs.com“, “SkootJobs.com Services“, “SkootJobs.com Websites“, “You“, “Advertisers” and “Employers” shall have the same meaning as defined in the
+                      a(href='https://www.skootjobs.com/terms-of-use/')
+                        span(style='font-weight: 400;') Terms of Use
+                      span(style='font-weight: 400;') .
+                    p
+                      span(style='font-weight: 400;') “personal information” is data that can be used to identify an individual.
+                    p
+                      span(style='font-weight: 400;')
+                        | “processing” includes but is not limited to collecting, holding, storing, recording, organizing, adapting, using, disclosing, correcting, destructing.
+                    p  
+                    p
+                      span(style='font-weight: 400;') Services & Linked Sites
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | This Privacy Policy applies to the website and all the services provided by SkootJobs.com
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') SkootJobs.com Websites that may contain links to third-party sites.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com is not responsible for such third-party sites. Any personal information made available by you on such sites will not have the benefit of this Privacy Notice and will be subject to the relevant third-party’s privacy policy (if any).
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You can login to our site using sign-in services such as Facebook Connect. This service will authenticate your identity and provide you the option to share certain personal information with us such as your name and email address to pre-populate our sign-up form. Services like Facebook Connect give you the option to post information about your activities on this website to your profile page to share with others within your network.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Our website includes Social Media Features, such as the Facebook button and widgets, or interactive mini-programs that run on our site. These features may collect your IP address, which page that you are visiting on our site, and may set cookies to enable the Feature to function properly. Social Media Features and widgets are either hosted by third-party or hosted directly on our site. Your interactions with these Features are governed by the privacy policy of the company providing it.
+                    p  
+                    p
+                      span(style='font-weight: 400;') Consent
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | In using the SkootJobs.com Services and/or the SkootJobs.com Websites, you consent to the collections and use of the personal information by SkootJobs.com in the ways described hereinabove (which may change from time to time) unless and until you inform SkootJobs.com to the contrary here.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Further, you consent to your referees, the school/college/university/institute where you have studied, the professional qualifying bodies where you received your accreditation and Employers to disclose your personal information to SkootJobs.com.
+                    p  
+                    p
+                      span(style='font-weight: 400;') Change
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | We may modify this Privacy Policy, and if we make any material changes, we will provide notice through our Services, or by other means, to provide you the opportunity to review it before the changes are in effect. If you object to any changes, you may close your account.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Your continued use of our Services after we publish notice or send notice about our changes to this Privacy Policy means that you are consenting to the updated Privacy Policy.
+                  #o1.tab-pane
+                    h3 Information We Collect
+                    h4
+                      span(style='font-weight: 400;') Information You Provide To Us
+                    p
+                      span(style='font-weight: 400;') Register
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Each time when you register with SkootJobs.com for any of the SkootJobs.com Services, you will be asked to provide personal information about yourself in order to create a SkootJobs.com account.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | If you apply for any of our premium services, we ask you for payment and billing information. (eg, credit card)
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Whenever the personal information requested by SkootJobs.com is marked as “Required Field”, you must provide and agree to the processing of this personal information by SkootJobs.com. If you do not agree to provide this personal information and/or not agree to us processing it in the manner set out in this Privacy Notice, then SkootJobs.com will be unable to provide the relevant services to you and your application for such services will be rejected.
+                    p
+                      span(style='font-weight: 400;') Profile
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') We collect information you provide when filling up your profile.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You have choices to what information you would like to provide to us professionally. Profile information will help you get more out of our services, including helping recruiters and employers find you.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | If you choose to add referees to your resume, SkootJobs.com will ask you for their names, telephone numbers, emails, position titles and other relevant particulars. This information will be enclosed as part of your job application and employers may contact them to get references for your applications.
+                    p
+                      span(style='font-weight: 400;') Posting & Uploading
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com may ask your permission to post your testimonial or success story. If you agree to post your material on SkootJobs.com Websites, you should be aware that any personal information you submit can be read, collected, or used by other users of the SkootJobs.com Websites and could be used to send you unsolicited messages. If you wish to update or delete your testimonial, you can contact us
+                        a(href='https://www.skootjobs.com/contact/')
+                          span(style='font-weight: 400;') here
+                        span(style='font-weight: 400;') .
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') We collect personal data from you when you post or upload it to our services.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | When you apply for jobs, submit your resume, send out messages, when you receive or give out invitations, or when you accept or reject invitations.
+                    h4
+                      span(style='font-weight: 400;') Information from others
+                    p
+                      span(style='font-weight: 400;') Partners
+                    p
+                      span(style='font-weight: 400;')
+                        | We receive personal data about you when you use services of our customers and partners, such as prospective employers and applicant tracking systems providing us job application data.
+                    p
+                      span(style='font-weight: 400;') Cookies, Web Beacons, And Other Similar Technologies
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')   
+                        span(style='font-weight: 400;')
+                          | When you visit any SkootJobs.com Websites our web servers automatically collect information about your visit to these websites, including your Internet Protocol (IP) address, the time, date, and duration of your visit. your IP address is a unique identifier for your computer or other access device
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')   
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com may track your visits to any SkootJobs.com Websites by placing a “cookie” on your computer or other access device when you enter. Cookies are small text files that are placed on your computer or other access device by websites that you visit. They are widely used in order to make websites work, or work more effectively, as well as to provide information to the owners of the websites.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Cookies allow SkootJobs.com to save preferences for you so that you will not have to re-enter them the next time you visit. Cookies also help SkootJobs.com collect anonymous click stream data for tracking user trends and patterns. SkootJobs.com may use the anonymous click stream data to help the Advertiser to deliver better-targeted advertisements.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You can remove cookies by following directions provided in your internet browser’s “help” file. You should understand that areas of certain websites will not function properly if you set your internet browser to not accept cookies.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')   
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com also uses clear gifs in its HTML-based emails in order to find out which emails have been opened by the recipients. This allows SkootJobs.com to gauge the effectiveness of certain communications and the effectiveness of its marketing campaigns.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Our partners and service providers use cookies to collect information about the usage of SkootJobs.com Websites. The use of cookies by our partners and service providers is not covered by our privacy policy. We do not have access or control over these cookies.
+                    p
+                      span(style='font-weight: 400;') Other
+                    p
+                      span(style='font-weight: 400;')
+                        | Our services are growing constantly, and we will continue to introduce new features which may require the collection of new information. If we collect materially different information or use your information in a new way, we will notify you and may also modify this Privacy Policy.
+                  #o2.tab-pane
+                    h3  How We Use Your Data
+                    h4
+                      span(style='font-weight: 400;') General
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To verify your identity;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To assess and/or verify your employability and creditworthiness;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To provide the SkootJobs.com Services which you have requested;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To administer and manage the SkootJobs.com Services provided to you;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To contact you in respect of SkootJobs.com Services;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To improve placement opportunities for you or for tailoring specific services to you;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To verify your academic and professional qualification by contacting the school/college/university/institute/ professional qualifying bodies;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To contact the referee and/or the guarantor whom details have been provided by you;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To process your order for the SkootJobs.com Services which you have requested;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To investigate and resolve any of the SkootJobs.com Services, billing queries, complaints or other enquiries that you submit to SkootJobs.com regarding SkootJobs.com Services;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To manage staff training and quality assurance;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To monitor and improve the performance of the SkootJobs.com Websites and the SkootJobs.com Services;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To maintain and develop the SkootJobs.com Websites and SkootJobs.com Services;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To gain an understanding of your information and communication needs in order for SkootJobs.com to enhance and customize the SkootJobs.com Services;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To conduct research and development and statistical analysis in connection with the SkootJobs.com Services to identify trends and develop new services that reflect your interests;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To assist SkootJobs.com in understanding your browsing preferences on the SkootJobs.com Websites so that SkootJobs.com can tailor content accordingly;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To detect and prevent fraudulent activity.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') To promote and market to you other SkootJobs.com Services; or
+                        span(style='font-weight: 400;')
+                          br
+                        span(style='font-weight: 400;') Services of third parties which SkootJobs.com thinks may be of interest to you.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To send you seasonal greeting messages and/or message informing you of a critical performance error in the SkootJobs.com Websites and/or the SkootJobs.com Services.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | To send you tips, advice and survey information to maximize your career development including but not limited to using the SkootJobs.com Services and/or the SkootJobs.com Websites.
+                    h4
+                      span(style='font-weight: 400;') Resume
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com gives you the option of putting your resume in the SkootJobs.com Resume Database provided that you use SkootJobs.com’s preset format for updating your resume.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') There are two ways of doing so:
+                    p
+                      span(style='font-weight: 400;')
+                        | - You can store your resume in the SkootJobs.com Resume Database, but not allow it to be searchable by potential Employers or Advertisers. Not allowing your resume to be searchable means that you can use it to apply for a job online, but Employers or Advertisers will not have access to search it through the SkootJobs.com Resume Database.
+                    p
+                      span(style='font-weight: 400;')
+                        | - You can allow your resume to be searchable by Employers or Advertisers. When you opt to make your resume searchable, your name and personal information will be visible to Employers or Advertisers who choose to view your resume from SkootJobs.com Resume Database.
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com uses its best effort to restrict access to the SkootJobs.com Resume Database only to those who have subscribed to the SkootJobs.com Services, these parties may retain a copy of your resume in their own files or databases.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com will take reasonable steps to ensure that parties other than those mentioned above will not, without SkootJobs.com’s consent, gain access to the SkootJobs.com Resume Database. However, SkootJobs.com is not responsible for the retention, use or privacy of resume by any third parties.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com reserves the right to have full access to your resume for relevant intended purposes.
+                  #o3.tab-pane
+                    h3 Choice And Access Of Personal Information
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You may have different privacy concerns. SkootJobs.com’s goal is to be clear of what information it collects so that you can make meaningful choices about how it is used. For example:
+                      ol
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;') You can control who you share your personal information with;
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;')
+                            | You can review and control your subscription to various marketing preferences, SkootJobs.com Services;
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;')
+                            | You may view, edit or delete your personal information and preferences at any time.
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;') You may choose not to receive any marketing materials from SkootJobs.com;
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;')
+                            | You may also subscribe to additional SkootJobs.com Services by logging into a MySkootJobs.com account;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You can delete your MySkootJobs.com account at any time in which event SkootJobs.com will remove all access to your account and resume in the database. The deletion of your SkootJobs.com account does not affect resumes that you had already sent to Employers or were previously downloaded by Employers or Advertisers.
+                    h4  
+                    h4
+                      span(style='font-weight: 400;') Retention of Personal Information 
+                    p
+                      span(style='font-weight: 400;')
+                        | SkootJobs.com will retain your personal information for the period necessary to for any legal or business purposes.
+                    h4
+                      span(style='font-weight: 400;') Security of Personal Information
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com is committed to keeping personal information secure. SkootJobs.com has appropriate technical, administrative and physical procedures in place to protect personal information from loss, theft, and misuse, as well as against unauthorized access, disclosure, alteration, and destruction. Sensitive information (such as a credit card number) entered on our payment gateway services are encrypted during the transmission of that information using secure socket layer technology (SSL).
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | However, in any event, SkootJobs.com is unable to secure or keep secure any information provided by you due to foul play from outside entities or acts of God, then SkootJobs.com will not be liable
+                    h4
+                      span(style='font-weight: 400;') To Whom Personal Information Is Disclosed
+                    h4  
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Personal information may be disclosed to advertisers, employers, and third parties  contracted by SkootJobs.com to assist SkootJobs.com in delivering all or part of the SkootJobs.com Services to you
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Part of the SkootJobs.com Services to you, including without limitation, to the following:
+                      ol
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;') Payment gateway services for optional services;
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;') Profiling/assessment services;
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;') Online advertising services;
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;') Mapping services;
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;') Maintenance and repair services; and
+                        li(style='font-weight: 400;')
+                          span(style='font-weight: 400;') Market research and website usage analysis services.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Strategic partners that work with SkootJobs.com to provide the SkootJobs.com Services or that help market and promote SkootJobs.com Services and/or SkootJobs.com Websites;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | The school/college/university/institute you studied at and your referees so as to verify your academic qualification;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Professional qualifying bodies where you obtained your accreditation;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Regulatory bodies, governmental bodies or other authorities if required or authorized to do so to discharge any regulatory function, under any law or in relation to any order or judgment of a court;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Regulatory bodies, governmental bodies or other authorities for the purpose of detection or prevention of crime, illegal/unlawful activities or fraud or for the apprehension or prosecution of offenders, or for an investigation relating to any of these;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Any party involved in or related to a legal proceeding (or prospective legal proceeding), for purposes of the legal proceedings;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com’s professional advisors on a need to know basis for the purpose of those advisors providing advice to SkootJobs.com;
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Any third-party which acquires all or part of the assets or business of SkootJobs.com (including accounts and trade receivables) for the purpose of that third-party continuing to provide all or that part of the SkootJobs.com Services which it acquired; and
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;') Otherwise permitted under any data protection legislation.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | Other than set out above, you will receive notice when personal information about you might go to third parties, and you will have an opportunity to choose not to share the information.
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | SkootJobs.com does not sell or rent any personal information collected to any other parties.
+                    h4
+                      span(style='font-weight: 400;') Your Obligations Regarding Your Personal Information
+                    ol
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | You are responsible for providing accurate, not misleading, complete and up-to-date information to SkootJobs.com about yourself and any other person whose personal information you provide us and for updating this personal information as and when it becomes inaccurate, misleading, incomplete and out-of-date by contacting SkootJobs.com
+                        a(href='https://www.skootjobs.com/contact/')
+                          span(style='font-weight: 400;') here
+                        span(style='font-weight: 400;') .
+                      li(style='font-weight: 400;')
+                        span(style='font-weight: 400;')
+                          | In the circumstances, you may need to provide to SkootJobs.com personal information about someone other than yourself (for example, your referee or guarantor). If so, we rely on you to inform these individuals that you are providing their personal information to SkootJobs.com, to make sure they consent to you giving us their information and to advise them about where they can find a copy of this Privacy Notice (on our website at Privacy Policy)
+                    h4  
+                    h4
+                      span(style='font-weight: 400;') Transfer Of Your Personal Information Outside Of Your Local Jurisdiction
+                    p
+                      span(style='font-weight: 400;')
+                        | It may be necessary for SkootJobs.com to transfer your personal information outside of your local jurisdiction if any of SkootJobs.com’s service providers or strategic partners (“overseas entities”) is involved in providing part of the SkootJobs.com Services.
+                  #o4.tab-pane
+                    h3 Contact Information 
+                    p
+                      span(style='font-weight: 400;') If you still have questions about this Privacy Notice, please contact us
+                      a(href='https://www.skootjobs.com/contact/')
+                        span(style='font-weight: 400;') here
+                      span(style='font-weight: 400;')
+                        | . SkootJobs.com requests your name, phone number, email address and comments so that SkootJobs.com may respond to your concerns effectively and works to improve the SkootJobs.com Services and/or SkootJobs.com Websites.
+              .clearfix
+      .clearfix

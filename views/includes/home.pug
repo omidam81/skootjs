@@ -1,0 +1,566 @@
+header#header
+  .ng-isolate-scope(navigation='')
+    nav.navbar.ng-scope.trans(ng-class='{trans:isTrans(),reverse:isReverse(),gray:isGray()}', ng-controller='NavigationCtrl')
+      .nav-primary-wrapper
+        .container-fluid
+          .navbar-header
+            // ngIf: !isCompanyRegistration()
+            button.navbar-toggle.ng-scope(type='button', data-toggle='collapse', data-target='#', ng-if='!isCompanyRegistration()')
+              #nav-icon
+                span
+                span
+                span
+                span
+            // end ngIf: !isCompanyRegistration()
+            // ngIf: isCompany()
+            // ngIf: isCandidate()
+            a.navbar-brand(ui-sref='mainCandidate', href='/')
+              // ngIf: !isReverse() && !isGray()
+              img.ng-scope(ng-if='!isReverse() && !isGray()', ng-src='https://www.skootjobs.com/images/logo.png', src='https://www.skootjobs.com/images/logo.png')
+              // end ngIf: !isReverse() && !isGray()
+              // ngIf: isReverse() || isGray()
+            // ngIf: isLandingComp() || isLandingCand()
+          .nav-primary
+            ul.nav.navbar-nav.navbar-right.login-dropdown
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate() && isHomePageCandidate()
+              // ngIf: isCandidate()
+              // ngIf: isCompany() && isHomeMain()
+              // ngIf: isCompany()
+              // ngIf: isCompany()
+              li(ui-sref-active='active')
+                a(ng-click="openState('search')")
+                  i.fa.fa-search(aria-hidden='true')
+                  |  Job Search
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-sign-in(aria-hidden='true')
+                  |  Login
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(href="user/login", translate='') Candidate Login
+                  li(ui-sref-active='active')
+                    a(href="company/login", translate='') Employer Login
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-user-plus(aria-hidden='true')
+                  |  Create an account
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(ui-sref='candidate-signup', translate='', href='/signup/candidate') Candidate Signup
+                  li(ui-sref-active='active')
+                    a(ui-sref='company-signup', translate='', href='/signup/company') Employer Signup
+              // ngIf: isCandidate()
+              // ngIf: isCompany()
+              // ngIf: isCandidate()
+              // ngIf: isCandidate()
+              // ngIf: businesses.length > 1 && isCompany()
+              // ngIf: businesses.length > 1  && theCurrentBusiness
+              // ngIf: businesses.length == 1  && isCompany()
+              // ngIf: theCurrentBusiness && isCompany()
+              // ngIf: theCurrentBusiness
+              // ngIf: isCompany()
+      // ngIf: !isHomePageCandidate() && !isTrans()
+h1.hiddentitle SkootJobs | Find a Job in Malaysia
+#toast-container.ng-scope.toast-top-right(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 3000}")
+  // ngRepeat: toaster in toasters
+#toast-container.ng-scope.toast-center(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 0, 'position-class': 'toast-center', 'toaster-id': 2}")
+  // ngRepeat: toaster in toasters
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg.ng-hide(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .skoot-home.ng-scope
+      // ngIf: !isLogged()
+      .tinySignup.ng-scope(ng-if='!isLogged()', ng-hide='!mobileButton', ng-init='mobileButton=true')
+        a(ui-sref='candidate-signup', translate='', href='/signup/candidate') Join Now
+        a.dismiss(ng-click='mobileButton=false') X
+      // end ngIf: !isLogged()
+      .home-top.candidate
+        .arrow-bounce.hidden-xs.hidden-sm(ng-click='scrollToContent()')
+          i.fa.fa-chevron-down(aria-hidden='true')
+        .darktransparent
+        .container
+          .col-xs-12.text-center.login-content
+            .switcher
+              a.jobseeker.active(ui-sref='mainCandidate', ng-class="{'active':ishomeCand()}", href='/') Candidate
+              a.employer(ui-sref='mainCompany', href='/hire-someone') Employer
+              .clearfix
+            h1.text-center.main-title(translate='') Search From Thousands of Jobs in Malaysia
+            h2.text-center.sub-title(translate='') Join Over 250,000 Candidates Today
+            .top-button.mobile-button.hidden-xs
+              a.btn.btn-red-new.btn-lg.animate.wow.tada(ui-sref='candidate-signup', data-wow-delay='1.5s', translate='', href='/signup/candidate', style='visibility: visible; animation-delay: 1.5s; animation-name: tada;') Join Now
+          .clearfix
+        .container-fluid.np.top-search
+          .container
+            .col-xs-12.col-sm-12.col-md-12.col-lg-10.col-md-push-0.col-lg-push-1
+              .row
+                form#search-job.ng-pristine.ng-valid(novalidate='')
+                  .row
+                    .col-xs-12.col-sm-4.col-md-5.col
+                      input.form-control.ng-pristine.ng-untouched.ng-valid.ng-empty(name='keywords', type='text', placeholder='Enter job title or keywords', ng-model='options.keyword')
+                      i.fa.fa-search(aria-hidden='true')
+                    .col-xs-12.col-sm-4.col-md-5.col
+                      input#google_places_ac.form-control.input-block-level.ng-isolate-scope.ng-empty.ng-valid(name='google_places_ac', type='text', placeholder='Location', ng-model='options.informalAddress', location='options.location', address='options.address', informal-address='options.informalAddress', restriction-country='MY', map-is-valid='options.mapIsValid', ng-init='options.mapIsValid=true', autocomplete='off')
+                      i.fa.fa-map-marker(aria-hidden='true')
+                      .clearfix
+                      // ngIf: !options.mapIsValid
+                    .col-xs-12.col-sm-4.col-md-2
+                      button.btn-md.btn.btn-red-new.btn-block(ng-click='submitSearch()', translate='') Job Search
+                    .clearfix
+      // ngIf: !isMobileRes()
+      .hiring-now.hidden-xs.ng-scope(ng-if='!isMobileRes()')
+        .container.text-center
+          h2(translate='') Employers hiring right now
+          h5(translate='') Among some of Malaysia’s top employers posting vacancies on our platform
+          #hiring-owl.owl-carousel.owl-theme.owl-loaded.owl-drag
+            // ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            // end ngRepeat: item in hiringItems()
+            .owl-stage-outer
+              .owl-stage(style='transform: translate3d(-3479px, 0px, 0px); transition: 0.5s; width: 9860px;')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/13-min.png', src='https://www.skootjobs.com/images/companies/13-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/14-min.png', src='https://www.skootjobs.com/images/companies/14-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/15-min.png', src='https://www.skootjobs.com/images/companies/15-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/16-min.png', src='https://www.skootjobs.com/images/companies/16-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/17-min.png', src='https://www.skootjobs.com/images/companies/17-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/18-min.png', src='https://www.skootjobs.com/images/companies/18-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/19-min.png', src='https://www.skootjobs.com/images/companies/19-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/20-min.png', src='https://www.skootjobs.com/images/companies/20-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/21-min.png', src='https://www.skootjobs.com/images/companies/21-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/22-min.png', src='https://www.skootjobs.com/images/companies/22-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/23-min.png', src='https://www.skootjobs.com/images/companies/23-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/24-min.png', src='https://www.skootjobs.com/images/companies/24-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/25-min.png', src='https://www.skootjobs.com/images/companies/25-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/1-min.png', src='https://www.skootjobs.com/images/companies/1-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/2-min.png', src='https://www.skootjobs.com/images/companies/2-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/3-min.png', src='https://www.skootjobs.com/images/companies/3-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/4-min.png', src='https://www.skootjobs.com/images/companies/4-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/5-min.png', src='https://www.skootjobs.com/images/companies/5-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/6-min.png', src='https://www.skootjobs.com/images/companies/6-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/7-min.png', src='https://www.skootjobs.com/images/companies/7-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/8-min.png', src='https://www.skootjobs.com/images/companies/8-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/9-min.png', src='https://www.skootjobs.com/images/companies/9-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/10-min.png', src='https://www.skootjobs.com/images/companies/10-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/11-min.png', src='https://www.skootjobs.com/images/companies/11-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/12-min.png', src='https://www.skootjobs.com/images/companies/12-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/13-min.png', src='https://www.skootjobs.com/images/companies/13-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/14-min.png', src='https://www.skootjobs.com/images/companies/14-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/15-min.png', src='https://www.skootjobs.com/images/companies/15-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/16-min.png', src='https://www.skootjobs.com/images/companies/16-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/17-min.png', src='https://www.skootjobs.com/images/companies/17-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/18-min.png', src='https://www.skootjobs.com/images/companies/18-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/19-min.png', src='https://www.skootjobs.com/images/companies/19-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/20-min.png', src='https://www.skootjobs.com/images/companies/20-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/21-min.png', src='https://www.skootjobs.com/images/companies/21-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/22-min.png', src='https://www.skootjobs.com/images/companies/22-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/23-min.png', src='https://www.skootjobs.com/images/companies/23-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/24-min.png', src='https://www.skootjobs.com/images/companies/24-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/25-min.png', src='https://www.skootjobs.com/images/companies/25-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/1-min.png', src='https://www.skootjobs.com/images/companies/1-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/2-min.png', src='https://www.skootjobs.com/images/companies/2-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/3-min.png', src='https://www.skootjobs.com/images/companies/3-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/4-min.png', src='https://www.skootjobs.com/images/companies/4-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/5-min.png', src='https://www.skootjobs.com/images/companies/5-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/6-min.png', src='https://www.skootjobs.com/images/companies/6-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/7-min.png', src='https://www.skootjobs.com/images/companies/7-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/8-min.png', src='https://www.skootjobs.com/images/companies/8-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/9-min.png', src='https://www.skootjobs.com/images/companies/9-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/10-min.png', src='https://www.skootjobs.com/images/companies/10-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/11-min.png', src='https://www.skootjobs.com/images/companies/11-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/12-min.png', src='https://www.skootjobs.com/images/companies/12-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in hiringItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/13-min.png', src='https://www.skootjobs.com/images/companies/13-min.png')
+            .owl-nav.disabled
+              .owl-prev prev
+              .owl-next next
+            .owl-dots
+              .owl-dot.active
+                span
+              .owl-dot
+                span
+              .owl-dot
+                span
+              .owl-dot
+                span
+              .owl-dot
+                span
+      // end ngIf: !isMobileRes()
+      .connecting
+        .container.text-center
+          h2(translate='') Connecting you to the right job
+          h5(translate='') Discover jobs in Malaysia with 3 simple steps
+          .row
+            .col-xs-12.col-md-4
+              .block
+                .icon.first
+                h4.title(translate='') 1. Create your candidate account
+                p.content.text-justify(translate='')
+                  | Create your Candidate account to get matched to the best opportunities for you. Keep your education and experience as up to-date as possible.
+            .col-xs-12.col-md-4
+              .block
+                .icon.second
+                h4.title(translate='') 2. Get matched to jobs
+                p.content.text-justify(translate='')
+                  | Based on your profile and info given, SkootJobs will match you to the best jobs for you. Then you can start messaging and applying for these jobs immediately.
+            .col-xs-12.col-md-4
+              .block
+                .icon.third
+                h4.title(translate='') 3. Apply quickly and easily
+                p.content.text-justify(translate='')
+                  | When you see jobs you like, apply quickly and easily. Once you’ve applied, SkootJobs saves your contact details and resume, making future applications easy.
+            .clearfix
+      .job-cats
+        .container.wow.animate.fadeIn
+          h2.text-center(translate='') Browse our most popular categories
+          // ngRepeat: item in jobCats
+          .col-xs-12.col-sm-6.col-md-3.text-center.ng-scope(ng-repeat='item in jobCats')
+            a.cat-item(href='/category/56b81283d9bd7b375c2cb577/accounting-and-finance', ui-sref='view-jobs-in-category({id: item.catId , title: item.slug })')
+              img(ng-src='https://www.skootjobs.com/images/jobcats/01-min.jpg', src='https://www.skootjobs.com/images/jobcats/01-min.jpg')
+              span.title(translate='')
+                .icon.cat01
+                | Accounting & Finance
+          // end ngRepeat: item in jobCats
+          .col-xs-12.col-sm-6.col-md-3.text-center.ng-scope(ng-repeat='item in jobCats')
+            a.cat-item(href='/category/56bd3f0bc745636a67c26544/admin-hr-and-management', ui-sref='view-jobs-in-category({id: item.catId , title: item.slug })')
+              img(ng-src='https://www.skootjobs.com/images/jobcats/02-min.jpg', src='https://www.skootjobs.com/images/jobcats/02-min.jpg')
+              span.title(translate='')
+                .icon.cat02
+                | Admin, HR & Management
+          // end ngRepeat: item in jobCats
+          .col-xs-12.col-sm-6.col-md-3.text-center.ng-scope(ng-repeat='item in jobCats')
+            a.cat-item(href='/category/56bea6044e19f3d47474abe3/computer-and-it', ui-sref='view-jobs-in-category({id: item.catId , title: item.slug })')
+              img(ng-src='https://www.skootjobs.com/images/jobcats/03-min.jpg', src='https://www.skootjobs.com/images/jobcats/03-min.jpg')
+              span.title(translate='')
+                .icon.cat03
+                | Computer & IT
+          // end ngRepeat: item in jobCats
+          .col-xs-12.col-sm-6.col-md-3.text-center.ng-scope(ng-repeat='item in jobCats')
+            a.cat-item(href='/category/56b812d2d9bd7b375c2cb57d/customer-service-sales-and-retail', ui-sref='view-jobs-in-category({id: item.catId , title: item.slug })')
+              img(ng-src='https://www.skootjobs.com/images/jobcats/04-min.jpg', src='https://www.skootjobs.com/images/jobcats/04-min.jpg')
+              span.title(translate='')
+                .icon.cat04
+                | Customer Service, Sales & Retail
+          // end ngRepeat: item in jobCats
+          .col-xs-12.col-sm-6.col-md-3.text-center.ng-scope(ng-repeat='item in jobCats')
+            a.cat-item(href='/category/56b812bfd9bd7b375c2cb57a/engineering', ui-sref='view-jobs-in-category({id: item.catId , title: item.slug })')
+              img(ng-src='https://www.skootjobs.com/images/jobcats/05-min.jpg', src='https://www.skootjobs.com/images/jobcats/05-min.jpg')
+              span.title(translate='')
+                .icon.cat05
+                | Engineering
+          // end ngRepeat: item in jobCats
+          .col-xs-12.col-sm-6.col-md-3.text-center.ng-scope(ng-repeat='item in jobCats')
+            a.cat-item(href='/category/56b812e6d9bd7b375c2cb57f/food-and-beverage', ui-sref='view-jobs-in-category({id: item.catId , title: item.slug })')
+              img(ng-src='https://www.skootjobs.com/images/jobcats/06-min.jpg', src='https://www.skootjobs.com/images/jobcats/06-min.jpg')
+              span.title(translate='')
+                .icon.cat06
+                | Food & Beverage
+          // end ngRepeat: item in jobCats
+          .col-xs-12.col-sm-6.col-md-3.text-center.ng-scope(ng-repeat='item in jobCats')
+            a.cat-item(href='/category/56bd40e6c745636a67c26548/education-and-training', ui-sref='view-jobs-in-category({id: item.catId , title: item.slug })')
+              img(ng-src='https://www.skootjobs.com/images/jobcats/07-min.jpg', src='https://www.skootjobs.com/images/jobcats/07-min.jpg')
+              span.title(translate='')
+                .icon.cat07
+                | Education & Training
+          // end ngRepeat: item in jobCats
+          .col-xs-12.col-sm-6.col-md-3.text-center.ng-scope(ng-repeat='item in jobCats')
+            a.cat-item(href='/category/56b812c5d9bd7b375c2cb57b/marketing', ui-sref='view-jobs-in-category({id: item.catId , title: item.slug })')
+              img(ng-src='https://www.skootjobs.com/images/jobcats/08-min.jpg', src='https://www.skootjobs.com/images/jobcats/08-min.jpg')
+              span.title(translate='')
+                .icon.cat08
+                | Marketing
+          // end ngRepeat: item in jobCats
+      //
+        <div class="subscribe">
+        <div class="container">
+        <div class="col-xs-12 col-md-6 col-lg-5 title">
+        <h2>Get jobs in your inbox</h2>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-5 form">
+        <form>
+        <div class="input">
+        <input type="email" placeholder="Type your email address">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+        </div>
+        <button class="submit">Subscribe</button>
+        </form>
+        </div>
+        <div class="clearfix">
+        </div>
+        </div>
+        </div>
+      #testimonials.testimonials
+        .container.wow.animate.fadeIn
+          .title.text-center
+            h2 What People Are Saying
+          .row.row-lg-height
+            // ngRepeat: item in testimonials
+            .col-xs-12.col-md-4.block.ng-scope(ng-repeat='item in testimonials')
+              .inner
+                p.content.ng-binding
+                  | "When I think of SkootJobs, I think of two things: Easy to use and great support when I need it"
+              .block-bottom
+                .left
+                  img(ng-src='https://www.skootjobs.com/images/users/cand-test-1-min.jpg', width='70', height='70', src='https://www.skootjobs.com/images/users/cand-test-1-min.jpg')
+                .right
+                  span.name.ng-binding Tengku Muzani
+                .clearfix
+              .clearfix
+            // end ngRepeat: item in testimonials
+            .col-xs-12.col-md-4.block.ng-scope(ng-repeat='item in testimonials')
+              .inner
+                p.content.ng-binding
+                  | "Within days of using SkootJobs, I managed to secure a job with a good company that I really enjoy working with. I couldn’t believe it was that fast!"
+              .block-bottom
+                .left
+                  img(ng-src='https://www.skootjobs.com/images/users/cand-test-2-min.jpg', width='70', height='70', src='https://www.skootjobs.com/images/users/cand-test-2-min.jpg')
+                .right
+                  span.name.ng-binding Dulanjalee
+                .clearfix
+              .clearfix
+            // end ngRepeat: item in testimonials
+            .col-xs-12.col-md-4.block.ng-scope(ng-repeat='item in testimonials')
+              .inner
+                p.content.ng-binding
+                  | "SkootJobs has made my job search easier and more efficient. It’s easy to browse through jobs and the job matches save me a lot of time in finding what I’m after."
+              .block-bottom
+                .left
+                  img(ng-src='https://www.skootjobs.com/images/users/cand-test-3-min.jpg', width='70', height='70', src='https://www.skootjobs.com/images/users/cand-test-3-min.jpg')
+                .right
+                  span.name.ng-binding Maya Zaharudin
+                .clearfix
+              .clearfix
+            // end ngRepeat: item in testimonials
+      // ngIf: !isMobileRes()
+      .hiring-now.featured.hidden-xs.ng-scope(ng-if='!isMobileRes()')
+        .container.text-center
+          h2(translate='') As Featured In
+          #featured-owl.owl-carousel.owl-theme.owl-loaded.owl-drag
+            // ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            // end ngRepeat: item in featuredItems()
+            .owl-stage-outer
+              .owl-stage(style='transform: translate3d(-2126px, 0px, 0px); transition: 0.5s; width: 4254px;')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/5-min.png', src='https://www.skootjobs.com/images/companies/featured/5-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/6-min.png', src='https://www.skootjobs.com/images/companies/featured/6-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/7-min.png', src='https://www.skootjobs.com/images/companies/featured/7-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/8-min.png', src='https://www.skootjobs.com/images/companies/featured/8-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/9-min.png', src='https://www.skootjobs.com/images/companies/featured/9-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/10-min.png', src='https://www.skootjobs.com/images/companies/featured/10-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/1-min.png', src='https://www.skootjobs.com/images/companies/featured/1-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/2-min.png', src='https://www.skootjobs.com/images/companies/featured/2-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/3-min.png', src='https://www.skootjobs.com/images/companies/featured/3-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/4-min.png', src='https://www.skootjobs.com/images/companies/featured/4-min.png')
+                .owl-item(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/5-min.png', src='https://www.skootjobs.com/images/companies/featured/5-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/6-min.png', src='https://www.skootjobs.com/images/companies/featured/6-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/7-min.png', src='https://www.skootjobs.com/images/companies/featured/7-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/8-min.png', src='https://www.skootjobs.com/images/companies/featured/8-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/9-min.png', src='https://www.skootjobs.com/images/companies/featured/9-min.png')
+                .owl-item.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/10-min.png', src='https://www.skootjobs.com/images/companies/featured/10-min.png')
+                .owl-item.cloned.active(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/1-min.png', src='https://www.skootjobs.com/images/companies/featured/1-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/2-min.png', src='https://www.skootjobs.com/images/companies/featured/2-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/3-min.png', src='https://www.skootjobs.com/images/companies/featured/3-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/4-min.png', src='https://www.skootjobs.com/images/companies/featured/4-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/5-min.png', src='https://www.skootjobs.com/images/companies/featured/5-min.png')
+                .owl-item.cloned(style='width: 173.333px; margin-right: 20px;')
+                  .ng-scope(ng-repeat='item in featuredItems()')
+                    img(ng-src='https://www.skootjobs.com/images/companies/featured/6-min.png', src='https://www.skootjobs.com/images/companies/featured/6-min.png')
+            .owl-nav.disabled
+              .owl-prev prev
+              .owl-next next
+            .owl-dots
+              .owl-dot.active
+                span
+              .owl-dot
+                span
+      // end ngIf: !isMobileRes()
