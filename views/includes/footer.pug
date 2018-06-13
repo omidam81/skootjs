@@ -1,0 +1,150 @@
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js')
+script(src='https://www.skootjobs.com/scripts/vendor.min.js?v=83346')
+script(src='https://www.skootjobs.com/scripts/app.min.js?v=48581')
+script(type='text/javascript', src='//www.googleadservices.com/pagead/conversion_async.js', charset='utf-8')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js')
+
+footer#footer.ng-scope(show-footer='', ng-if="showFooter!='hidden'")
+  .ng-isolate-scope(footer='')
+    .footer
+      .container
+        .footer-top
+          .row
+            .col-xs-12.col-sm-12.col-md-3.left-main
+              .logo
+                a(ui-sref='mainCandidate', href='/')
+                  img(src='https://www.skootjobs.com/images/logo.png')
+              p.description
+                | SkootJobs is an online
+                br
+                | job platform that matches
+                br
+                |  employers and job seekers in Malaysia.
+              .social-menu
+                ul
+                  // ngRepeat: item in socialMenu
+                  li.ng-scope(ng-repeat='item in socialMenu')
+                    a(href='https://www.linkedin.com/company/skoot-jobs', target='_blank')
+                      i.fa.fa-linkedin(aria-hidden='true')
+                  // end ngRepeat: item in socialMenu
+                  li.ng-scope(ng-repeat='item in socialMenu')
+                    a(href='https://www.facebook.com/skootjobs/', target='_blank')
+                      i.fa.fa-facebook(aria-hidden='true')
+                  // end ngRepeat: item in socialMenu
+                  li.ng-scope(ng-repeat='item in socialMenu')
+                    a(href='https://twitter.com/SkootJobs', target='_blank')
+                      i.fa.fa-twitter(aria-hidden='true')
+                  // end ngRepeat: item in socialMenu
+                  li.ng-scope(ng-repeat='item in socialMenu')
+                    a(href='https://www.instagram.com/skootjobs/', target='_blank')
+                      i.fa.fa-instagram(aria-hidden='true')
+                  // end ngRepeat: item in socialMenu
+                  li.ng-scope(ng-repeat='item in socialMenu')
+                    a(href='https://plus.google.com/116394090112892290475/about', target='_blank')
+                      i.fa.fa-google-plus(aria-hidden='true')
+                  // end ngRepeat: item in socialMenu
+            .col-xs-12.col-md-9
+              .col-xs-12.col-sm-6.col-md-3.menu-block.main
+                ul
+                  li
+                    // ngIf: !isLogged()
+                    a.ng-scope(ng-if='!isLogged()', ui-sref='candidate-register', href='/register/candidate') Find A Job
+                    // end ngIf: !isLogged()
+                  li
+                    // ngIf: !isLogged()
+                    a.ng-scope(ng-if='!isLogged()', ui-sref='company-register', href='/register/company') Find A Talent
+                    // end ngIf: !isLogged()
+                  li
+                    a(ui-sref='about-us', href='/about') About Us
+                  li
+                    a(target='_blank', href='http://blog.skootjobs.com/') Blog
+                  li
+                    a(ui-sref='contact-us', href='/contact') Contact Us
+              .col-xs-12.col-sm-6.col-md-3.menu-block
+                ul
+                  li
+                    a(ui-sref="view-jobs-in-state({state: 'johor'})", href='/view-jobs/in/johor') Jobs in Johor
+                  li
+                    a(ui-sref="view-jobs-in-state({state: 'kedah'})", href='/view-jobs/in/kedah') Jobs in Kedah
+                  li
+                    a(ui-sref="view-jobs-in-state({state: 'kelantan'})", href='/view-jobs/in/kelantan') Jobs in Kelantan 
+                  li
+                    a(ui-sref="view-jobs-in-state({state: 'wilayah-persekutuan-kuala-lumpur'})", href='/view-jobs/in/wilayah-persekutuan-kuala-lumpur') Jobs in Kuala Lumpur 
+                  li
+                    a(ui-sref="view-jobs-in-state({state: 'malacca'})", href='/view-jobs/in/malacca') Jobs in Malacca
+                  li.visible-xs
+                    a(ng-hide='moreplaces', ng-click='moreplaces=true')
+                      | More Locations 
+                      i.fa.fa-angle-double-down
+                    a.ng-hide(ng-hide='!moreplaces', ng-click='moreplaces=false')
+                      | Less Locations 
+                      i.fa.fa-angle-double-up
+              div(ng-hide='!moreplaces && isMobile()')
+                .col-xs-12.col-sm-6.col-md-3.menu-block
+                  ul
+                    li
+                      a(ui-sref="view-jobs-in-state({state: 'negeri-sembilan'})", href='/view-jobs/in/negeri-sembilan') Jobs in Negeri Sembilan
+                    li
+                      a(ui-sref="view-jobs-in-state({state: 'Pahang'})", href='/view-jobs/in/Pahang') Jobs in Pahang
+                    li
+                      a(ui-sref="view-jobs-in-state({state: 'Penang'})", href='/view-jobs/in/Penang') Jobs in Penang 
+                    li
+                      a(ui-sref="view-jobs-in-state({state: 'perak'})", href='/view-jobs/in/perak') Jobs in Perak 
+                    li
+                      a(ui-sref="view-jobs-in-state({state: 'perlis'})", href='/view-jobs/in/perlis') Jobs in Perlis 
+                .col-xs-12.col-sm-6.col-md-3.menu-block
+                  ul
+                    li
+                      a(ui-sref="view-jobs-in-state({state: 'sabah'})", href='/view-jobs/in/sabah') Jobs in Sabah
+                    li
+                      a(ui-sref="view-jobs-in-state({state: 'sarawak'})", href='/view-jobs/in/sarawak') Jobs in Sarawak
+                    li
+                      a(ui-sref="view-jobs-in-state({state: 'selangor'})", href='/view-jobs/in/selangor') Jobs in Selangor
+                    li
+                      a(ui-sref="view-jobs-in-state({state: 'terengganu'})", href='/view-jobs/in/terengganu') Jobs in Terengganu
+                    li
+                      a.white(ui-sref='view-jobs', href='/view-jobs') Browse All Jobs
+              .clearfix
+            .clearfix
+        .footer-bottom
+          p.pull-left 2017 © SkootJobs.com. All Rights Reserved.
+          ul.pull-right
+            li
+              a(ui-sref='terms-of-use', href='/terms-of-use') Terms Of Use
+            li
+              a(ui-sref='privacy-policy', href='/privacy-policy') Privacy Policy
+    //
+      <div class="container row-2">
+      <div class="col-xs-12 col-md-10 col-md-push-1 row-2">
+      <div class="col-xs-12 col-sm-3 footer-list-block">
+      <h4 class="title"></h4>
+      <ul class="footer-list">
+      <li><a href="{{apiRootUrl}}/?page_id=118"  translate>About Us</a></li>
+      <li><a href="{{apiRootUrl}}/?page_id=166" translate>Blog</a></li>
+      <li><a href="{{apiRootUrl}}/?page_id=154" translate>Contact Us</a></li>
+      </ul>
+      </div>
+      <div class="col-xs-12 col-sm-3 footer-list-block">
+      <h4 class="title"></h4>
+      <ul class="footer-list">
+      <li><a href="{{apiRootUrl}}/?page_id=34406" translate>Terms of Use</a></li>
+      <li><a href="{{apiRootUrl}}/?page_id=158" translate>Privacy Policy</a></li>
+      </ul>
+      </div>
+      <div class="col-xs-12 col-sm-3 footer-list-block">
+      <h4 class="title"></h4>
+      <ul class="footer-list">
+      </ul>
+      </div>
+      <div class="col-xs-12 col-sm-3 footer-list-block">
+      <h4 class="title"></h4>
+      </div>
+      <div class="clearfix"></div>
+      <div class="footer-bottom">
+      <img src="https://www.skootjobs.com/images/logo.png">
+      <span translate>© 2016 skootjobs.com</span>
+      </div>
+      </div>
+      </div>
+// end ngIf: showFooter!='hidden'
