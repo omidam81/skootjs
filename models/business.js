@@ -17,7 +17,7 @@ var BusinessSchema = new Schema({
         ref: 'Job'
     }],
     companyId:{
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: 'Company'
     }
 }, { collection: 'Business' });
