@@ -1,15 +1,387 @@
-extends layout
-
-block content
-  include _paginate
-  h1= title
-  h1 jobs
-  a(href=paginate.href({ sort: 'name' }))
-  ul
-   each job in jobs
-    li
-     h2= job.title
-     h1= job.businessId.name
-     h2= job.businessId.profileImg
-     span= job.typeOfSalary
-     span= job.informalAddress
+html
+  head
+    meta(charset='UTF-8')
+    title SkootJobs
+    link(rel='stylesheet', type='text/css', href='styles/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='owl-carousel/assets/owl.carousel.min.css')
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css')
+    link(rel='stylesheet', type='text/css', href='styles/styles.min.css')
+  body.home
+    header#header
+      div(navigation='')
+        nav.navbar
+          .nav-primary-wrapper
+            .container-fluid
+              .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#')
+                  #nav-icon
+                    span
+                    span
+                    span
+                    span
+                a.navbar-brand(href='')
+                  img(src='images/logo.png')
+              .nav-primary
+                ul.nav.navbar-nav.navbar-right.login-dropdown
+                  li.job-search
+                    a(href='')
+                      i.fa.fa-search(aria-hidden='true')
+                      |  Job Search
+                  li.dropdown
+                    a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                      i.fa.fa-sign-in(aria-hidden='true')
+                      |  Login
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby='login')
+                      li
+                        a(href='') Candidate Login
+                      li
+                        a(href='') Employer Login
+                  li.dropdown
+                    a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                      i.fa.fa-user-plus(aria-hidden='true')
+                      |  Create an account
+                      span.caret
+                    ul.dropdown-menu(aria-labelledby='login')
+                      li
+                        a(href='') Candidate Signup
+                      li
+                        a(href='') Employer Signup
+    .page-sidebar-left-red.page-list-jobs.search-page-bg.demo-bg.sidebar-grey
+      .col-xs-12.col-md-3.col-lg-3.col-custom-left.sticky-filters.left.row-2.demo-sidebar
+        .job-search-sidebar
+          form.job-search-sidebar(name='searchSide')
+            .mobile-collapse
+              .form-group.col-xs-12
+                .clearfix
+                label.control-label Keyword or Job Title
+                input#job-search-sidebar-keywords.text-field(type='text', placeholder='Keyword or Job Title')
+              .clearfix
+              .form-group.col-xs-12.hidden-xs
+                label.control-label(translate='') Job Type
+                select.bootstrap-select(data-size='6', title='Choose Job Types', data-width='100%')
+                  option(label='Full Time', value='object:119') Full Time
+                  option(label='Part Time', value='object:120') Part Time
+                  option(label='Internship', value='object:121') Internship
+                  option(label='Volunteer', value='object:122') Volunteer
+                  option(label='Freelance / Temporary', value='object:123') Freelance / Temporary
+                  option(label='Fresh Graduate', value='object:124') Fresh Graduate
+              .clearfix
+              .form-group.col-xs-12.hidden-xs
+                label.control-label(translate='') Job Category
+                select#bs-categs.bootstrap-select(bootstrap-select='', data-size='8', data-selected-text-format='count', data-live-search='true', data-live-search-placeholder='Start typing', data-width='100%', title='Select Job Category')
+                  option(label='Accounting & Finance') Accounting & Finance
+              .clearfix
+              .form-group.col-xs-12.side-bar-roles.hidden-xs
+                label.control-label(translate='') Job Role
+                select#bs-roles.bootstrap-select(bootstrap-select='', data-size='8', data-selected-text-format='count', data-max-options='30', data-header='Close', data-live-search='true', data-live-search-placeholder='Start typing', data-width='100%', multiple='')
+                  option(label='Account Manager', value='5a38c32a39a5ce85950ece7a') Account Manager
+                remove-bs-items(target-id="'#bs-roles'", target-model='options.professions')
+              .clearfix
+              .form-group.col-xs-12.hidden-xs
+                label.control-label(translate='') Minimum Salary
+                .select-field
+                  select#job-search-sidebar-salaryPeriod.bootstrap-select(bootstrap-select='', data-width='100%', title='Salary', name='job-search-sidebar-salaryPeriod')
+                    option(selected='', value='all', translate='') All
+                    option(value='hour', translate='') Hourly
+                    option(value='month', translate='') Monthly
+              .clearfix
+              .form-group.col-xs-12.hidden-xs
+                label.control-label(translate='') Foreigners
+                .row.col-xs-12
+                  label
+                    input(type='checkbox', name='job-search-sidebar-job-type-part')
+                    span
+                    | Job Accepts Foreigners
+              .clearfix
+            .mobile-collapse-button.bottom
+              button.view-job-filters(type='button')
+                | Hide Job Filters 
+                i.fa.fa-angle-up(aria-hidden='true')
+          .clearfix
+        .col-xs-12.col-md-3.col-lg-3.sidebar-btn-fixed
+      .col-xs-12.col-md-3.col-lg-3.sidebar-btn-fixed
+        .row
+          button.sidebar-btn.search-btn(type='submit', value='Search Now', translate='')
+            i.fa.fa-search(aria-hidden='true')
+            |  Search Now
+          button.sidebar-btn.clear-btn(type='button', value='Clear', translate='')
+            i.fa.fa-undo(aria-hidden='true')
+            |  Clear
+          .clearfix
+      .col-xs-12.col-md-9.col-lg-9.col-custom-right.right.row-2.search-result-container.col-md-push-3.col-lg-push-3
+        .search-top
+          .col-xs-12
+            .inner
+          .clearfix
+        ul.jobs-list
+          li.jobs-list-item._old
+            jobs-list-item
+              .panel.panel-default.featuredjob
+                i.fa.fa-star.featured-star(aria-hidden='true')
+                .panel-body.has-distance
+                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
+                    a(href='')
+                      span.thumbnail.no-bottom-margin
+                        .job-item-img.square(style="background-image: url('images/demo/1.png');")
+                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
+                    h3.position
+                      a.job-title(target='_blank', href='') Shipping Assistant
+                    .job-details
+                      .company.biz-name.hidden-xs
+                        a.company-name(href='')
+                          i.fa.fa-building-o(aria-hidden='true')
+                          |  FREDERICKS DESIGN and TRADE SDN BHD
+                      .company.visible-xs
+                        i.fa.fa-building-o(aria-hidden='true')
+                        span.biz-name-xs  FREDERICKS DESIGN and TRADE SDN BHD
+                        .response-rate-xs
+                      .time
+                        i.fa.fa-clock-o
+                        span(am-time-ago='job.published') 2 days ago
+                      .salary
+                        span
+                          span.i.i-rm.currency
+                          |  1,800 - 2,000 /month
+                      .address
+                        span
+                          i.fa.fa-map-marker
+                          |  Kepong, Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia
+                      .distance
+                        span
+                          i.fa.fa-globe
+                          |  118km away
+                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
+                    .col-save
+                      a.save-this-job(target='_blank', href='')
+                        i.fa.fa-eye(aria-hidden='true')
+                        |  View More Details
+                    .col-apply
+                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new(translate='') Apply now
+          li.jobs-list-item._old
+            jobs-list-item(job='item')
+              .panel.panel-default
+                .panel-body.has-distance
+                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
+                    a(href='')
+                      span.thumbnail.no-bottom-margin
+                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
+                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
+                    h3.position
+                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
+                    .job-details
+                      .company.biz-name.hidden-xs
+                        a.company-name(href='')
+                          i.fa.fa-building-o(aria-hidden='true')
+                          |  U.A.K ONLINE NETWORK RESOURCES
+                      .company.visible-xs
+                        i.fa.fa-building-o(aria-hidden='true')
+                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
+                        .response-rate-xs
+                      .time
+                        i.fa.fa-clock-o
+                        span 9 hours ago
+                      .salary
+                        span
+                          span.i.i-rm.currency
+                          |  2,000 - 3,000 /month
+                      .address
+                        span
+                          i.fa.fa-map-marker
+                          |  Malaysia
+                      .distance
+                        span
+                          i.fa.fa-globe
+                          |  0km away
+                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
+                    .col-save
+                      a.save-this-job(target='_blank', href='')
+                        i.fa.fa-eye(aria-hidden='true')
+                        |  View More Details
+                    .col-apply
+                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
+          li.jobs-list-item._old
+            jobs-list-item(job='item')
+              .panel.panel-default
+                .panel-body.has-distance
+                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
+                    a(href='')
+                      span.thumbnail.no-bottom-margin
+                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
+                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
+                    h3.position
+                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
+                    .job-details
+                      .company.biz-name.hidden-xs
+                        a.company-name(href='')
+                          i.fa.fa-building-o(aria-hidden='true')
+                          |  U.A.K ONLINE NETWORK RESOURCES
+                      .company.visible-xs
+                        i.fa.fa-building-o(aria-hidden='true')
+                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
+                        .response-rate-xs
+                      .time
+                        i.fa.fa-clock-o
+                        span 9 hours ago
+                      .salary
+                        span
+                          span.i.i-rm.currency
+                          |  2,000 - 3,000 /month
+                      .address
+                        span
+                          i.fa.fa-map-marker
+                          |  Malaysia
+                      .distance
+                        span
+                          i.fa.fa-globe
+                          |  0km away
+                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
+                    .col-save
+                      a.save-this-job(target='_blank', href='')
+                        i.fa.fa-eye(aria-hidden='true')
+                        |  View More Details
+                    .col-apply
+                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
+          li.jobs-list-item._old
+            jobs-list-item(job='item')
+              .panel.panel-default
+                .panel-body.has-distance
+                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
+                    a(href='')
+                      span.thumbnail.no-bottom-margin
+                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
+                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
+                    h3.position
+                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
+                    .job-details
+                      .company.biz-name.hidden-xs
+                        a.company-name(href='')
+                          i.fa.fa-building-o(aria-hidden='true')
+                          |  U.A.K ONLINE NETWORK RESOURCES
+                      .company.visible-xs
+                        i.fa.fa-building-o(aria-hidden='true')
+                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
+                        .response-rate-xs
+                      .time
+                        i.fa.fa-clock-o
+                        span 9 hours ago
+                      .salary
+                        span
+                          span.i.i-rm.currency
+                          |  2,000 - 3,000 /month
+                      .address
+                        span
+                          i.fa.fa-map-marker
+                          |  Malaysia
+                      .distance
+                        span
+                          i.fa.fa-globe
+                          |  0km away
+                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
+                    .col-save
+                      a.save-this-job(target='_blank', href='')
+                        i.fa.fa-eye(aria-hidden='true')
+                        |  View More Details
+                    .col-apply
+                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
+          li.jobs-list-item._old
+            jobs-list-item(job='item')
+              .panel.panel-default
+                .panel-body.has-distance
+                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
+                    a(href='')
+                      span.thumbnail.no-bottom-margin
+                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
+                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
+                    h3.position
+                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
+                    .job-details
+                      .company.biz-name.hidden-xs
+                        a.company-name(href='')
+                          i.fa.fa-building-o(aria-hidden='true')
+                          |  U.A.K ONLINE NETWORK RESOURCES
+                      .company.visible-xs
+                        i.fa.fa-building-o(aria-hidden='true')
+                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
+                        .response-rate-xs
+                      .time
+                        i.fa.fa-clock-o
+                        span 9 hours ago
+                      .salary
+                        span
+                          span.i.i-rm.currency
+                          |  2,000 - 3,000 /month
+                      .address
+                        span
+                          i.fa.fa-map-marker
+                          |  Malaysia
+                      .distance
+                        span
+                          i.fa.fa-globe
+                          |  0km away
+                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
+                    .col-save
+                      a.save-this-job(target='_blank', href='')
+                        i.fa.fa-eye(aria-hidden='true')
+                        |  View More Details
+                    .col-apply
+                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
+          li.jobs-list-item._old
+            jobs-list-item(job='item')
+              .panel.panel-default
+                .panel-body.has-distance
+                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
+                    a(href='')
+                      span.thumbnail.no-bottom-margin
+                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
+                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
+                    h3.position
+                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
+                    .job-details
+                      .company.biz-name.hidden-xs
+                        a.company-name(href='')
+                          i.fa.fa-building-o(aria-hidden='true')
+                          |  U.A.K ONLINE NETWORK RESOURCES
+                      .company.visible-xs
+                        i.fa.fa-building-o(aria-hidden='true')
+                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
+                        .response-rate-xs
+                      .time
+                        i.fa.fa-clock-o
+                        span 9 hours ago
+                      .salary
+                        span
+                          span.i.i-rm.currency
+                          |  2,000 - 3,000 /month
+                      .address
+                        span
+                          i.fa.fa-map-marker
+                          |  Malaysia
+                      .distance
+                        span
+                          i.fa.fa-globe
+                          |  0km away
+                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
+                    .col-save
+                      a.save-this-job(target='_blank', href='')
+                        i.fa.fa-eye(aria-hidden='true')
+                        |  View More Details
+                    .col-apply
+                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
+        .circling-wrapper
+          scoot-circling
+            .scoot-circle-loader(translate='')
+              .skoot-spinner-v2(ng-hide='timeOut')
+                .spinner
+                  .cube1
+                  .cube2
+              .text-center.timeout-msg(ng-show='timeOut')
+                img.logo-grayscale(src='images/logo.png')
+                p
+                  | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+      .clearfix
+    script(type='text/javascript', src='js/jquery.min.js')
+    script(type='text/javascript', src='js/bootstrap.min.js')
+    script(type='text/javascript', src='owl-carousel/owl.carousel.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js')
+    script(type='text/javascript', src='js/main.js')
