@@ -115,9 +115,10 @@ html
             .inner
           .clearfix
         ul.jobs-list
-          li.jobs-list-item._old
+          each job in jobs
+           li.jobs-list-item._old
             jobs-list-item
-              .panel.panel-default.featuredjob
+              .panel.panel-default(class=job.packageName=="Basic" ? "" : "featuredjob")
                 i.fa.fa-star.featured-star(aria-hidden='true')
                 .panel-body.has-distance
                   .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
@@ -126,12 +127,12 @@ html
                         .job-item-img.square(style="background-image: url('images/demo/1.png');")
                   .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
                     h3.position
-                      a.job-title(target='_blank', href='') Shipping Assistant
+                      a.job-title(target='_blank', href='')= job.title
                     .job-details
                       .company.biz-name.hidden-xs
                         a.company-name(href='')
                           i.fa.fa-building-o(aria-hidden='true')
-                          |  FREDERICKS DESIGN and TRADE SDN BHD
+                          | #{job.businessId.name}
                       .company.visible-xs
                         i.fa.fa-building-o(aria-hidden='true')
                         span.biz-name-xs  FREDERICKS DESIGN and TRADE SDN BHD
@@ -158,216 +159,6 @@ html
                         |  View More Details
                     .col-apply
                       a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new(translate='') Apply now
-          li.jobs-list-item._old
-            jobs-list-item(job='item')
-              .panel.panel-default
-                .panel-body.has-distance
-                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
-                    a(href='')
-                      span.thumbnail.no-bottom-margin
-                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
-                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
-                    h3.position
-                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
-                    .job-details
-                      .company.biz-name.hidden-xs
-                        a.company-name(href='')
-                          i.fa.fa-building-o(aria-hidden='true')
-                          |  U.A.K ONLINE NETWORK RESOURCES
-                      .company.visible-xs
-                        i.fa.fa-building-o(aria-hidden='true')
-                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
-                        .response-rate-xs
-                      .time
-                        i.fa.fa-clock-o
-                        span 9 hours ago
-                      .salary
-                        span
-                          span.i.i-rm.currency
-                          |  2,000 - 3,000 /month
-                      .address
-                        span
-                          i.fa.fa-map-marker
-                          |  Malaysia
-                      .distance
-                        span
-                          i.fa.fa-globe
-                          |  0km away
-                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
-                    .col-save
-                      a.save-this-job(target='_blank', href='')
-                        i.fa.fa-eye(aria-hidden='true')
-                        |  View More Details
-                    .col-apply
-                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
-          li.jobs-list-item._old
-            jobs-list-item(job='item')
-              .panel.panel-default
-                .panel-body.has-distance
-                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
-                    a(href='')
-                      span.thumbnail.no-bottom-margin
-                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
-                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
-                    h3.position
-                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
-                    .job-details
-                      .company.biz-name.hidden-xs
-                        a.company-name(href='')
-                          i.fa.fa-building-o(aria-hidden='true')
-                          |  U.A.K ONLINE NETWORK RESOURCES
-                      .company.visible-xs
-                        i.fa.fa-building-o(aria-hidden='true')
-                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
-                        .response-rate-xs
-                      .time
-                        i.fa.fa-clock-o
-                        span 9 hours ago
-                      .salary
-                        span
-                          span.i.i-rm.currency
-                          |  2,000 - 3,000 /month
-                      .address
-                        span
-                          i.fa.fa-map-marker
-                          |  Malaysia
-                      .distance
-                        span
-                          i.fa.fa-globe
-                          |  0km away
-                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
-                    .col-save
-                      a.save-this-job(target='_blank', href='')
-                        i.fa.fa-eye(aria-hidden='true')
-                        |  View More Details
-                    .col-apply
-                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
-          li.jobs-list-item._old
-            jobs-list-item(job='item')
-              .panel.panel-default
-                .panel-body.has-distance
-                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
-                    a(href='')
-                      span.thumbnail.no-bottom-margin
-                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
-                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
-                    h3.position
-                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
-                    .job-details
-                      .company.biz-name.hidden-xs
-                        a.company-name(href='')
-                          i.fa.fa-building-o(aria-hidden='true')
-                          |  U.A.K ONLINE NETWORK RESOURCES
-                      .company.visible-xs
-                        i.fa.fa-building-o(aria-hidden='true')
-                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
-                        .response-rate-xs
-                      .time
-                        i.fa.fa-clock-o
-                        span 9 hours ago
-                      .salary
-                        span
-                          span.i.i-rm.currency
-                          |  2,000 - 3,000 /month
-                      .address
-                        span
-                          i.fa.fa-map-marker
-                          |  Malaysia
-                      .distance
-                        span
-                          i.fa.fa-globe
-                          |  0km away
-                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
-                    .col-save
-                      a.save-this-job(target='_blank', href='')
-                        i.fa.fa-eye(aria-hidden='true')
-                        |  View More Details
-                    .col-apply
-                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
-          li.jobs-list-item._old
-            jobs-list-item(job='item')
-              .panel.panel-default
-                .panel-body.has-distance
-                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
-                    a(href='')
-                      span.thumbnail.no-bottom-margin
-                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
-                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
-                    h3.position
-                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
-                    .job-details
-                      .company.biz-name.hidden-xs
-                        a.company-name(href='')
-                          i.fa.fa-building-o(aria-hidden='true')
-                          |  U.A.K ONLINE NETWORK RESOURCES
-                      .company.visible-xs
-                        i.fa.fa-building-o(aria-hidden='true')
-                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
-                        .response-rate-xs
-                      .time
-                        i.fa.fa-clock-o
-                        span 9 hours ago
-                      .salary
-                        span
-                          span.i.i-rm.currency
-                          |  2,000 - 3,000 /month
-                      .address
-                        span
-                          i.fa.fa-map-marker
-                          |  Malaysia
-                      .distance
-                        span
-                          i.fa.fa-globe
-                          |  0km away
-                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
-                    .col-save
-                      a.save-this-job(target='_blank', href='')
-                        i.fa.fa-eye(aria-hidden='true')
-                        |  View More Details
-                    .col-apply
-                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
-          li.jobs-list-item._old
-            jobs-list-item(job='item')
-              .panel.panel-default
-                .panel-body.has-distance
-                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
-                    a(href='')
-                      span.thumbnail.no-bottom-margin
-                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
-                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
-                    h3.position
-                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
-                    .job-details
-                      .company.biz-name.hidden-xs
-                        a.company-name(href='')
-                          i.fa.fa-building-o(aria-hidden='true')
-                          |  U.A.K ONLINE NETWORK RESOURCES
-                      .company.visible-xs
-                        i.fa.fa-building-o(aria-hidden='true')
-                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
-                        .response-rate-xs
-                      .time
-                        i.fa.fa-clock-o
-                        span 9 hours ago
-                      .salary
-                        span
-                          span.i.i-rm.currency
-                          |  2,000 - 3,000 /month
-                      .address
-                        span
-                          i.fa.fa-map-marker
-                          |  Malaysia
-                      .distance
-                        span
-                          i.fa.fa-globe
-                          |  0km away
-                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
-                    .col-save
-                      a.save-this-job(target='_blank', href='')
-                        i.fa.fa-eye(aria-hidden='true')
-                        |  View More Details
-                    .col-apply
-                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
         .circling-wrapper
           scoot-circling
             .scoot-circle-loader(translate='')
