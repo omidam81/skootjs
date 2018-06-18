@@ -1,0 +1,184 @@
+.plans-new-17 {
+    &.job-preview-plans {
+        .price-sec {
+            min-height: auto;
+            .package-price span.free-span {
+                margin-top: 0;
+            }
+            .package-price {
+                margin: 20px auto;
+            }
+        }
+        .getstarted {
+            font-size: 16px;
+        }
+
+        .icon-sec {
+            display: none !important;
+        }
+    }
+    .container {
+        @media (max-width: 1400px) {
+            width: 100% !important;
+        }
+    }
+    .plan-block {
+        padding-bottom: 20px;
+    }
+    h3.package-title {
+        background: $c-red;
+        line-height: 70px;
+        font-size: 24px;
+        color: #fff;
+        text-align: center;
+        font-weight: 600;
+        margin: 0 auto;
+    }
+    .icon-sec {
+        background: #fafafa;
+        padding: 55px 0;
+        img {
+            display: block;
+            margin: 0 auto;
+            height: 80px;
+        }
+    }
+    .price-sec {
+        background: #f7f7f7;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 10px 0;
+        min-height: 200px;
+        .package-price {
+            text-align: center;
+            margin: 35px auto 30px;
+            span.free-span {
+                font-size: 52px;
+                color: #666;
+                text-align: center;
+                margin-top: 60px;
+                display: block;
+            }
+            span.span-price {
+                font-size: 30px;
+                font-weight: 800;
+                color: #555;
+            }
+            em {
+                font-size: 15px;
+                vertical-align: super;
+                font-weight: bold;
+                font-style: inherit;
+                top: -3px;
+                position: relative;
+            }
+        }
+        .counter {
+            text-align: center;
+            input {
+                width: 50px;
+                height: 50px;
+                border-radius: 2px;
+                border: 1px solid #ddd;
+                box-shadow: #ddd 0px 0px 3px;
+                text-align: center;
+                display: inline-block;
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                }
+            }
+            .minus,
+            .plus {
+                display: inline-block;
+                font-size: 10px;
+                font-weight: 100;
+                border: 1px solid #ddd;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                line-height: 27px;
+                color: #777;
+                text-align: center;
+                margin: 0px 5px;
+                position: relative;
+                top: -1px;
+                cursor: pointer;
+                background: #fff;
+                &:hover {
+                    background: #333;
+                    color: #fff;
+                    border: 1px solid #fff;
+                }
+            }
+        }
+        span.span-counter {
+            font-size: 12px;
+            text-align: center;
+            display: block;
+            color: #999;
+            margin-top: 11px;
+        }
+    }
+    .features {
+        list-style: none;
+        padding: 10px 0;
+        min-height: 364px;
+        li {
+            font-size: 13px;
+            margin: 10px 40px;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            &:last-child {
+                border-bottom: 0;
+            }
+            &.active {
+                color: #666;
+                &:before {
+                    font: normal normal normal 14px/1 FontAwesome;
+                    content: "\f00c";
+                    position: absolute;
+                    left: -20px;
+                    color: #61b22b;
+                    top: 3px;
+                }
+            }
+            &.inactive {
+                color: #aaa;
+                text-decoration: line-through;
+                &:before {
+                    font: normal normal normal 14px/1 FontAwesome;
+                    content: "\f00d";
+                    position: absolute;
+                    left: -20px;
+                    color: $c-red;
+                    top: 3px;
+                }
+            }
+        }
+    }
+    .getstarted {
+        background: $c-red;
+        position: absolute;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        width: 80%;
+        border: none;
+        max-width: 250px;
+        outline: none;
+        font-size: 22px;
+        font-weight: 800;
+        color: #fff;
+        height: 62px;
+        border-radius: 5px;
+        bottom: -30px;
+        &.featured {
+            color: $c-red;
+            background: #FFF;
+            border: 2px solid $c-red;
+        }
+    }
+}

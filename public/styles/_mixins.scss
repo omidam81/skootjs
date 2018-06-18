@@ -1,0 +1,72 @@
+@mixin h_a_f {
+    &:hover, &:active, &:focus {
+        @content;
+    }
+}
+@mixin h_f {
+    &:hover, &:focus {
+        @content;
+    }
+}
+@mixin clearfix {
+    clear: both;
+}
+@mixin rotate($deg) {
+    -moz-transform: rotate(#{$deg}deg);
+    -moz-transform-origin: 50% 50%;
+    -webkit-transform: rotate(#{$deg}deg);
+    -webkit-transform-origin: 50% 50%;
+    -o-transform: rotate(#{$deg}deg);
+    -o-transform-origin: 50% 50%;
+    -ms-transform: rotate(#{$deg}deg);
+    -ms-transform-origin: 50% 50%;
+    transform: rotate(#{$deg}deg);
+    transform-origin: 50% 50%;
+}
+@mixin transition($t) {
+    -webkit-transition: $t;
+    -moz-transition: $t;
+    -o-transition: $t;
+    transition: $t;
+}
+@mixin box-shadow($shadow){
+    box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+}
+@mixin opacity($x){
+   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$x * 100})";
+  filter: alpha(opacity=#{$x * 100});
+  -moz-opacity: $x;
+  -khtml-opacity: $x;
+  opacity: $x;
+}
+@mixin gradient($c1, $c2, $mix:no){
+    @if $mix == yes {
+        background: mix($c1, $c2); /* Old browsers */
+    } @else {
+        background: $c1;
+    }
+    background: -moz-linear-gradient(top, $c1 0%, $c2 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$c1), color-stop(100%,$c2)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $c1 0%,$c2 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $c1 0%,$c2 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $c1 0%,$c2 100%); /* IE10+ */
+    background: linear-gradient(to bottom, $c1 0%,$c2 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$c1', endColorstr='$c2',GradientType=0 ); /* IE6-9 */
+}
+@mixin circle-dimensions($d){
+    width: $d; height: $d; line-height: $d;
+}
+@mixin bg-cover(){
+    background-position: center center;
+    background-size: cover;
+}
+@mixin job-padding-left(){
+    @media #{$sm} {
+        padding: 0 30px;
+    }
+    @media #{$md_p} {
+        padding: 0 45px;
+    }
+}
