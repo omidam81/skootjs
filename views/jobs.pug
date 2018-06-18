@@ -48,50 +48,99 @@ html
           .col-xs-12
             .inner
           .clearfix
-        ul.jobs-list.col-lg-10.col-lg-push-1
+        .scoot-pagination
+          .paging-wrap(ng-class="{'deactivate': vm.pageIsLoading == true}")
+            .paging-cover
+            dir-pagination-controls.ng-isolate-scope(on-page-change='vm.pageChanged(newPageNumber)', template-url='mvc/views/directives/dirPagination.tpl.html')
+              // ngIf: 1 < pages.length || !autoHide
+              ul.pagination.ng-scope(ng-if='1 < pages.length || !autoHide')
+                // ngIf: boundaryLinks
+                // ngIf: directionLinks
+                li.ng-scope.inactive(ng-if='directionLinks', ng-class='{ inactive : pagination.current == 1 }')
+                  a(href='', ng-click='setCurrent(pagination.current - 1)')
+                    i.fa.fa-caret-left(aria-hidden='true')
+                // end ngIf: directionLinks
+                // ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                li.ng-scope.active(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 1
+                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 2
+                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 3
+                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 4
+                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 5
+                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 6
+                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 7
+                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 8
+                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 9
+                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+                // ngIf: directionLinks
+                li.ng-scope(ng-if='directionLinks', ng-class='{ inactive : pagination.current == pagination.last }')
+                  a(href='', ng-click='setCurrent(pagination.current + 1)')
+                    i.fa.fa-caret-right(aria-hidden='true')
+                // end ngIf: directionLinks
+                // ngIf: boundaryLinks
+              // end ngIf: 1 < pages.length || !autoHide
+                              
           
-          li.jobs-list-item._old
-            jobs-list-item(job='item')
-              .panel.panel-default
-                .panel-body.has-distance
-                  .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
-                    a(href='')
-                      span.thumbnail.no-bottom-margin
-                        .job-item-img.square(style="background-image: url('images/demo/2.png');")
-                  .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
-                    h3.position
-                      a.job-title(target='_blank', href='') Customer Services Cum Sales Online ( Home Based )
-                    .job-details
-                      .company.biz-name.hidden-xs
-                        a.company-name(href='')
+        ul.jobs-list.col-lg-10.col-lg-push-1
+          each job in jobs
+            li.jobs-list-item._old
+              jobs-list-item(job='item')
+                .panel.panel-default(class=job.packageName=="Basic" ? "" : "featuredjob")
+                  .panel-body.has-distance
+                    .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
+                      a(href='')
+                        span.thumbnail.no-bottom-margin
+                          .job-item-img.square(style="background-image: url('images/demo/2.png');")
+                    .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
+                      h3.position
+                        a.job-title(target='_blank', href='')= job.title
+                      .job-details
+                        .company.biz-name.hidden-xs
+                          a.company-name(href='')
+                            i.fa.fa-building-o(aria-hidden='true')
+                            | #{job.businessId.name}
+                        .company.visible-xs
                           i.fa.fa-building-o(aria-hidden='true')
-                          |  U.A.K ONLINE NETWORK RESOURCES
-                      .company.visible-xs
-                        i.fa.fa-building-o(aria-hidden='true')
-                        span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
-                        .response-rate-xs
-                      .time
-                        i.fa.fa-clock-o
-                        span 9 hours ago
-                      .salary
-                        span
-                          span.i.i-rm.currency
-                          |  2,000 - 3,000 /month
-                      .address
-                        span
-                          i.fa.fa-map-marker
-                          |  Malaysia
-                      .distance
-                        span
-                          i.fa.fa-globe
-                          |  0km away
-                  .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
-                    .col-save
-                      a.save-this-job(target='_blank', href='')
-                        i.fa.fa-eye(aria-hidden='true')
-                        |  View More Details
-                    .col-apply
-                      a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
+                          span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
+                          .response-rate-xs
+                        .time
+                          i.fa.fa-clock-o
+                          span 9 hours ago
+                        .salary
+                          span
+                            span.i.i-rm.currency
+                            |  2,000 - 3,000 /month
+                        .address
+                          span
+                            i.fa.fa-map-marker
+                            |  Malaysia
+                        .distance
+                          span
+                            i.fa.fa-globe
+                            |  0km away
+                    .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
+                      .col-save
+                        a.save-this-job(target='_blank', href='')
+                          i.fa.fa-eye(aria-hidden='true')
+                          |  View More Details
+                      .col-apply
+                        a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
         .scoot-pagination
           .paging-wrap(ng-class="{'deactivate': vm.pageIsLoading == true}")
             .paging-cover
