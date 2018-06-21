@@ -1,0 +1,98 @@
+.body-wrap.relative
+  // uiView:
+  .ng-scope(ui-view='')
+    .job-page.dashboard-v3.ng-scope
+      .dashboard-top
+        .container
+          .dashboard-top-container.no-bg
+            .col-xs-12.text-center
+              span.thumbnail.thumb.no-bottom-margin.circle-new
+                .job-item-img(style="background-image: url('https://api.skootjobs.com/api/containers/bprofile1491450533068/download/1491450556701Tealive_300x300 (1).jpg');")
+              h3.heading.more-jobs-page.ng-binding Tealive Asia
+              h5.subsubheading
+                // ngIf: vm.business.responseRate
+              .gap-10
+              p(translate='')
+                i.fa.fa-map-marker.ng-scope  
+                |  Federal Territory of Kuala Lumpur, Malaysia
+            .clearfix
+    .ng-scope
+      .user-jobs-page
+        .user-jobs.scoot-block
+          .container.row-2
+            .col-xs-12.user-jobs-block
+              h3.more-jobs-heading.ng-binding
+                | More Jobs By
+                span.ng-binding  Tealive Asia
+              .pull-right
+                .paging-wrap(ng-class="{'deactivate': vm.pageIsLoading == true}")
+                  .paging-cover
+                  dir-pagination-controls.ng-isolate-scope(on-page-change='vm.pageChanged(newPageNumber)', template-url='mvc/views/directives/dirPagination.tpl.html')
+                    // ngIf: 1 < pages.length || !autoHide
+              .clearfix
+              ul.jobs-list
+                // ngRepeat: item in vm.items.jobs | orderBy:published:false | itemsPerPage: vm.itemsPerPage
+                li.jobs-list-item._old.ng-scope(total-items='vm.totalItems.count', current-page='vm.pagination.current', ng-repeat='item in vm.items.jobs | orderBy:published:false | itemsPerPage: vm.itemsPerPage')
+                  jobs-list-item.ng-isolate-scope(hide-response-rate='true', job='item', item='vm.candidateInfo.applications[item.id]', user='vm.candidateInfo.candidate')
+                    .panel.panel-default(ng-class="{featuredjob: (job.packageName == 'SkootRekruit' || job.packageName == 'Featured')}")
+                      .panel-body(ng-class="{'has-distance':(location.length > 0)}")
+                        // ngIf: !isMobileRes()
+                        .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs.ng-scope(ng-if='!isMobileRes()')
+                          a(ui-sref="job({jobId: job.id, slug: ((job.title + ' at ' + job.business.name) | slugify)})", href='/job/5b2b92d6573ef9ee1206ae4a/tearista-service-crew-cashier-at-tealive-asia')
+                            span.thumbnail.no-bottom-margin
+                              // ngIf: job.business.profileImg
+                              .job-item-img.square.ng-scope(ng-if='job.business.profileImg', style="background-image: url('https://api.skootjobs.com/api/containers/bprofile1491450533068/download/1491450556701Tealive_300x300 (1).jpg');")
+                              // end ngIf: job.business.profileImg
+                        // end ngIf: !isMobileRes()
+                        .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
+                          h3.position
+                            a.job-title.ng-binding(ui-sref="job({jobId: job.id, slug: ( (job.title + ' at ' +job.business.name) | slugify)})", target='_blank', href='/job/5b2b92d6573ef9ee1206ae4a/tearista-service-crew-cashier-at-tealive-asia') Tearista / Service Crew / Cashier
+                            // ngIf: application && job.status != 'closed' && application.status == 'live' && !application.shortListed && !application.viewed && !application.invited
+                            // ngIf: application && job.status != 'closed' && application.status == 'live' && !application.shortListed && application.viewed && !application.invited
+                            // ngIf: application && job.status != 'closed' && application.status == 'live' && application.shortListed && !application.invited
+                            // ngIf: application && job.status != 'closed' && application.status == 'live' && application.invited
+                            // ngIf: application && job.status != 'closed' && application.status == 'rejected'
+                            // ngIf: application && job.status == 'closed'
+                          .job-details
+                            .company.biz-name.hidden-xs.biz-name-inline(ng-class="{'biz-name-inline':hideResponseRate}")
+                              a.company-name.ng-binding(ui-sref="business-jobs-public-slug({businessId: job.business.id, slug: ( 'jobs at ' + job.business.name | slugify )})", href='/business/58e5b49997e9273e3720ed86/all/jobs/jobs-at-tealive-asia')
+                                i.fa.fa-building-o(aria-hidden='true')
+                                |  Tealive Asia
+                              // ngIf: job.business.responseRate
+                            .company.visible-xs
+                              i.fa.fa-building-o(aria-hidden='true')
+                              span.biz-name-xs.ng-binding  Tealive Asia
+                              .response-rate-xs
+                                // ngIf: job.business.responseRate
+                            .time
+                              i.fa.fa-clock-o
+                              span(am-time-ago='job.published') 8 hours ago
+                            // ngIf: (!job.salaryHidden && (!job.salaryFrom==0 && !job.salaryTo==0))
+                            .salary.ng-scope(ng-if='(!job.salaryHidden && (!job.salaryFrom==0 && !job.salaryTo==0))')
+                              span.ng-binding
+                                span.i.i-rm.currency
+                                |   1,200 - 1,500 /month
+                            // end ngIf: (!job.salaryHidden && (!job.salaryFrom==0 && !job.salaryTo==0))
+                            .address
+                              // ngIf: job.informalAddress
+                              span.ng-binding.ng-scope(ng-if='job.informalAddress')
+                                i.fa.fa-map-marker
+                                |  Cheras Kuala Lumpur Federal Territory of Kuala Lumpur Malaysia
+                              // end ngIf: job.informalAddress
+                              // ngIf: !job.informalAddress
+                            // ngIf: location !== '' && (location | isDefined)
+                        // ngIf: (isCandidate() || isCompany())
+                        // ngIf: !(isCandidate()) && !(isCompany())
+                        .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions.ng-scope(ng-if='!(isCandidate()) && !(isCompany())')
+                          .col-save
+                            a.save-this-job(target='_blank', ui-sref="job({jobId: job.id, slug: ( (job.title + ' at ' +job.business.name) | slugify)})", translate='', href='/job/5b2b92d6573ef9ee1206ae4a/tearista-service-crew-cashier-at-tealive-asia')
+                              i.fa.fa-eye.ng-scope(aria-hidden='true')
+                              |  View More Details
+                          .col-apply
+                            a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new(ng-click='expressSignUp(job)', translate='') Apply now
+                        // end ngIf: !(isCandidate()) && !(isCompany())
+                // end ngRepeat: item in vm.items.jobs | orderBy:published:false | itemsPerPage: vm.itemsPerPage
+              .clearfix
+              include ./pagination.pug
+            .clearfix
+        .clearfix

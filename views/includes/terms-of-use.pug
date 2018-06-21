@@ -1,76 +1,3 @@
-header#header
-  .ng-isolate-scope(navigation='')
-    nav.navbar.ng-scope(ng-class='{trans:isTrans(),reverse:isReverse(),gray:isGray()}', ng-controller='NavigationCtrl')
-      .nav-primary-wrapper
-        .container-fluid
-          .navbar-header
-            // ngIf: !isCompanyRegistration()
-            button.navbar-toggle.ng-scope(type='button', data-toggle='collapse', data-target='#', ng-if='!isCompanyRegistration()')
-              #nav-icon
-                span
-                span
-                span
-                span
-            // end ngIf: !isCompanyRegistration()
-            // ngIf: isCompany()
-            // ngIf: isCandidate()
-            a.navbar-brand(ui-sref='mainCandidate', href='/')
-              // ngIf: !isReverse() && !isGray()
-              img.ng-scope(ng-if='!isReverse() && !isGray()', ng-src='https://www.skootjobs.com/images/logo.png', src='https://www.skootjobs.com/images/logo.png')
-              // end ngIf: !isReverse() && !isGray()
-              // ngIf: isReverse() || isGray()
-            // ngIf: isLandingComp() || isLandingCand()
-          .nav-primary
-            ul.nav.navbar-nav.navbar-right.login-dropdown
-              // ngIf: isCandidate()
-              // ngIf: isCompany()
-              // ngIf: isCandidate() && isHomePageCandidate()
-              // ngIf: isCandidate()
-              // ngIf: isCompany() && isHomeMain()
-              // ngIf: isCompany()
-              // ngIf: isCompany()
-              li(ui-sref-active='active')
-                a(ng-click="openState('search')")
-                  i.fa.fa-search(aria-hidden='true')
-                  |  Job Search
-              // ngIf: isCandidate()
-              // ngIf: isCompany()
-              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
-                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
-                  i.fa.fa-sign-in(aria-hidden='true')
-                  |  Login
-                  span.caret
-                ul.dropdown-menu(aria-labelledby='login')
-                  li(ui-sref-active='active')
-                    a(href="user/login", translate='') Candidate Login
-                  li(ui-sref-active='active')
-                    a(href="company/login", translate='') Employer Login
-              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
-                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
-                  i.fa.fa-user-plus(aria-hidden='true')
-                  |  Create an account
-                  span.caret
-                ul.dropdown-menu(aria-labelledby='login')
-                  li(ui-sref-active='active')
-                    a(ui-sref='candidate-signup', translate='', href='/signup/candidate') Candidate Signup
-                  li(ui-sref-active='active')
-                    a(ui-sref='company-signup', translate='', href='/signup/company') Employer Signup
-              // ngIf: isCandidate()
-              // ngIf: isCompany()
-              // ngIf: isCandidate()
-              // ngIf: isCandidate()
-              // ngIf: businesses.length > 1 && isCompany()
-              // ngIf: businesses.length > 1  && theCurrentBusiness
-              // ngIf: businesses.length == 1  && isCompany()
-              // ngIf: theCurrentBusiness && isCompany()
-              // ngIf: theCurrentBusiness
-              // ngIf: isCompany()
-      // ngIf: !isHomePageCandidate() && !isTrans()
-h1.hiddentitle SkootJobs | Find a Job in Malaysia
-#toast-container.ng-scope.toast-top-right(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 3000}")
-  // ngRepeat: toaster in toasters
-#toast-container.ng-scope.toast-center(ng-class='[config.position, config.animation]', toaster-options="{'time-out': 0, 'position-class': 'toast-center', 'toaster-id': 2}")
-  // ngRepeat: toaster in toasters
 .body-wrap.relative
   scoot-loading.ng-isolate-scope
     #loader.spinner-wrapper(style='display: none;')
@@ -81,7 +8,7 @@ h1.hiddentitle SkootJobs | Find a Job in Malaysia
       // ngIf: isCandidate()
       // ngIf: isCompany()
       .text-center.timeout-msg.ng-hide(ng-show='timeOut')
-        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        img.logo-grayscale(src='images/logo.png')
         p
           | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
   // uiView:
@@ -99,56 +26,56 @@ h1.hiddentitle SkootJobs | Find a Job in Malaysia
                 // Nav tabs
                 ul.nav.nav-tabs.tabs-left
                   li.active
-                    a(href='https://test9.skootjobs.com/terms-of-use#home', data-toggle='tab') Home
+                    a(href='#home', data-toggle='tab') Home
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o1', data-toggle='tab') 1. General
+                    a(href='#o1', data-toggle='tab') 1. General
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o2', data-toggle='tab')
+                    a(href='#o2', data-toggle='tab')
                       | 2. Binding Agreement
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o3', data-toggle='tab') 3. Definitions
+                    a(href='#o3', data-toggle='tab') 3. Definitions
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o4', data-toggle='tab') 4. Registration
+                    a(href='#o4', data-toggle='tab') 4. Registration
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o5', data-toggle='tab') 5. Intellectual Property
+                    a(href='#o5', data-toggle='tab') 5. Intellectual Property
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o6', data-toggle='tab') 6. Availability of the Skootjobs.com Website
+                    a(href='#o6', data-toggle='tab') 6. Availability of the Skootjobs.com Website
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o7', data-toggle='tab') 7. Your use of the Skootjobs.com Website
+                    a(href='#o7', data-toggle='tab') 7. Your use of the Skootjobs.com Website
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o8', data-toggle='tab') 8. Your use of the Skootjobs.com Services
+                    a(href='#o8', data-toggle='tab') 8. Your use of the Skootjobs.com Services
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o9', data-toggle='tab') 9. Additional Terms applicable to Employers
+                    a(href='#o9', data-toggle='tab') 9. Additional Terms applicable to Employers
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o10', data-toggle='tab') 10. Additional Terms applicable to Employer Account Holder
+                    a(href='#o10', data-toggle='tab') 10. Additional Terms applicable to Employer Account Holder
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o11', data-toggle='tab') 11. Additional Terms applicable to Candidates
+                    a(href='#o11', data-toggle='tab') 11. Additional Terms applicable to Candidates
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o12', data-toggle='tab') 12. User Content and submissions
+                    a(href='#o12', data-toggle='tab') 12. User Content and submissions
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o13', data-toggle='tab') 13. Payment of fees
+                    a(href='#o13', data-toggle='tab') 13. Payment of fees
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o14', data-toggle='tab') 14. Skootjobs.com’s right to suspend or cancel your registration
+                    a(href='#o14', data-toggle='tab') 14. Skootjobs.com’s right to suspend or cancel your registration
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o15', data-toggle='tab') 15. Term and Termination
+                    a(href='#o15', data-toggle='tab') 15. Term and Termination
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o16', data-toggle='tab') 16. Skootjobs.com’s liability
+                    a(href='#o16', data-toggle='tab') 16. Skootjobs.com’s liability
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o17', data-toggle='tab') 17. Disclaimers
+                    a(href='#o17', data-toggle='tab') 17. Disclaimers
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o18', data-toggle='tab') 18. Third Party Website
+                    a(href='#o18', data-toggle='tab') 18. Third Party Website
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o19', data-toggle='tab') 19. Advertising and Sponsorship Policy
+                    a(href='#o19', data-toggle='tab') 19. Advertising and Sponsorship Policy
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o20', data-toggle='tab') 20. Indemnity
+                    a(href='#o20', data-toggle='tab') 20. Indemnity
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o21', data-toggle='tab') 21. Refund
+                    a(href='#o21', data-toggle='tab') 21. Refund
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o22', data-toggle='tab') 22. Applicable Law
+                    a(href='#o22', data-toggle='tab') 22. Applicable Law
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o23', data-toggle='tab') 23. International Use
+                    a(href='#o23', data-toggle='tab') 23. International Use
                   li
-                    a(href='https://test9.skootjobs.com/terms-of-use#o24', data-toggle='tab') 24. Miscellaneous
+                    a(href='#o24', data-toggle='tab') 24. Miscellaneous
               .col-sm-8
                 // Tab panes
                 .tab-content
@@ -156,7 +83,7 @@ h1.hiddentitle SkootJobs | Find a Job in Malaysia
                     p
                       b
                         | This page states the terms of use (“Terms”) under which you (“You”) may use the Skootjobs.com Website, and Your relationship with Skoot Jobs Malaysia Sdn Bhd (“Skootjobs.com”, “we” or “us”). Please read them carefully as they affect Your rights and liabilities under the law. If You do not agree to these Terms, please do not register for or use the Skootjobs.com Website. These Terms are effective as of 11-April-2016. If You have any questions on the Terms, please contact us 
-                        a(href='https://www.skootjobs.com/contact/') here
+                        a(href='contact') here
                   #o1.tab-pane
                     h3 General
                     ol

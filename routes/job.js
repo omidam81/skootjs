@@ -48,8 +48,18 @@ router.get('/jobs/:q*?', function(req, res, next) {
 
 });
 
-router.get('/job/:id?*/:title', function(req, res, next) {
-    res.render('jobs', { title: "job view pages" });
+// router.get('/job/:id?*/:title', function(req, res, next) {
+//     res.render('jobs', { title: "job view pages" });
+// });
+
+router.get('/job', function(req, res, next) {
+    res.render('job', { title: "job view pages" });
 });
+
+router.get('/culture', function(req, res, next) {
+    res.render('culture', { title: "culture" });
+});
+
+
 
 module.exports = router;

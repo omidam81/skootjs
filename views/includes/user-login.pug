@@ -1,0 +1,37 @@
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg.ng-hide(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .page-has-form.skoot-cover.ng-scope
+      .form-container-wrapper
+        form.ng-valid-email.ng-dirty.ng-valid-parse.ng-valid.ng-valid-required(ng-submit='candLogin.submit()')
+          h1.heading(translate='') Candidate Login
+          .inputs-container
+            input#email.form-input.ng-valid-email.ng-not-empty.ng-dirty.ng-valid.ng-valid-required.ng-touched(placeholder='Email Address', ng-model='candLogin.email', name='email', type='email', ng-required='true', autocomplete='off', required='required')
+            hr
+            input#password.form-input.ng-not-empty.ng-dirty.ng-valid-parse.ng-valid.ng-valid-required.ng-touched(placeholder='Password', ng-model='candLogin.password', name='password', ng-required='true', type='password', autocomplete='off', required='required')
+          .login-fb
+            a(href='https://api.skootjobs.com/auth/fb/login')
+              i.fa.fa-facebook-square(aria-hidden='true')
+              span Login With Facebook
+          // ngIf: candLogin.loading
+          // ngIf: !candLogin.loading
+          button.form-btn-submit.ng-scope(ng-if='!candLogin.loading', type='submit', translate='') Log In
+          // end ngIf: !candLogin.loading
+          .col-xs-12.form-bottom-options.text-inverse.text-center
+            a(ui-sref='user-forgot', translate='', href='/user/forgot') Forgot Password?
+          .col-xs-12.form-bottom-options.text-inverse.text-center
+            | Don't have an account? 
+            a(ui-sref='candidate-signup', href='/signup/candidate')
+              span Sign Up

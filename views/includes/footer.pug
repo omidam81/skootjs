@@ -7,7 +7,7 @@ footer#footer.ng-scope(show-footer='', ng-if="showFooter!='hidden'")
             .col-xs-12.col-sm-12.col-md-3.left-main
               .logo
                 a(ui-sref='mainCandidate', href='/')
-                  img(src='images/logo.png')
+                  img(src='/images/logo.png')
               p.description
                 | SkootJobs is an online
                 br
@@ -140,4 +140,7 @@ footer#footer.ng-scope(show-footer='', ng-if="showFooter!='hidden'")
       </div>
       </div>
       </div>
+script(src="/js/jquery.min.js")      
+script(src="/js/main.js")      
+script(src="/js/bootstrap.min.js")      
 // end ngIf: showFooter!='hidden'

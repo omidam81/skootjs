@@ -1,0 +1,49 @@
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg.ng-hide(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .page-has-form.signup.skoot-cover.ng-scope(ng-controller='registerPageController')
+      .bg-overlay
+      .signup-top
+        h1.heading.text-center(translate='') Become a SKOOTJOBS Candidate Today
+        .form-top-text.text-center.text-inverse.hidden-xs
+          p(translate='') Over 250,000+ candidates in Malaysia have joined us.
+        .form-top-text.text-center.text-inverse.hidden-xs
+          p(translate='') What Are You Waiting For?
+        .clearfix
+      .form-container-wrapper
+        form.ng-valid-email.ng-invalid.ng-invalid-required.ng-valid-pattern.ng-dirty.ng-valid-uniqueness(name='candidateRegister', ng-submit='candidateSubmit(candidateRegister, candidate)', novalidate='')
+          .inputs-container
+            input#candidate-email.form-input.ng-valid-email.ng-not-empty.ng-dirty.ng-valid.ng-valid-required.ng-valid-uniqueness.ng-touched(ng-model='candidate.email', type='email', placeholder='Email Address', name='candidate-email', ng-change="candidateRegister['candidate-email'].$setValidity('uniqueness', true); candidate.email=candidate.email.toLowerCase();", ng-required='true', required='required')
+           
+            hr
+            input#candidate-password.form-input.ng-pristine.ng-untouched.ng-empty.ng-invalid.ng-invalid-required.ng-valid-pattern(name='candidate-password', type='password', ng-model='candidate.password', ng-pattern='/^.{6,16}$/', placeholder='Password', ng-required='true', required='required')
+            
+          .login-fb
+            a(href='https://api.skootjobs.com/auth/fb/login')
+              i.fa.fa-facebook-square(aria-hidden='true')
+              span Sign Up Using Facebook
+          // ngIf: loading
+          // ngIf: !loading
+          button.form-btn-submit.ng-scope(ng-if='!loading', type='submit', translate='') Sign Up
+          // end ngIf: !loading
+      .col-xs-12.form-bottom-options.text-inverse.text-center
+        | Already have a SkootJobs account? 
+        a(ui-sref='user-login', href='/user/login')
+          span Log In
+      .col-xs-12.form-bottom-options.text-inverse.text-center
+        | By signing up you agree to the 
+        a(ui-sref='privacy-policy', href='/privacy-policy') Privacy Policy, 
+        a(ui-sref='terms-of-use', href='/terms-of-use') Terms Of Use
+      .clearfix

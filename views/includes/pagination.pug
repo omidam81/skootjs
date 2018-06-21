@@ -1,0 +1,47 @@
+.scoot-pagination
+  .paging-wrap(ng-class="{'deactivate': vm.pageIsLoading == true}")
+    .paging-cover
+    dir-pagination-controls.ng-isolate-scope(on-page-change='vm.pageChanged(newPageNumber)', template-url='mvc/views/directives/dirPagination.tpl.html')
+      // ngIf: 1 < pages.length || !autoHide
+      ul.pagination.ng-scope(ng-if='1 < pages.length || !autoHide')
+        // ngIf: boundaryLinks
+        // ngIf: directionLinks
+        li.ng-scope.inactive(ng-if='directionLinks', ng-class='{ inactive : pagination.current == 1 }')
+          a(href='', ng-click='setCurrent(pagination.current - 1)')
+            i.fa.fa-caret-left(aria-hidden='true')
+        // end ngIf: directionLinks
+        // ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        li.ng-scope.active(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+          a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 1
+        // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+          a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 2
+        // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+          a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 3
+        // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+          a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 4
+        // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+          a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 5
+        // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+          a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 6
+        // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+          a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 7
+        // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+          a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 8
+        // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
+          a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 9
+        // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
+        // ngIf: directionLinks
+        li.ng-scope(ng-if='directionLinks', ng-class='{ inactive : pagination.current == pagination.last }')
+          a(href='', ng-click='setCurrent(pagination.current + 1)')
+            i.fa.fa-caret-right(aria-hidden='true')
+        // end ngIf: directionLinks
+        // ngIf: boundaryLinks
+      // end ngIf: 1 < pages.length || !autoHide

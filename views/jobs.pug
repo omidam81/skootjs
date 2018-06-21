@@ -1,46 +1,7 @@
 html
   include ./includes/head.pug
   body.home
-    header#header
-      div(navigation='')
-        nav.navbar
-          .nav-primary-wrapper
-            .container-fluid
-              .navbar-header
-                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#')
-                  #nav-icon
-                    span
-                    span
-                    span
-                    span
-                a.navbar-brand(href='')
-                  img(src='images/logo.png')
-              .nav-primary
-                ul.nav.navbar-nav.navbar-right.login-dropdown
-                  li.job-search
-                    a(href='')
-                      i.fa.fa-search(aria-hidden='true')
-                      |  Job Search
-                  li.dropdown
-                    a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
-                      i.fa.fa-sign-in(aria-hidden='true')
-                      |  Login
-                      span.caret
-                    ul.dropdown-menu(aria-labelledby='login')
-                      li
-                        a(href='') Candidate Login
-                      li
-                        a(href='') Employer Login
-                  li.dropdown
-                    a.dropdown-toggle(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
-                      i.fa.fa-user-plus(aria-hidden='true')
-                      |  Create an account
-                      span.caret
-                    ul.dropdown-menu(aria-labelledby='login')
-                      li
-                        a(href='') Candidate Signup
-                      li
-                        a(href='') Employer Signup
+   
     .page-sidebar-left-red.page-list-jobs.search-page-bg.demo-bg.sidebar-grey
       
       .container-fluid.search-result-container
@@ -48,53 +9,7 @@ html
           .col-xs-12
             .inner
           .clearfix
-        .scoot-pagination
-          .paging-wrap(ng-class="{'deactivate': vm.pageIsLoading == true}")
-            .paging-cover
-            dir-pagination-controls.ng-isolate-scope(on-page-change='vm.pageChanged(newPageNumber)', template-url='mvc/views/directives/dirPagination.tpl.html')
-              // ngIf: 1 < pages.length || !autoHide
-              ul.pagination.ng-scope(ng-if='1 < pages.length || !autoHide')
-                // ngIf: boundaryLinks
-                // ngIf: directionLinks
-                li.ng-scope.inactive(ng-if='directionLinks', ng-class='{ inactive : pagination.current == 1 }')
-                  a(href='', ng-click='setCurrent(pagination.current - 1)')
-                    i.fa.fa-caret-left(aria-hidden='true')
-                // end ngIf: directionLinks
-                // ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope.active(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 1
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 2
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 3
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 4
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 5
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 6
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 7
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 8
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 9
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                // ngIf: directionLinks
-                li.ng-scope(ng-if='directionLinks', ng-class='{ inactive : pagination.current == pagination.last }')
-                  a(href='', ng-click='setCurrent(pagination.current + 1)')
-                    i.fa.fa-caret-right(aria-hidden='true')
-                // end ngIf: directionLinks
-                // ngIf: boundaryLinks
-              // end ngIf: 1 < pages.length || !autoHide
+        include ./includes/pagination.pug
                               
           
         ul.jobs-list.col-lg-10.col-lg-push-1
@@ -104,15 +19,15 @@ html
                 .panel.panel-default(class=job.packageName=="Basic" ? "" : "featuredjob")
                   .panel-body.has-distance
                     .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
-                      a(href='')
+                      a(href='/job')
                         span.thumbnail.no-bottom-margin
-                          .job-item-img.square(style="background-image: url('images/demo/2.png');")
+                          .job-item-img.square(style="background-image: url('images/companies/logo-placeholder.jpg');")
                     .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
                       h3.position
-                        a.job-title(target='_blank', href='')= job.title
+                        a.job-title(target='_blank', href='/job')= job.title
                       .job-details
                         .company.biz-name.hidden-xs
-                          a.company-name(href='')
+                          a.company-name(href='/culture')
                             i.fa.fa-building-o(aria-hidden='true')
                             | #{job.businessId.name}
                         .company.visible-xs
@@ -141,51 +56,8 @@ html
                           |  View More Details
                       .col-apply
                         a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
-        .scoot-pagination
-          .paging-wrap(ng-class="{'deactivate': vm.pageIsLoading == true}")
-            .paging-cover
-            dir-pagination-controls.ng-isolate-scope(on-page-change='vm.pageChanged(newPageNumber)', template-url='mvc/views/directives/dirPagination.tpl.html')
-              // ngIf: 1 < pages.length || !autoHide
-              ul.pagination.ng-scope(ng-if='1 < pages.length || !autoHide')
-                // ngIf: boundaryLinks
-                // ngIf: directionLinks
-                li.ng-scope.inactive(ng-if='directionLinks', ng-class='{ inactive : pagination.current == 1 }')
-                  a(href='', ng-click='setCurrent(pagination.current - 1)')
-                    i.fa.fa-caret-left(aria-hidden='true')
-                // end ngIf: directionLinks
-                // ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope.active(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 1
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 2
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 3
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 4
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 5
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 6
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 7
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 8
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                li.ng-scope(ng-repeat='pageNumber in pages track by tracker(pageNumber, $index)', ng-class="{ active : pagination.current == pageNumber, disabled : pageNumber == '...' }")
-                  a.ng-binding(href='', ng-click='setCurrent(pageNumber)') 9
-                // end ngRepeat: pageNumber in pages track by tracker(pageNumber, $index)
-                // ngIf: directionLinks
-                li.ng-scope(ng-if='directionLinks', ng-class='{ inactive : pagination.current == pagination.last }')
-                  a(href='', ng-click='setCurrent(pagination.current + 1)')
-                    i.fa.fa-caret-right(aria-hidden='true')
-                // end ngIf: directionLinks
-                // ngIf: boundaryLinks
-              // end ngIf: 1 < pages.length || !autoHide
+        include ./includes/pagination.pug
+
                               
+
+  include ./includes/footer.pug

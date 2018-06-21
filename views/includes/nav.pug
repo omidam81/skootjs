@@ -1,0 +1,44 @@
+header#header
+  .ng-isolate-scope(navigation='')
+    nav.navbar(class=navType)
+      .nav-primary-wrapper
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle.ng-scope(type='button', data-toggle='collapse', data-target='#', ng-if='!isCompanyRegistration()')
+              #nav-icon
+                span
+                span
+                span
+
+            a.navbar-brand(ui-sref='mainCandidate', href='/')
+             
+              img.ng-scope(ng-if='!isReverse() && !isGray()',  src='/images/logo.png')
+
+          .nav-primary
+            ul.nav.navbar-nav.navbar-right.login-dropdown
+             
+              li(ui-sref-active='active')
+                a(href="/jobs")
+                  i.fa.fa-search(aria-hidden='true')
+                  |  Job Search
+            
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-sign-in(aria-hidden='true')
+                  |  Login
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(href="/user/login", translate='') Candidate Login
+                  li(ui-sref-active='active')
+                    a(href="/company/login", translate='') Employer Login
+              li.dropdown(ng-hide='isLogedIn()', ui-sref-active='active')
+                a.dropdown-toggle.ng-binding(data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='true')
+                  i.fa.fa-user-plus(aria-hidden='true')
+                  |  Create an account
+                  span.caret
+                ul.dropdown-menu(aria-labelledby='login')
+                  li(ui-sref-active='active')
+                    a(ui-sref='candidate-signup', translate='', href='/signup/candidate') Candidate Signup
+                  li(ui-sref-active='active')
+                    a(ui-sref='company-signup', translate='', href='/signup/company') Employer Signup

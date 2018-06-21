@@ -9,6 +9,9 @@
 @import "jobs";
 @import "newhome";
 @import "fa.css";
+@import "about";
+@import "contact";
+@import "auth";
 
 #header {
     // background-color: red;
@@ -1559,7 +1562,7 @@
                 color: $color2;
                 padding: 40px;
                 position: relative;
-                height: calc(100% - 130px);
+                height: calc(35% );
                 border: 3px solid #fff;
                 border-bottom-width: 0;
                 &:before {
@@ -1886,4 +1889,77 @@
         line-height: 23px;
         font-family: $work-sans;
     }
+}
+
+
+.page {
+    padding: 80px 0;
+    .title {
+        h1 {
+            @include h2;
+        }
+    }
+}
+
+.toc-sidebar {
+    .nav-tabs>li>a {
+        border-radius: 0 !important;
+        padding: 4px 10px !important;
+        font-size: 13px;
+    }
+    .nav-tabs>li.active>a,
+    .nav-tabs>li.active>a:hover,
+    .nav-tabs>li.active>a:focus {
+        border-left: 3px solid #ec3c4f !important;
+        border: none;
+        padding: 15px 10px;
+        font-weight: bold;
+    }
+    ul {
+        width: 100%;
+        li {
+            width: 100%;
+            display: block;
+        }
+    }
+}
+
+
+.arrow-bounce {
+    position: absolute;
+    margin: 0 auto;
+    bottom: 160px;
+    color: #FFF;
+    left: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    line-height: 40px;
+    -webkit-animation: bounceupdown 2s infinite;
+    z-index: 60;
+    cursor: pointer;
+}
+
+@-webkit-keyframes bounceupdown {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        -webkit-transform: translateY(0);
+    }
+    40% {
+        -webkit-transform: translateY(-20px);
+    }
+    60% {
+        -webkit-transform: translateY(-10px);
+    }
+}
+
+.scoot-block {
+    background-color: #fff;
+    padding-top: 30px;
+    padding-bottom: 50px;
+    color: #3c5181;
 }

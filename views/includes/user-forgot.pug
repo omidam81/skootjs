@@ -1,0 +1,27 @@
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg.ng-hide(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .page-has-form.skoot-cover.ng-scope
+      .form-container-wrapper
+        form.ng-pristine.ng-valid-email.ng-invalid.ng-invalid-required(ng-submit='candForgot.submit()')
+          h1.heading(translate='') FORGOT PASSWORD
+          .form-top-text.text-inverse
+            p(ng-hide='candForgot.succeed', translate='') Enter your email address and we'll send you a link to reset your password.
+            br
+            // ngIf: candForgot.succeed
+          .inputs-container
+            input#email.form-input.ng-pristine.ng-untouched.ng-empty.ng-valid-email.ng-invalid.ng-invalid-required(placeholder='Email Address', ng-model='candForgot.email', name='email', type='email', required='')
+          // ngIf: compLogin.loading
+          button.form-btn-submit(type='submit', translate='') Reset Password

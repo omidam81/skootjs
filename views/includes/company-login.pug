@@ -1,0 +1,34 @@
+
+.body-wrap.relative
+  scoot-loading.ng-isolate-scope
+    #loader.spinner-wrapper(style='display: none;')
+      .skoot-spinner-v2(ng-hide='timeOut')
+        .spinner
+          .cube1
+          .cube2
+      // ngIf: isCandidate()
+      // ngIf: isCompany()
+      .text-center.timeout-msg.ng-hide(ng-show='timeOut')
+        img.logo-grayscale(src='https://www.skootjobs.com/images/logo.png')
+        p
+          | We're sorry, things don't appear to be working at the moment. Please try refreshing the page.
+  // uiView:
+  .ng-scope(ui-view='')
+    .page-has-form.skoot-cover.ng-scope
+      .form-container-wrapper
+        form.ng-valid-email.ng-invalid.ng-invalid-required.ng-dirty(ng-submit='compLogin.submit()')
+          h1.heading(translate='') Employer Login
+          .inputs-container
+            input#email.form-input.ng-valid-email.ng-not-empty.ng-dirty.ng-valid.ng-valid-required.ng-touched(placeholder='Email Address', ng-model='compLogin.email', ng-required='true', name='email', type='email', required='required')
+            hr
+            input#password.form-input.ng-pristine.ng-untouched.ng-empty.ng-invalid.ng-invalid-required(placeholder='Password', ng-model='compLogin.password', ng-required='true', name='password', type='password', required='required')
+          // ngIf: compLogin.loading
+          // ngIf: !compLogin.loading
+          button.form-btn-submit.ng-scope(ng-if='!compLogin.loading', type='submit', translate='') Log In
+          // end ngIf: !compLogin.loading
+          .col-xs-12.form-bottom-options.text-inverse.text-center
+            a(ui-sref='company-forgot', translate='', href='/company/forgot') Forgot Password?
+          .col-xs-12.form-bottom-options.text-inverse.text-center
+            | Don't have an account? 
+            a(ui-sref='company-signup', href='/signup/company')
+              span Sign Up
