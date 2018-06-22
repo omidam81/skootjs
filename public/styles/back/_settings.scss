@@ -1,0 +1,204 @@
+    $c-red: #ec3c4f;
+$c-red-dark: darken($c-red, 10%);
+$c-red-hover: #bc1621;
+$c-red2: #f80f0f;
+$c-blue: #3c5181;
+$c-blue-light: #5a83c9;
+$c-greyish: #777;
+$c-reading: #555;
+$c-reading-title: #333;
+$c-grey-very-light: #fffefe;
+$c-grey-medium-light: #f8f8f8;
+$c-grey-light: #f1f1f1;
+$c-grey-medium: #e5e5e5;
+$c-grey: #b4b4b5;
+$c-grey-dark: #3b3d45;
+$c-grey-dark-hover: #979aa1;
+$c-green: #008000;
+$c-green-light: #5ac771;
+$c-green-button: #4CAF50;
+$c-yellow: #FFFD08;
+$c-orange: #ff6e1f;
+$c-purple: #5b2b8c;
+$bordo:#ec3c4f;
+$c-team-border: #e2e2e2;
+$c-team-text: $c-red;
+
+/************** New Variables Based On Egor's Style Guide *********/
+
+
+/* 0.1 font families */
+
+@mixin h1() {
+    font-family: $font-sans;
+    font-size: 60px;
+    font-weight: 700;
+    color: #32343a;
+}
+
+@mixin h2() {
+    font-family: $font-sans;
+    font-size: 36px;
+    font-weight: 700;
+    color: #32343a;
+}
+
+@mixin h3() {
+    font-family: $font-sans;
+    font-size: 28px;
+    font-weight: 700;
+    color: #32343a;
+}
+
+@mixin h4() {
+    font-family: $font-sans;
+    font-size: 22px;
+    font-weight: 700;
+    color: #32343a;
+}
+
+@mixin h5() {
+    font-family: $font-sans;
+    font-size: 18px;
+    font-weight: 700;
+    color: #32343a;
+}
+
+@mixin h6() {
+    font-family: $font-sans;
+    font-size: 16px;
+    font-weight: 700;
+    color: #32343a;
+}
+
+
+/* 0.8 Color Palette */
+
+$color1: #32343a;
+$color2: #4d4f55;
+$color3: #3b3d45;
+$color4: #979aa1;
+$color5: #9d9ea2;
+$color6: #e1e2e5;
+$color7: $c-red;
+$color8: #bc1621;
+
+/* 0.9 Color Palette for Labels */
+
+$color9: #3f6a93;
+$color10: #3a97c7;
+$color11: #5ac771;
+$color12: #f09958;
+$color13: #9099b8;
+$color14: #d1565b;
+$color15: #feed7c;
+$color16: #fbfbfb;
+
+/* 0.2 Buttons */
+
+.btn-red-new {
+    background-color: $color7;
+    font-size: 14px;
+    color: #FFF;
+
+    &:hover {
+        background-color: $c-red-hover;
+        color: #FFF;
+    }
+    &:focus {
+        background-color: $c-red-hover;
+        color: #FFF;
+    }
+    &:active {
+        background-color: $c-red-hover;
+        color: #FFF;
+    }
+    &.dis {
+        background-color: #f36e76;
+        color: #FFF;
+        cursor: no-drop;
+    }
+}
+
+.btn-grey-new {
+    background-color: #b3b6bd;
+    font-size: 14px;
+    color: #FFF;
+
+    &:hover {
+        background-color: $color4;
+        color: #FFF;
+    }
+    &:focus {
+        background-color: #6b6f78;
+        color: #FFF;
+    }
+    &:active {
+        background-color: #6b6f78;
+        color: #FFF;
+    }
+    &.dis {
+        background-color: #e1e2e5;
+        color: #FFF;
+        cursor: no-drop;
+    }
+
+}
+
+.btn-trans {
+    background-color: transparent !important;
+    &.white {
+        border: 1px solid #FFF;
+        color: #FFF;
+        &:hover {
+            color: $color7;
+            border-color: #FFF;
+            background-color:#FFF !important;
+        }
+        &:focus {
+            color: $color7;
+            border-color: #FFF;
+            background-color:#FFF !important;
+        }
+        &:active {
+            color: $color7;
+            border-color: #FFF;
+            background-color:#FFF !important;
+        }
+    }
+}
+    /******************************************************************/
+    //$font-sans: 'PT Sans',
+    $font-sans:'Source Sans Pro',
+    sans-serif;
+    // $font-sansr: 'PTSans-Regular', 'PT Sans', sans-serif;
+    //$font-sans: "Lucida Grande", Helvetica, Arial, sans-serif;
+    // $font-serif: 'Open Sans', sans-serif;
+    $font-serif: $font-sans;
+    $font-main: $font-serif;
+    $work-sans: 'Work Sans', sans-serif;
+    .sans {
+        font-family: $font-sans;
+    }
+    .serif {
+        font-family: $font-serif;
+    }
+    .uppercase {
+        text-transform: uppercase;
+    }
+    $c-main: $c-red;
+    $xxs: "(max-width: 321px)";
+    $xs: "(max-width: 767px)";
+    $xs_p: "(min-width: 768px)";
+    $xs_sm: "(max-width: 991px)";
+    $sm: "(min-width: 768px) and (max-width: 991px)";
+    $sm_p: "(min-width: 768px)";
+    $sm_md: "(min-width: 768px) and (max-width: 1199px)";
+    $md: "(min-width: 992px) and (max-width: 1199px)";
+    $md_p: "(min-width: 992px)";
+    $lg: "(min-width: 1200px)";
+    $lg_p: "(min-width: 1200px)";
+    $lg_m: "(max-width: 1199px)";
+    $xlg: "(min-width: 1600px)";
+    $xlg_m: "(max-width: 1599px)";
+    $stock-animation: all 0.2s linear;

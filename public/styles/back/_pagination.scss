@@ -1,0 +1,77 @@
+.scoot-pagination {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom:20px;
+    .pagination > li > a, .pagination > li > span {
+        line-height: 1;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 20px;
+        padding: 0;
+        border: none;
+        color: #bebebe;
+        background-color:#FFF !important;
+    }
+
+    .pagination > li.inactive a{
+        cursor: not-allowed;
+        color:#CCCCCC !important;
+    }
+
+    .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+        color: #000;
+    }
+    .pagination > li:first-child > a, .pagination > li:first-child > span,
+    .pagination > li:last-child > a, .pagination > li:last-child > span , .pagination i {
+        top: 0;
+        border: none;
+        width: 50px;
+        height: 50px;
+        line-height: 50px !important;
+        font-size: 35px;
+        color: $color7;
+        padding: 0;
+    }
+
+    .pagination > li:first-child > a{
+        border-top-left-radius:50%;
+        border-bottom-left-radius:50%;
+            // border-right: 1px solid #dcdcdc !important;
+             @media #{$xs}{
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            top: 20px;
+             }
+
+    }
+
+    .pagination > li:last-child > a {
+        border-top-right-radius:50%;
+        border-bottom-right-radius:50%;
+            // border-left: 1px solid #dcdcdc !important;
+             @media #{$xs}{
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            top: 20px;
+             }
+    }
+    @media #{$xs}{
+        .pagination > li > a {
+            width: 25px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            top: 20px;
+        }
+
+        .paging-wrap{
+            padding:0;
+        }
+
+    }
+}

@@ -38,7 +38,8 @@ router.get('/jobs/:q*?', function(req, res, next) {
                 jobs: jobs,
                 pageCount,
                 itemCount,
-                pages: paginate.getArrayPages(req)(3, pageCount, req.query.page)
+                pages: paginate.getArrayPages(req)(3, pageCount, req.query.page),
+                styles:[{src:'jobs.css'}]
             });
         });
     } catch (err) {
@@ -53,11 +54,12 @@ router.get('/jobs/:q*?', function(req, res, next) {
 // });
 
 router.get('/job', function(req, res, next) {
-    res.render('job', { title: "job view pages" });
+    res.render('job', { title: "job view pages", styles:[{src:'jobs.css'}] });
 });
 
 router.get('/culture', function(req, res, next) {
-    res.render('culture', { title: "culture" });
+    res.render('culture', { title: "culture", styles:[{src:'jobs.css'}] });
+
 });
 
 
