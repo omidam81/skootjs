@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', navType:'trans' , styles:[{src:'home.css'}] , scripts:'' });
+  res.render('index', { title: 'Express', navType:'trans' , styles:[{src:'home.css'}, {src:'owl.theme.default.min.css'}, {src:'owl.carousel.min.css'}] , scripts:[{src:'owl.carousel.min.js'}]  });
 });
 
 router.get('/hire-someone', function(req, res, next) {

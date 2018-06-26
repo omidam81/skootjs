@@ -142,5 +142,25 @@ footer#footer.ng-scope(show-footer='', ng-if="showFooter!='hidden'")
       </div>
 script(src="/js/jquery.min.js")      
 script(src="/js/main.js")      
-script(src="/js/bootstrap.min.js")      
+script(src="/js/bootstrap.min.js")  
+each script in scripts
+  script(src='/js/'+script.src)     
 // end ngIf: showFooter!='hidden'
+script.
+  $('.owl-carousel').owlCarousel({
+      margin:25,
+      loop:true,
+      autoWidth:true,
+      responsive:{
+          0:{
+              items:1
+          },
+          600:{
+              items:3
+          },
+          1000:{
+              items:4
+          }
+      },      
+      items:4
+  })
