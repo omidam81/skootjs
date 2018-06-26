@@ -143,24 +143,39 @@ footer#footer.ng-scope(show-footer='', ng-if="showFooter!='hidden'")
 script(src="/js/jquery.min.js")      
 script(src="/js/main.js")      
 script(src="/js/bootstrap.min.js")  
-each script in scripts
-  script(src='/js/'+script.src)     
-// end ngIf: showFooter!='hidden'
-script.
-  $('.owl-carousel').owlCarousel({
-      margin:25,
-      loop:true,
-      autoWidth:true,
-      responsive:{
-          0:{
-              items:1
-          },
-          600:{
-              items:3
-          },
-          1000:{
-              items:4
-          }
-      },      
-      items:4
-  })
+if scripts
+  each script in scripts
+    script(src='/js/'+script.src)     
+  // end ngIf: showFooter!='hidden'
+  script.
+    var owl = $('.owl-carousel');
+
+    $('.owl-carousel').owlCarousel({
+        margin:25,
+        loop:true,
+        autoWidth:true,
+        nav:false,
+        dots:false,
+        autoplayHoverPause:true,
+        autoplayTimeout:3000,
+        responsive:{
+            0:{
+                items:1
+            },
+            600:{
+                items:3
+            },
+            1000:{
+                items:4
+            }
+        },      
+        items:4
+    })
+    owl.on('mousewheel', '.owl-stage', function (e) {
+      if (e.deltaY>0) {
+          owl.trigger('next.owl');
+      } else {
+          owl.trigger('prev.owl');
+      }
+      e.preventDefault();
+    });  

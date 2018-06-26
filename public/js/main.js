@@ -27,39 +27,3 @@ $(window).scroll(function (event) {
 //$("#header").height() > 0 && $(".demo-sidebar").css("top", $("#header").height() + 15 + "px")
 
 
-$('.home-logo').owlCarousel({
-    loop:true,
-    nav:false,
-    dots:true,
-    margin:20,
-    responsiveClass:true,
-    responsive:{
-        0:{
-            items:2,
-        },
-        600:{
-            items:3,
-        },
-        1000:{
-            items:6,
-        }
-    }
-})
-$('.home-logo2').owlCarousel({
-    loop:true,
-    nav:false,
-    dots:true,
-    margin:20,
-    responsiveClass:true,
-    responsive:{
-        0:{
-            items:2,
-        },
-        600:{
-            items:3,
-        },
-        1000:{
-            items:6,
-        }
-    }
-})
