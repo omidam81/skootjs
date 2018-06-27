@@ -1,7 +1,6 @@
 html
   include ./includes/head.pug
   body.home
-   
     .page-sidebar-left-red.page-list-jobs.search-page-bg.demo-bg.sidebar-grey
       
       .container-fluid.search-result-container
@@ -10,8 +9,6 @@ html
             .inner
           .clearfix
         include ./includes/pagination.pug
-                              
-          
         ul.jobs-list.col-lg-10.col-lg-push-1
           each job in jobs
             li.jobs-list-item._old

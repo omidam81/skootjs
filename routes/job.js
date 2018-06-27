@@ -14,7 +14,7 @@ function parseParams(q) {
 router.get('/jobs/:q*?', function(req, res, next) {
 
     var query = parseParams(req.params.q);
-
+    
     try {
 
         Promise.all([
@@ -31,13 +31,16 @@ router.get('/jobs/:q*?', function(req, res, next) {
 
             const itemCount = result[1];
             const jobs = result[0];
-            console.error(jobs);
+            pagination = {
+                current : 1
+            };
 
             const pageCount = Math.ceil(itemCount / req.query.limit);
             res.render('jobs', {
                 jobs: jobs,
                 pageCount,
                 itemCount,
+                pagination,
                 pages: paginate.getArrayPages(req)(3, pageCount, req.query.page),
                 styles:[{src:'jobs.css'}]
             });
