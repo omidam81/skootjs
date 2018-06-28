@@ -1,63 +1,116 @@
 html
-  include ./includes/head.pug
-  body.home
-   
-    .page-sidebar-left-red.page-list-jobs.search-page-bg.demo-bg.sidebar-grey
-      
-      .container-fluid.search-result-container
-        .search-top
-          .col-xs-12
-            .inner
-          .clearfix
-        include ./includes/pagination.pug
-                              
-          
-        ul.jobs-list.col-lg-10.col-lg-push-1
-          each job in jobs
-            li.jobs-list-item._old
-              jobs-list-item(job='item')
-                .panel.panel-default(class=job.packageName=="Basic" ? "" : "featuredjob")
-                  .panel-body.has-distance
-                    .col-xs-12.col-sm-3.col-md-2.col-lg-05.job-img.hidden-xs
-                      a(href='/job')
-                        span.thumbnail.no-bottom-margin
-                          .job-item-img.square(style="background-image: url('images/companies/logo-placeholder.jpg');")
-                    .col-xs-12.col-sm-6.col-md-7.col-lg-8.col-lg-75.job-listing-info
-                      h3.position
-                        a.job-title(target='_blank', href='/job')= job.title
-                      .job-details
-                        .company.biz-name.hidden-xs
-                          a.company-name(href='/culture')
-                            i.fa.fa-building-o(aria-hidden='true')
-                            | #{job.businessId.name}
-                        .company.visible-xs
-                          i.fa.fa-building-o(aria-hidden='true')
-                          span.biz-name-xs  U.A.K ONLINE NETWORK RESOURCES
-                          .response-rate-xs
-                        .time
-                          i.fa.fa-clock-o
-                          span 9 hours ago
-                        .salary
-                          span
-                            span.i.i-rm.currency
-                            |  2,000 - 3,000 /month
-                        .address
-                          span
-                            i.fa.fa-map-marker
-                            |  Malaysia
-                        .distance
-                          span
-                            i.fa.fa-globe
-                            |  0km away
-                    .col-xs-12.col-sm-3.col-md-3.col-lg-2.job-actions
-                      .col-save
-                        a.save-this-job(target='_blank', href='')
-                          i.fa.fa-eye(aria-hidden='true')
-                          |  View More Details
-                      .col-apply
-                        a.job-action-btn.apply-now.btn.btn-md.btn-block.btn-red-new Apply now
-        include ./includes/pagination.pug
+	include ./includes/head.pug
+	body.home
+	include ./includes/nav.pug
+	div.job-search
+		.search-filters
+			div.container
+				div.row
+					div.col-xs-2.cp
+						input.filter-input(type="text",placeholder="Keyword or Job Title")
+					div.col-xs-2.cp
+						input.filter-input(type="text",placeholder="Location")
+					div.col-xs-2.cp
+						select.filter-input
+							option Job Type
+					div.col-xs-2.cp
+						select.filter-input
+							option Job Category
+					div.col-xs-2.cp
+						select.filter-input
+							option Sort By
+					div.col-xs-2.cp
+						button.all-filters Show All Filters	
+		.jobs-container
+			.row
+				.col-lg-8
+					include ./includes/pagination.pug
+			.jobs-list-container.col-lg-8
 
-                              
-
-  include ./includes/footer.pug
+				each item in [1,2,3]
+					.job-item
+						.job-logo-container
+							.job-logo
+								img(src="images/companies/logo-placeholder.jpg")
+						.job-content
+							a.job-title(href="")
+								h3 Business Administration Executive
+							.job-buttons
+								button.btn-view-job View Details
+								button Apply Now
+							div.clearfix
+							a.bizname(href="") 
+								i.fa.fa-building-o
+								| OAS MEDIA
+							.about-biz
+								p OAS provides professional advertising consultancy services to cater to client business needs, among the professional advertising consultancy services that we are providing : Business License ...
+							.job-details
+								.location
+									i.fa.fa-map-marker
+									| Persiaran Pegaga, Selangor, Malaysia
+								.time
+									| 12 hours ago
+								.salary
+									asd
+									| RM 2,000 - 4,000 /month
+						.clearfix
+				.job-item.featured
+					.highlight
+						i.fa.fa-star
+					.job-logo-container
+						.job-logo
+							img(src="images/companies/logo-placeholder.jpg")
+					.job-content
+						a.job-title(href="")
+							h3 Business Administration Executive
+						.job-buttons
+							button.btn-view-job View Details
+							button Apply Now
+						div.clearfix
+						a.bizname(href="") 
+							i.fa.fa-building-o
+							| OAS MEDIA
+						.about-biz
+							p OAS provides professional advertising consultancy services to cater to client business needs, among the professional advertising consultancy services that we are providing : Business License ...
+						.job-details
+							.location
+								i.fa.fa-map-marker
+								| Persiaran Pegaga, Selangor, Malaysia
+							.time
+								| 12 hours ago
+							.salary
+								asd
+								| RM 2,000 - 4,000 /month
+					.clearfix
+				each item in [1,2,3]
+					.job-item
+						.job-logo-container
+							.job-logo
+								img(src="images/companies/logo-placeholder.jpg")
+						.job-content
+							a.job-title(href="")
+								h3 Business Administration Executive
+							.job-buttons
+								button.btn-view-job View Details
+								button Apply Now
+							div.clearfix
+							a.bizname(href="") 
+								i.fa.fa-building-o
+								| OAS MEDIA
+							.about-biz
+								p OAS provides professional advertising consultancy services to cater to client business needs, among the professional advertising consultancy services that we are providing : Business License ...
+							.job-details
+								.location
+									i.fa.fa-map-marker
+									| Persiaran Pegaga, Selangor, Malaysia
+								.time
+									| 12 hours ago
+								.salary
+									asd
+									| RM 2,000 - 4,000 /month
+						.clearfix
+			.col-lg-4
+				iframe(src="/job")
+			.clearfix
+	.clearfix
+	include ./includes/footer.pug

@@ -2,49 +2,6 @@
   // uiView:
   .ng-scope(ui-view='')
     .job-page.dashboard-v3.ng-scope
-      .dashboard-top
-        // ngIf: vm.job.packageName == 'SkootRekruit' || vm.job.packageName == 'Featured'
-        .container
-          .dashboard-top-container.no-bg
-            .col-xs-12.text-center
-              // ngIf: false
-              // <img ng-src="{{business.profileImg}}" alt="{{business.name}}" class="business-logo">
-              span.thumbnail.thumb.no-bottom-margin.circle-new
-                .job-item-img(style="background-image: url('https://api.skootjobs.com/api/containers/bprofile1529582466806/download/1529582466806.png');")
-              h3.heading.ng-binding Personal Assistant
-              h5.subsubheading
-                a.ng-binding(ui-sref="business-jobs-public-slug({businessId: vm.job.business.id , slug:( 'jobs at ' + vm.job.business.company.companyName | slugify )})", href='/business/5b2b9453f3dcdbee9d405f1c/all/jobs/jobs-at-rush-max-event') Rush Max Event
-                // ngIf: vm.job.business.responseRate
-              .gap-10
-              // ngIf: vm.job.status != 'live'
-              // ngIf: !vm.job.isLoading && vm.job.status== 'live'
-              .job-top-actions.ng-scope(ng-if="!vm.job.isLoading && vm.job.status== 'live'")
-                .btn-container
-                  // ngIf: (vm.candidateInfo | isEmpty) && vm.userType != 'company'
-                  a.btn.btn-red-new.btn-md.ng-scope(ng-if="(vm.candidateInfo | isEmpty) && vm.userType != 'company'", ng-click='vm.expressSignUp(vm.job)', translate='') Apply Now
-                  // end ngIf: (vm.candidateInfo | isEmpty) && vm.userType != 'company'
-                  //
-                    ngIf:
-                    !(vm.candidateInfo | isEmpty) &&
-                    vm.candidateInfo.apps.indexOf(vm.job.id) == -1 &&
-                    vm.candidateInfo.applications[vm.job.id].status != 'removed' &&
-                    vm.candidateInfo.applications[vm.job.id].status != 'rejected' && vm.job.status == 'live'
-                  // ngIf: !(vm.candidateInfo | isEmpty) && vm.candidateInfo.apps.indexOf(vm.job.id) != -1 && vm.candidateInfo.applications[vm.job.id].status != 'removed' && vm.candidateInfo.applications[vm.job.id].status != 'rejected'
-                .btn-container
-                  // ngIf: vm.candidateInfo.applications[vm.job.id] && vm.job.status != 'closed' && vm.candidateInfo.applications[vm.job.id].status == 'removed' && vm.job.status == 'live'
-                  // ngIf: !(vm.candidateInfo | isEmpty) && vm.candidateInfo.saved.indexOf(vm.job.id) == -1
-                  // ngIf: !(vm.candidateInfo | isEmpty) && vm.candidateInfo.saved.indexOf(vm.job.id) != -1
-                // ngIf: vm.job.status != 'live'
-              // end ngIf: !vm.job.isLoading && vm.job.status== 'live'
-              // ngIf: vm.job.isLoading && (!vm.candidateInfo | isEmpty)
-              .gap-10
-              // ngIf: vm.job.acceptsForeigners
-              // ngIf: !vm.job.acceptsForeigners
-              p.foreigners-block_v3.ng-scope(ng-if='!vm.job.acceptsForeigners', translate='')
-                | This job 
-                b.ng-scope accepts only local candidates
-              // end ngIf: !vm.job.acceptsForeigners
-            .clearfix
       .scoot-block.dashboard-content
         .container
           .block.job-details-summary

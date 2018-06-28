@@ -39,7 +39,8 @@ router.get('/jobs/:q*?', function(req, res, next) {
                 pageCount,
                 itemCount,
                 pages: paginate.getArrayPages(req)(3, pageCount, req.query.page),
-                styles:[{src:'jobs.css'}]
+                styles:[{src:'jobs.css'}],
+                scripts:[{src:'jobs.js'}]
             });
         });
     } catch (err) {
