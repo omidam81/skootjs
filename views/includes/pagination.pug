@@ -10,7 +10,7 @@
           a(href='')
             i.fa.fa-caret-left(aria-hidden='true')
         each page in pages  
-         li(class= (pagination.current != page.number?'disabled':'active'))
+         li(class= (pagination.current != page.number?'active':'disabled'))
            a(href=page.url)= page.number
 
         li.ng-scope(ng-if='directionLinks', ng-class='{ inactive : pagination.current == pagination.last }')
