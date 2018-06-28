@@ -15,7 +15,7 @@ db.Company.find({ "_id": /.*comp/i , "status": { $ne: "deleted_0" } }).forEach(f
 	newDocument.isDouplicated = true;
 	newDocument.old_id = xc;
 	db.Company.insert(newDocument);
-	var newId = db.Job.findOne({old_id : xc})._id;
+	var newId = db.Company.findOne({old_id : xc})._id;
 	for(var item in needtoChanges){
 		db.getCollection(needtoChanges[item].c).updateMany({companyId: xc}, {$set: {companyId: newId}}); 
 	}
