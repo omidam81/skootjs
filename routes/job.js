@@ -32,7 +32,7 @@ router.get('/jobs/:q*?', function(req, res, next) {
             const itemCount = result[1];
             const jobs = result[0];
             pagination = {
-                current : 1
+                current : parseInt(req.query.page)
             };
 
             const pageCount = Math.ceil(itemCount / req.query.limit);
