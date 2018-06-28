@@ -21,7 +21,7 @@ db.Job.find({ "_id": /.*job$/i , "status": { $ne: "deleted_0" } }).forEach(funct
 	delete newDocument._id;
 	newDocument.isDouplicated = true;
 	newDocument.old_id = xc;
-	//db.Job.insert(newDocument);
+	db.Job.insert(newDocument);
 	var newId = db.Job.findOne({old_id : xc})._id;
 	for(var item in needtoChanges){
 		db.getCollection(needtoChanges[item].c).updateMany({jobId: xc}, {$set: {jobId: newId}}); 
