@@ -14,7 +14,7 @@
         background-color:#FFF !important;
     }
 
-    .pagination > li.current a{
+    .pagination > li.disabled a{
         color:$c-red;
     }
     .pagination > li.inactive a{
