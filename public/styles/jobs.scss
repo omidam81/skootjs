@@ -1678,7 +1678,7 @@
                         p {
                             color: #999;
                             font-size: 12px;
-
+                            max-width:calc(100% - 30px);
                             line-height: 17px;
                         }
                     }
@@ -1688,6 +1688,15 @@
                             display: inline-block;
                             font-size: 13px;
                             color: $c-greyish;
+                            &.location{
+                            display:block;
+                            max-width:calc(100% - 30px);
+                            margin-top: 10px;
+                            margin-bottom: 7px;
+                            &:after {
+                                    display: none;
+                                }
+                            }
                             &.salary {
                                 color: $c-red;
                                 font-weight: 600;
