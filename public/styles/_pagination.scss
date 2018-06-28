@@ -14,6 +14,9 @@
         background-color:#FFF !important;
     }
 
+    .pagination > li.current a{
+        color:$c-red;
+    }
     .pagination > li.inactive a{
         cursor: not-allowed;
         color:#CCCCCC !important;
