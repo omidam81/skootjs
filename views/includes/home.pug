@@ -1,4 +1,4 @@
-div.home-section1
+form(action='/search/').home-section1
   div.container
     div.section1-content
       h1.title Search From Thousands of Jobs in Malaysia
@@ -10,10 +10,10 @@ div.home-section1
     div.search-box
       div.col1
         label Job Title or Keywords:
-        input.form-control(value="Sales Promoter")
+        input.form-control(name='keyword' value="")
       div.col2
         label Location:
-        input.form-control
+        input.form-control(name='location')
       div.col3
         button.search-job JOB SEARCH
 

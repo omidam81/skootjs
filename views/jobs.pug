@@ -1,3 +1,4 @@
+- function slug(title) { return title.replace(/ /g, '-').replace(/\//g, '-or-').replace(/\\/, '~~').replace("&", "-and-").replace("---", "-").replace("--", "-").toLowerCase(); };
 html
 	include ./includes/head.pug
 	body.home
@@ -24,10 +25,10 @@ html
 							.job-logo
 								img(src=job.businessId.profileImg)
 						.job-content
-							a.job-title(href="/job")
+							a.job-title(href="/job/" + job._id + "/" + slug(job.title))
 								h3=job.title
 							.job-buttons
-								button.btn-view-job View Details
+								button.btn-view-job(data-job-id=job._id data-job-title=job.title) View Details
 								button Apply Now
 							div.clearfix
 							a.bizname(href="/culture") 
@@ -73,7 +74,7 @@ html
 								| RM 2,000 - 4,000 /month
 					.clearfix
 			.col-lg-4
-				iframe(src="/job")
+				iframe(style:'display:none')
 			.clearfix
 	.clearfix
 	include ./includes/footer.pug
