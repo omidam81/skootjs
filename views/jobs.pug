@@ -5,15 +5,16 @@ html
 	include ./includes/nav.pug
 	div.job-search
 		.search-filters
-			div.container
-				div.row
-					.col-lg-8
-						div.col-xs-5.cp
-							input.filter-input(type="text",placeholder="Keyword or Job Title")
-						div.col-xs-5.cp
-							input.filter-input(type="text",placeholder="Location")
-						div.col-xs-2.cp
-							button.all-filters Search							
+			form(action='/search/').home-section1
+				div.container
+					div.row
+						.col-lg-8
+							div.col-xs-5.cp
+								input.filter-input(type="text", name="keyword", placeholder="Keyword or Job Title" value=params["keyword"])
+							div.col-xs-5.cp
+								input.filter-input(type="text", name="location", placeholder="Location" value=params["location"])
+							div.col-xs-2.cp
+								button.all-filters Search							
 		.jobs-container
 			.row
 				.col-lg-8

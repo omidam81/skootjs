@@ -93,10 +93,9 @@ var JobSchema = new Schema({
     },
     lastUpdatedBy: {
         type: String
-    }, 
-    businessId: { type: ObjectIdSchema, ref: 'Business' }
-
-
+    },
+    businessId: { type: ObjectIdSchema, ref: 'Business' },
+    typeOfEmploymentJobs: [{ type: ObjectIdSchema, ref: 'TypeOfEmploymentJob' }]
 
 }, { collection: 'Job' });
 

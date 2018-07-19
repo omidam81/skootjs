@@ -9,24 +9,20 @@ const Business = require('../models/business');
 
 function makeQuery(q) {
     var x = { status: 'live' };
-    if (q.keyword && q.keyword > 0) {
+
+    if (q.keyword && q.keyword.length > 0) {
         var keys = q.keyword.split(" ");
-        var re = new RegExp(options.keyword, "i");
+        var search= "";
+        //var re = new RegExp(q.keyword, "i");
+        search = q.keyword;
         if (q.keyword.indexOf(' ') != -1) {
             search = "";
             var words = q.keyword.split(" ");
             for (var i = 0; i < words.length; i++) {
                 search += "(?=.*" + words[i] + ")";
             }
-
-            re = new RegExp(search, "i");
-            var or = [];
-            x.push({
-                keywords: {
-                    regexp: re
-                }
-            });
         }
+        x.keywords = { $regex:  new RegExp(search, "i")};
     }
     return x;
 }
@@ -44,16 +40,28 @@ function doSearch(req, res, params) {
 
         Promise.all([
             Job.find(query).
-            select({ businessId: 1, title: 1, description: 1, typeOfSalary: 1, salaryFrom: 1, salaryTo: 1, location: 1, adddress: 1, informalAddress: 1 }).limit(req.query.limit)
-            .populate({
-                path: 'businessId',
-                populate: { // 2nd level subdoc (get users in comments)
-                    path: "companyId",
-                }
-            })
-            .skip(req.skip).lean().exec(),
+                select({ businessId: 1, 
+                    title: 1, 
+                    description: 1, 
+                    typeOfSalary: 1, 
+                    salaryFrom: 1, 
+                    salaryTo: 1, 
+                    location: 1, 
+                    adddress: 1, 
+                    informalAddress: 1 })
+                .limit(req.query.limit)
+                .populate({
+                    path: 'businessId',
+                    populate: { // 2nd level subdoc (get users in comments)
+                        path: "companyId",
+                    }
+                }).populate({
+                    path: 'typeOfEmploymentJobs',
+                    
+                })
+                .skip(req.skip).lean().exec(),
             Job.count(query)
-        ]).then(function(result) {
+        ]).then(function (result) {
 
             const itemCount = result[1];
             const jobs = result[0];
@@ -64,6 +72,7 @@ function doSearch(req, res, params) {
             const pageCount = Math.ceil(itemCount / req.query.limit);
             res.render('jobs', {
                 jobs: jobs,
+                params: params,
                 pageCount,
                 itemCount,
                 pagination,
@@ -78,7 +87,7 @@ function doSearch(req, res, params) {
 
 }
 /* GET home page. */
-router.get('/jobs/:q*?', function(req, res, next) {
+router.get('/jobs/:q*?', function (req, res, next) {
     doSearch(req, res);
 });
 
@@ -94,7 +103,7 @@ function showJob(req, res) {
         populate: { // 2nd level subdoc (get users in comments)
             path: "companyId",
         }
-    }).then(function(job) {
+    }).then(function (job) {
         res.render('job', {
             title: "job view pages",
             job: job,
@@ -102,20 +111,20 @@ function showJob(req, res) {
         });
     });
 }
-router.get('/job/:id/:title', function(req, res, next) {
+router.get('/job/:id/:title', function (req, res, next) {
     showJob(req, res);
 })
-router.get('/job', function(req, res, next) {
+router.get('/job', function (req, res, next) {
     res.render('job', { title: "job view pages", styles: [{ src: 'jobs.css' }] });
 });
 
-router.get('/culture', function(req, res, next) {
+router.get('/culture', function (req, res, next) {
     res.render('culture', { title: "culture", styles: [{ src: 'jobs.css' }] });
 
 });
 
-router.get('/search', function(req, res, next) {
-    var params = [req.params.location, req.params.keyword];
+router.get('/search', function (req, res, next) {
+    var params = { location: req.query["location"], keyword: req.query["keyword"] };
     doSearch(req, res, params);
 })
 
