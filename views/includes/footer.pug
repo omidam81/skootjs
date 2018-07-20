@@ -150,10 +150,9 @@ if scripts
   script.
     var owl = $('.owl-carousel');
 
-    $('.owl-carousel').owlCarousel({
+    owl.owlCarousel({
         margin:25,
         loop:true,
-        autoWidth:true,
         nav:false,
         dots:false,
         autoplayHoverPause:true,
@@ -170,12 +169,12 @@ if scripts
             }
         },      
         items:4
-    })
+    });
     owl.on('mousewheel', '.owl-stage', function (e) {
-      if (e.deltaY>0) {
-          owl.trigger('next.owl');
-      } else {
-          owl.trigger('prev.owl');
-      }
-      e.preventDefault();
-    });  
+        if (e.deltaY>0) {
+            owl.trigger('next.owl');
+        } else {
+            owl.trigger('prev.owl');
+        }
+        e.preventDefault();
+    });

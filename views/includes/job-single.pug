@@ -1,11 +1,127 @@
-p= job.title
-img(src=job.businessId.profileImg)
-p= job.businessId.name
-p= job.typeOfEmployment
-p sala
-
-
-// related jobs.
-div
- div
-  h3 Similar jobs
+div.single-job-container
+  div.container
+    div.row
+      div.col-md-8
+        div.job-title.clearfix
+          h1 Game and Animation Artist
+          span.time 2 hours ago
+        div.job-single-box.clearfix
+          h5.box-title Job Description
+          div.content
+            h6 Description:
+            ul.job-single-listing2
+              li Manage junior employees and delegate workload to them
+              li Manage junior employees and delegate workload to them
+              li Manage junior employees and delegate workload to them
+              li Manage junior employees and delegate workload to them
+            h6 Requirements:
+            ul.job-single-listing2
+              li Manage junior employees and delegate workload to them
+              li Manage junior employees and delegate workload to them
+              li Manage junior employees and delegate workload to them
+              li Manage junior employees and delegate workload to them
+            
+        div.job-single-box.clearfix
+          h5.box-title Minimum Education Level
+          div.content
+            ul.job-single-listing
+              li Completing Degree/Diploma
+        div.job-single-box.clearfix
+          h5.box-title Skills
+          div.content
+            ul.job-single-listing
+              li Adobe After Effect
+              li Adobe Dreamweaver
+              li Adobe PhotoShop
+            ul.job-single-listing
+              li HTML
+              li Adobe Illustrator
+              li Macromedia Flash
+        div.job-single-box.clearfix
+          h5.box-title Languages
+          div.content
+            ul.job-single-listing
+              li English
+        div.job-single-box.clearfix
+          h5.box-title Job Benefits
+          div.content
+            ul.job-single-listing
+              li Medical insurance
+              li Pension scheme
+              li Training
+        a(href="").apply-now1 Apply Now
+      div.col-md-4
+        div.button-container.clearfix
+          a(href="",class="apply") Apply
+          a(href="",class="share-job") Share Job
+          a(href="",class="save-job") Save Job
+        div.job-single-box.clearfix.job-meta
+          div.content
+            div.company-img
+              img(src="images/companies/logo-placeholder.jpg")
+            h2.company-name Company Name
+            p
+              span.key Job type:
+              span.value Full-Time
+            p
+              span.key Salary:
+              span.value 2800
+            p
+              span.key Location:
+              span.value Malaysia
+            p
+              strong.location-status This job accepts only local candidates
+            div#google-map 
+            script.
+              function myMap() {
+                var myCenter = new google.maps.LatLng(51.508742,-0.120850);
+                var mapCanvas = document.getElementById("google-map");
+                var mapOptions = {center: myCenter, zoom: 12};
+                var map = new google.maps.Map(mapCanvas, mapOptions);
+                var marker = new google.maps.Marker({position:myCenter,size: new google.maps.Size(20, 32)});
+                marker.setMap(map);
+              }
+            script(src="https://maps.google.com/maps/api/js?key=AIzaSyBRSP2oFP6r-YTKUf2ZX5p8PDap45u9fTM&libraries=places&language=en-US&callback=myMap")
+            hr
+            p
+              | The company was established on 12 March 2012. It started with 50 employees and now has expanded to 150 employees. The location is very strategic and near to public transportation. The environment is very convenience and conducive.
+        div.job-single-similar-jobs
+          h2 Recommended Similar Jobs
+          ul
+            li
+              h3 Game and Animation Artist
+              a(href="").link Human Capital Connection - 2 hours ago
+              p.half
+                span.key Job type:
+                span.value Full-Time
+              p.half
+                span.key Salary:
+                span.value 2800
+              p
+                span.key Location:
+                span.value Malaysia
+            li
+              h3 Game and Animation Artist
+              a(href="").link Human Capital Connection - 2 hours ago
+              p.half
+                span.key Job type:
+                span.value Full-Time
+              p.half
+                span.key Salary:
+                span.value 2800
+              p
+                span.key Location:
+                span.value Malaysia
+            li
+              h3 Game and Animation Artist
+              a(href="").link Human Capital Connection - 2 hours ago
+              p.half
+                span.key Job type:
+                span.value Full-Time
+              p.half
+                span.key Salary:
+                span.value 2800
+              p
+                span.key Location:
+                span.value Malaysia
+              
