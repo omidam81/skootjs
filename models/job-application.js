@@ -4,31 +4,25 @@ const Schema = mongoose.Schema;
 const ObjectIdSchema = Schema.ObjectId;
 const ObjectId = mongoose.Types.ObjectId;
 
-const CompanySchema = new Schema(
+const JobApplicationSchema = new Schema(
   {
     _id: {
       type: ObjectIdSchema,
       default: new ObjectId()
     },
-    contactName: {
+    date: {
+      type: Date
+    },
+    message: {
       type: String
     },
-    companyName: {
-      type: String
-    },
-
-    contactPhone: {
-      type: String
-    },
-
-    contactEmail: {
-      type: String
+    shortListed: {
+      type: Boolean,
+      required: true
     },
     status: {
-      type: String
-    },
-    lastUpdatedBy: {
-      type: String
+      type: String,
+      required: true
     },
     created: {
       type: Date,
@@ -38,12 +32,12 @@ const CompanySchema = new Schema(
       type: Date,
       default: Date.now
     },
-    messages: [{ type: ObjectIdSchema, ref: 'Messages' }],
-    businesses: [{ type: ObjectIdSchema, ref: 'Business' }],
+    candidateId: { type: ObjectIdSchema, ref: 'Candidate' },
+    jobId: { type: ObjectIdSchema, ref: 'Job' },
     comments: [{ type: ObjectIdSchema, ref: 'Comment' }]
   },
-  { collection: 'Company' }
+  { collection: 'JobApplication' }
 );
 
-const Company = mongoose.model('Company', CompanySchema);
-module.exports = Company;
+const JobApplication = mongoose.model('JobApplication', JobApplicationSchema);
+module.exports = JobApplication;

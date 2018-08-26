@@ -1,20 +1,24 @@
 var mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
 var ObjectIdSchema = Schema.ObjectId;
 var ObjectId = mongoose.Types.ObjectId;
 
-var TypeOfEmploymentJobSchema = new Schema({
-    _id: {
+var TypeOfEmploymentJob = mongoose.model(
+  'TypeOfEmploymentJob',
+  new mongoose.Schema(
+    {
+      _id: {
         type: ObjectIdSchema,
         default: new ObjectId()
+      },
+      name: {
+        type: String,
+        required: true
+      },
+      jobs: [{ type: ObjectIdSchema, ref: 'Job' }]
     },
-    typeOfEmploymentId: { type: ObjectIdSchema, ref: 'typeOfEmployment' },
-    jobId: { type: ObjectIdSchema, ref: 'Job' },
-
-}, { collection: 'TypeOfEmploymentJob' });
-
-
-var TypeOfEmploymentJob = mongoose.model("TypeOfEmploymentJob", TypeOfEmploymentJobSchema);
+    { collection: 'TypeOfEmploymentJob' }
+  )
+);
 
 module.exports = TypeOfEmploymentJob;

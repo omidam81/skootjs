@@ -1,105 +1,124 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const ObjectIdSchema = Schema.ObjectId;
+const ObjectId = mongoose.Types.ObjectId;
 
-var Schema = mongoose.Schema;
-var ObjectIdSchema = Schema.ObjectId;
-var ObjectId = mongoose.Types.ObjectId;
-
-var JobSchema = new Schema({
+var JobSchema = new Schema(
+  {
     _id: {
-        type: ObjectIdSchema,
-        default: new ObjectId()
+      type: ObjectIdSchema,
+      default: new ObjectId()
     },
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     description: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     otherInformation: {
-        type: String
+      type: String
     },
     typeOfSalary: {
-        type: String
+      type: String
     },
     salaryPeriod: {
-        type: String
+      type: String
     },
     salaryFrom: {
-        type: Number
+      type: Number
     },
     salaryTo: {
-        type: Number
+      type: Number
     },
     salaryRate: {
-        type: String
+      type: String
     },
     salaryHidden: {
-        type: Boolean,
-        required: true
+      type: Boolean,
+      required: true
     },
     status: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     address: {
-        type: String
+      type: String
     },
     informalAddress: {
-        type: String
+      type: String
     },
 
     location: {
-        // It's important to define type within type field, because
-        // mongoose use "type" to identify field's object type.
-        type: { type: String, default: 'Point' },
-        // Default value is needed. Mongoose pass an empty array to
-        // array type by default, but it will fail MongoDB's pre-save
-        // validation.
-        coordinates: { type: [Number], default: [0, 0] }
+      type: { type: String, default: 'Point' },
+      coordinates: { type: [Number], default: [0, 0] }
     },
     benefits: {
-        type: [String]
+      type: [String]
     },
     created: {
-        type: Date,
-        required: true
+      type: Date,
+      required: true
     },
     updated: {
-        type: Date
+      type: Date
     },
     expires: {
-        type: Date
+      type: Date
     },
     published: {
-        type: Date
+      type: Date
     },
     lastViewedAt: {
-        type: Date
+      type: Date
     },
     acceptsForeigners: {
-        type: Boolean,
-        default: true
+      type: Boolean,
+      default: true
     },
     keywords: {
-        type: String,
-        required: true,
-        default: ""
+      type: String,
+      required: true,
+      default: ''
     },
     notNew: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false
     },
     lastUpdatedBy: {
-        type: String
+      type: String
     },
+    //belongsTo
     businessId: { type: ObjectIdSchema, ref: 'Business' },
-    typeOfEmploymentJobs: [{ type: ObjectIdSchema, ref: 'TypeOfEmploymentJob' }]
+    professionId: { type: ObjectIdSchema, ref: 'Profession' },
+    typeOfEducationId: { type: ObjectIdSchema, ref: 'TypeOfEducation' },
+    categoryId: { type: ObjectIdSchema, ref: 'Category' },
+    packageName: { type: ObjectIdSchema, ref: 'Package' },
+    companyId: { type: ObjectIdSchema, ref: 'Company' },
 
-}, { collection: 'Job' });
+    //"hasMany"
+    interviews: [{ type: ObjectIdSchema, ref: 'Interview' }],
+    messages: [{ type: ObjectIdSchema, ref: 'Message' }],
+    applications: [{ type: ObjectIdSchema, ref: 'Application' }],
+    matches: [{ type: ObjectIdSchema, ref: 'Matche' }],
+    comments: [{ type: ObjectIdSchema, ref: 'Comment' }],
 
+    //"hasAndBelongsToMany"
+    typeOfEmploymentJobs: [
+      { type: ObjectIdSchema, ref: 'TypeOfEmploymentJob' }
+    ],
+    CandidateJobShortlist: [{ type: ObjectIdSchema, ref: 'Candidate' }],
+    skills: [{ type: ObjectIdSchema, ref: 'Skill' }],
+    certificates: [{ type: ObjectIdSchema, ref: 'Certificate' }],
+    otherSkills: [{ type: ObjectIdSchema, ref: 'Skill' }],
+    jobOtherCerts: [{ type: ObjectIdSchema, ref: 'Certificate' }],
+    languages: [{ type: ObjectIdSchema, ref: 'Language' }],
+    CandidateJobSeenBy: [{ type: ObjectIdSchema, ref: 'Candidate' }]
+  },
+  { collection: 'Job' }
+);
 
-var Job = mongoose.model("Job", JobSchema);
+const Job = mongoose.model('Job', JobSchema);
 
 module.exports = Job;
