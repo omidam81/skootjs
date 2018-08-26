@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 
 const ObjectIdSchema = Schema.ObjectId;
 const ObjectId = mongoose.Types.ObjectId;

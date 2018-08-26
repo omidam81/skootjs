@@ -1,12 +1,13 @@
 $(document).ready(function(){
 $('.btn-view-job').click(function(){
+
     event.stopPropagation();
     var id = $(this).data('job-id');
     var title = $(this).data('job-title');
-
     var href = `/job/${id}/${slugify(title)}`;
     $('iframe').attr('src', href);
     $('iframe').show(100);
+    
 })
 $('body').click(function(){
     $('iframe').hide(100);

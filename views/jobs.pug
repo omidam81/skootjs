@@ -22,58 +22,33 @@ html
 			.jobs-list-container.col-lg-8
 				each job in jobs
 					.job-item(class=job.packageName=="Basic" ? "" : "featuredjob")
+						.highlight
+							i.fa.fa-star
 						.job-logo-container
 							.job-logo
-								img(src=job.businessId.profileImg)
+								img(src="images/companies/logo-placeholder.jpg")
 						.job-content
 							a.job-title(href="/job/" + job._id + "/" + slug(job.title))
-								h3=job.title
+									h3=job.title
 							.job-buttons
-								button.btn-view-job(data-job-id=job._id data-job-title=job.title) View Details
+								button.btn-view-job View Details
 								button Apply Now
 							div.clearfix
-							a.bizname(href="/culture") 
+							a.bizname(href="") 
 								i.fa.fa-building-o
-								| #{job.businessId.name}
+								| OAS MEDIA
 							.about-biz
-								p Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups. Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.
+								p OAS provides professional advertising consultancy services to cater to client business needs, among the professional advertising consultancy services that we are providing : Business License ...
 							.job-details
 								.location
 									i.fa.fa-map-marker
-									| #{job.informalAddress}
+									| Persiaran Pegaga, Selangor, Malaysia
 								.time
 									| 12 hours ago
 								.salary
+									asd
 									| RM 2,000 - 4,000 /month
 						.clearfix
-				.job-item.featured
-					.highlight
-						i.fa.fa-star
-					.job-logo-container
-						.job-logo
-							img(src="images/companies/logo-placeholder.jpg")
-					.job-content
-						a.job-title(href="")
-							h3 Business Administration Executive
-						.job-buttons
-							button.btn-view-job View Details
-							button Apply Now
-						div.clearfix
-						a.bizname(href="") 
-							i.fa.fa-building-o
-							| OAS MEDIA
-						.about-biz
-							p OAS provides professional advertising consultancy services to cater to client business needs, among the professional advertising consultancy services that we are providing : Business License ...
-						.job-details
-							.location
-								i.fa.fa-map-marker
-								| Persiaran Pegaga, Selangor, Malaysia
-							.time
-								| 12 hours ago
-							.salary
-								asd
-								| RM 2,000 - 4,000 /month
-					.clearfix
 			.col-lg-4
 				iframe(style:'display:none')
 			.clearfix

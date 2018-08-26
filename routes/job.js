@@ -55,9 +55,6 @@ function doSearch(req, res, params) {
                     populate: { // 2nd level subdoc (get users in comments)
                         path: "companyId",
                     }
-                }).populate({
-                    path: 'typeOfEmploymentJobs',
-                    
                 })
                 .skip(req.skip).lean().exec(),
             Job.count(query)
