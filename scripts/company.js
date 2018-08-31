@@ -1,24 +1,85 @@
-var needtoChanges = [{c: "Business",f: "companyId"},
-{c: "CompanyPackage", f: "companyId"},
-{c: "InteractionLog", f: "companyId"},
-{c: "Job", f: "companyId"},
-{c: "Message", f: "companyId"},
-{c: "Interview", f: "companyId"}];
+const { MongoClient } = require('mongodb');
+const _ = require('underscore');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
+const Company = require('../models/company');
+const url = 'mongodb://localhost:27017/scoot3';
+const option = {
+  connectTimeoutMS: 60000,
+  keepAlive: true,
+  reconnectTries: 30000
+};
+var needtoChanges = [
+  { c: 'Business', f: 'companyId' },
+  { c: 'CompanyPackage', f: 'companyId' },
+  { c: 'InteractionLog', f: 'companyId' },
+  { c: 'Job', f: 'companyId' },
+  { c: 'Message', f: 'companyId' },
+  { c: 'Interview', f: 'companyId' }
+];
+MongoClient.connect(
+  url,
+  option,
+  async function(err, db) {
+    console.log('Connected correctly to server');
 
-//"37comp"
-//db.Job.remove({isDouplicated : true});
-db.Company.find({ "_id": /.*comp/i , "status": { $ne: "deleted_0" } }).forEach(function(x){
-  	print(x._id);
-	var xc = x._id;
-	var newDocument = x;
-	delete newDocument._id;
-	newDocument.isDouplicated = true;
-	newDocument.old_id = xc;
-	db.Company.insert(newDocument);
-	var newId = db.Company.findOne({old_id : xc})._id;
-	for(var item in needtoChanges){
-		db.getCollection(needtoChanges[item].c).updateMany({companyId: xc}, {$set: {companyId: newId}}); 
-	}
-});
+    db.collection('Company')
+      .find({ _id: /.*comp$/i, isDeleted: { $exists: false } })
+      .forEach(async doc => {
+        let company = new Company(_.omit(doc, '_id'));
+        company._id = new ObjectId();
+        console.log(`Document Id [${doc._id}] is converted to ${company._id}`);
+        doc.isDeleted = true;
+        doc.newId = company._id;
+        //Update current document
+        await db
+          .collection('Company')
+          .update({ _id: doc._id }, doc, { upsert: true });
+        //Insert new document with objectId
+        await db.collection('Company').insertOne(company);
 
-db.Company.updateMany({ "_id": /.*comp/i }, {$set: {status: 'deleted_0' }});
+        await db
+          .collection('Business')
+          .updateMany(
+            { companyId: doc._id },
+            { $set: { companyId: company._id } },
+            { multi: true }
+          );
+        await db
+          .collection('CompanyPackage')
+          .updateMany(
+            { companyId: doc._id },
+            { $set: { companyId: company._id } },
+            { multi: true }
+          );
+        await db
+          .collection('InteractionLog')
+          .updateMany(
+            { companyId: doc._id },
+            { $set: { companyId: company._id } },
+            { multi: true }
+          );
+        await db
+          .collection('Job')
+          .updateMany(
+            { companyId: doc._id },
+            { $set: { companyId: company._id } },
+            { multi: true }
+          );
+        await db
+          .collection('Message')
+          .updateMany(
+            { companyId: doc._id },
+            { $set: { companyId: company._id } },
+            { multi: true }
+          );
+        await db
+          .collection('Interview')
+          .updateMany(
+            { companyId: doc._id },
+            { $set: { companyId: company._id } },
+            { multi: true }
+          );
+      });
+  }
+);

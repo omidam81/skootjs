@@ -1,7 +1,5 @@
 var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
-
 const ObjectIdSchema = Schema.ObjectId;
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -47,7 +45,7 @@ var Business = mongoose.model(
         type: String
       },
       companyId: { type: ObjectIdSchema, ref: 'Company' },
-      jobs: [{ type: Schema.Types.ObjectId, ref: 'Job' }],
+      //jobs: [{ type: Schema.Types.ObjectId, ref: 'Job' }],
       jobId: { type: ObjectIdSchema, ref: 'Job' },
       categoryId: { type: ObjectIdSchema, ref: 'Category' },
       interviews: [{ type: ObjectIdSchema, ref: 'Interview' }],

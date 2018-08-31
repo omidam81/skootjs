@@ -100,7 +100,7 @@ var JobSchema = new Schema(
     //"hasMany"
     interviews: [{ type: ObjectIdSchema, ref: 'Interview' }],
     messages: [{ type: ObjectIdSchema, ref: 'Message' }],
-    applications: [{ type: ObjectIdSchema, ref: 'Application' }],
+    applications: [{ type: ObjectIdSchema, ref: 'JobApplication' }],
     matches: [{ type: ObjectIdSchema, ref: 'Matche' }],
     comments: [{ type: ObjectIdSchema, ref: 'Comment' }],
 

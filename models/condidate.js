@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
-const ObjectIdSchema = Schema.ObjectId;
+const ObjectIdSchema = mongoose.Schema.ObjectId;
 const ObjectId = mongoose.Types.ObjectId;
 
-const Condidate = mongoose.model(
-  'Condidate',
-  new mongoos.Schema(
+const Candidate = mongoose.model(
+  'Candidate',
+  new mongoose.Schema(
     {
       _id: {
         type: ObjectIdSchema,
@@ -62,14 +62,14 @@ const Condidate = mongoose.model(
       },
       status: {
         type: String,
-        default: live
+        default: 'live'
       },
       huntStatus: {
         type: String
       },
       receiveMatchUpdates: {
         type: String,
-        default: daily
+        default: 'daily'
       },
       salaryPeriod: {
         type: String
@@ -107,7 +107,7 @@ const Condidate = mongoose.model(
       typeOfEmployment: [{ type: ObjectIdSchema, ref: 'TypeOfEmployment' }],
       typeOfEducationId: { type: ObjectIdSchema, ref: 'TypeOfEducation' }
     },
-    { collection: 'Condidate' }
+    { collection: 'Candidate' }
   )
 );
-module.exports = Condidate;
+module.exports = Candidate;

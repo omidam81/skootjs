@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-const ObjectIdSchema = Schema.ObjectId;
+const ObjectIdSchema = mongoose.Schema.ObjectId;
 const ObjectId = mongoose.Types.ObjectId;
 
-const CompanySchema = new Schema(
+var CompanySchema = new mongoose.Schema(
   {
     _id: {
       type: ObjectIdSchema,
@@ -38,12 +37,11 @@ const CompanySchema = new Schema(
       type: Date,
       default: Date.now
     },
-    messages: [{ type: ObjectIdSchema, ref: 'Messages' }],
+    messages: [{ type: ObjectIdSchema, ref: 'Message' }],
     businesses: [{ type: ObjectIdSchema, ref: 'Business' }],
     comments: [{ type: ObjectIdSchema, ref: 'Comment' }]
   },
   { collection: 'Company' }
 );
-
 const Company = mongoose.model('Company', CompanySchema);
 module.exports = Company;
